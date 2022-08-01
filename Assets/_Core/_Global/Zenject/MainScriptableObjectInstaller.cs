@@ -5,11 +5,13 @@ using Zenject;
 public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScriptableObjectInstaller>
 {
     [SerializeField] private SceneReferenceConfig sceneReference;
+    [SerializeField] private LoadingConfig loadingConfig;
 
     public override void InstallBindings()
     {
         Container.BindInstances(
-            sceneReference
+            sceneReference,
+            loadingConfig
             );
 
     }

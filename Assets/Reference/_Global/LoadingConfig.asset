@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818775d84630d6444837565b8dfc10c3, type: 3}
-  m_Name: MainScriptableObjectInstaller
+  m_Script: {fileID: 11500000, guid: ffae790d956fae846aebb2d5c3eb61ef, type: 3}
+  m_Name: LoadingConfig
   m_EditorClassIdentifier: 
-  sceneReference: {fileID: 11400000, guid: 7883b2366ff85da4faf6ae6238e28446, type: 2}
-  loadingConfig: {fileID: 11400000, guid: 529f00acf9008284683fe7f639105ea0, type: 2}
+  loadingManager: {fileID: 6871032658367390580, guid: 963db8382f141804987d9935a961f917,
+    type: 3}
+  fadeSpeed: 2
+  fadeColor: {r: 0, g: 0, b: 0, a: 0}
