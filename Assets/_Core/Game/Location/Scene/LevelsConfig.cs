@@ -14,7 +14,7 @@ public class LevelsConfig : ScriptableObject
 public struct Level
 {
     public string levelName;
-    public GameObject level;
+    public LevelController level;
     public SubLevel[] subs;
 }
 

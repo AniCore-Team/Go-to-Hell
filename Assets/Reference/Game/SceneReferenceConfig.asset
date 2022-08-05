@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c3f8014fee1784faa4177a40a9ba02, type: 3}
   m_Name: SceneReferenceConfig
   m_EditorClassIdentifier: 
+  player: {fileID: 7863579665686451563, guid: 78abd7996447ceb46842c5f3cf6550c3, type: 3}
+  camera: {fileID: 1136613593426254175, guid: 2bc4fd16147d8b34cb5c32094b0df159, type: 3}

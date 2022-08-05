@@ -7,6 +7,7 @@ public class SceneController : MonoBehaviour
 {
     [Inject] private SceneSpawner spawner;
 
+
     private void Awake()
     {
         spawner.SpawnLevel(0);
