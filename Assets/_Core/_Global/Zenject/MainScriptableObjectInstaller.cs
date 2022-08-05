@@ -6,13 +6,14 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
 {
     [SerializeField] private SceneReferenceConfig sceneReference;
     [SerializeField] private LoadingConfig loadingConfig;
+    [SerializeField] private LevelsConfig levelsConfig;
 
     public override void InstallBindings()
     {
         Container.BindInstances(
             sceneReference,
-            loadingConfig
+            loadingConfig,
+            levelsConfig
             );
-
     }
 }

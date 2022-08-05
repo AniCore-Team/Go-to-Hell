@@ -7,8 +7,7 @@ using Zenject;
 public class StartScene : MonoBehaviour
 {
     [SerializeField] private float startTime;
-
-    [Inject] private LoadingManager loadingManager;
+    [SerializeField] private string startLevelName = "Location";
 
     void Start()
     {
@@ -18,6 +17,6 @@ public class StartScene : MonoBehaviour
     IEnumerator waitToStart()
     {
         yield return new WaitForSeconds(startTime);
-        loadingManager.LoadScene("Menu");
+        LoadingManager.OnLoadScene.Invoke(startLevelName);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,16 @@ public class LoadingManager : MonoBehaviour
 {
     [Inject] private LoadingConfig config;
 
+    public static Action<string> OnLoadScene;
+
     [SerializeField] private GameObject loadingBoard;
     [SerializeField] private Fade fade;
     [SerializeField] private float loadTime;
+
+    private void Awake()
+    {
+        OnLoadScene += LoadScene;
+    }
 
     private void Start()
     {
