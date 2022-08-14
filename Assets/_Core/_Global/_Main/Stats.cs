@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Client : MonoBehaviour
-{
-    private Stats stats;
-
-    public Stats Stats => stats;
-}
-
 [System.Serializable]
 public class Stats
 {

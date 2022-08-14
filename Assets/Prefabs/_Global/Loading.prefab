@@ -90,9 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIMG: {fileID: 7214640592065371512}
-  endFade:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &661904112314512144
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +228,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &6139231231277299039
 MonoBehaviour:

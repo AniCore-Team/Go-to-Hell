@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 3
+  startLevelName: Menu
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
