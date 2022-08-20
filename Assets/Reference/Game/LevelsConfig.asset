@@ -15,4 +15,8 @@ MonoBehaviour:
   levelsStruct:
   - levelName: Level 1
     level: {fileID: 8541532464650751267, guid: c936372c9e71591498711cce906c4acd, type: 3}
-    subs: []
+    subs:
+    - name: Battle
+      level: {fileID: 5927565060866989632, guid: 2e2e5ddbc96538046896ccd22dd0acf7,
+        type: 3}
+      isBoss: 0

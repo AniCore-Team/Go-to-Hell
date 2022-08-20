@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class LocationEventObject : MonoBehaviour
 {
     [SerializeField] private LocationEventType currentType;
+    [SerializeField] private int enemyID;
     private bool isEntered;
+
+    [Inject] private GameManager gameManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,6 +38,11 @@ public class LocationEventObject : MonoBehaviour
 
     private void SendEvent()
     {
+        if(currentType == LocationEventType.BATTLE)
+        {
+            gameManager.SetCurrentEnemy(enemyID);
+        }
+
         LocationEvents.SendEvent(currentType);
     }
 }

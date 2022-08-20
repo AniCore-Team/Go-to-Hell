@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        UIUtils.AddListenerToButton(newGameButton, CreateNewGame);
+        Utils.AddListenerToButton(newGameButton, CreateNewGame);
     }
 
     public void CreateNewGame()

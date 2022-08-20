@@ -7,13 +7,17 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
     [SerializeField] private SceneReferenceConfig sceneReference;
     [SerializeField] private LoadingConfig loadingConfig;
     [SerializeField] private LevelsConfig levelsConfig;
+    [SerializeField] private EnemyList enemyList;
+    [SerializeField] private CardsList cardsList;
 
     public override void InstallBindings()
     {
         Container.BindInstances(
             sceneReference,
             loadingConfig,
-            levelsConfig
+            levelsConfig,
+            enemyList,
+            cardsList
             );
     }
 }

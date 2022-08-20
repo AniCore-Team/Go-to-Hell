@@ -21,5 +21,7 @@ public struct Level
 [System.Serializable]
 public struct SubLevel
 {
-    public GameObject level;
+    public string name;
+    public BattleScene level;
+    public bool isBoss;
 }

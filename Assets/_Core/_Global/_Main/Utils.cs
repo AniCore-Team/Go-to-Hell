@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class UIUtils
+public class Utils
 {
     public static void SetParentToTransform(Transform current, Transform parent)
     {

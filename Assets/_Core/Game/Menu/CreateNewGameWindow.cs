@@ -15,8 +15,8 @@ public class CreateNewGameWindow : UIWindow
 
     public void SetProperty()
     {
-        UIUtils.AddListenerToButton(play, Play);
-        UIUtils.AddListenerToButton(cancel, Cancel);
+        Utils.AddListenerToButton(play, Play);
+        Utils.AddListenerToButton(cancel, Cancel);
         ActivateWindow();
     }
 
