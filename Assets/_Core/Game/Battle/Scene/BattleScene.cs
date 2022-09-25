@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -25,7 +23,6 @@ public class BattleScene : MonoBehaviour
         currentEnemy.transform.rotation = enemyPosition.rotation;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

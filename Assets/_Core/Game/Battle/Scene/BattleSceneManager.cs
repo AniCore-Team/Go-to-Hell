@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -19,12 +17,6 @@ public class BattleSceneManager : MonoBehaviour
     void Start()
     {
         SpawnScene(0, 0, false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void SpawnScene(int level, int sub, bool isBoss)

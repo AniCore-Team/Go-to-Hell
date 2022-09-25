@@ -21,6 +21,11 @@ public class ClientDeck
 
         slots.Add(new DeckSlot(card, 1));
     }
+
+    public DeckSlot GetRandomCard()
+    {
+        return slots[Random.Range(0, slots.Count)];
+    }
 }
 
 public struct DeckSlot
