@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -20,10 +18,5 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            client.Deck.AddCardToDeck(cardsList.list[Random.Range(0, cardsList.list.Count)]);
-        }
-    }
+    { }
 }

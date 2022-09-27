@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -114,6 +115,42 @@ public class BattleWindow : UIWindow
                 temp.Enqueue(slot);
         }
         return temp;
+    }
+
+    public void ShiftToFreeSlots()
+    {
+        for (int i = 1; i < cardSlots.Length; i++)
+        {
+            if (TryShiftCard(i, out var newSlot))
+            {
+                newSlot.card = cardSlots[i].card;
+                cardSlots[i].card = null;
+                var toSlot = newSlot;
+                var fromSlot = cardSlots[i];
+                Services<PureAnimatorController>
+                .Get()
+                .GetPureAnimator()
+                .Play(1f, progress =>
+                {
+                    toSlot.card.transform.position = Vector3.Lerp(
+                        fromSlot.cardPoint.position,
+                        toSlot.cardPoint.position,
+                        progress * speedCurve.Evaluate(progress));
+                    return default;
+                }, () => { });
+            }
+        }
+    }
+
+    private bool TryShiftCard(int slot, out UICardSlot position)
+    {
+        if (slot > 0 && cardSlots[slot - 1].card == null)
+        {
+            return TryShiftCard(slot - 1, out position);
+        }
+
+        position = cardSlots[slot];
+        return true;
     }
 }
 
