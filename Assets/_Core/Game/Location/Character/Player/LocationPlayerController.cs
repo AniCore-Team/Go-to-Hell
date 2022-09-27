@@ -8,6 +8,7 @@ public class LocationPlayerController : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Animator animator;
 
 
     private void Start()
@@ -30,6 +31,8 @@ public class LocationPlayerController : MonoBehaviour
         {
             agent.ResetPath();
         }
+
+        animator.SetBool("Move", agent.velocity.magnitude > 0.1f);
     }
 
 }
