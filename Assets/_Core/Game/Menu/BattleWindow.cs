@@ -121,36 +121,56 @@ public class BattleWindow : UIWindow
     {
         for (int i = 1; i < cardSlots.Length; i++)
         {
+            if (cardSlots[i].card == null) continue;
             if (TryShiftCard(i, out var newSlot))
             {
-                newSlot.card = cardSlots[i].card;
-                cardSlots[i].card = null;
                 var toSlot = newSlot;
                 var fromSlot = cardSlots[i];
+
+                toSlot.card = fromSlot.card;
+                toSlot.card.Linked(toSlot);
+                fromSlot.card = null;
+                toSlot.IsLocked = fromSlot.IsLocked;
+                fromSlot.IsLocked = false;
+
                 Services<PureAnimatorController>
                 .Get()
                 .GetPureAnimator()
-                .Play(1f, progress =>
+                .Play(0.3f, progress =>
                 {
                     toSlot.card.transform.position = Vector3.Lerp(
                         fromSlot.cardPoint.position,
                         toSlot.cardPoint.position,
                         progress * speedCurve.Evaluate(progress));
+
+                    toSlot.card.transform.rotation = Quaternion.Euler(
+                        toSlot.card.transform.eulerAngles.x,
+                        toSlot.card.transform.eulerAngles.y,
+                        progress * pulseCurve.Evaluate(progress) * 10f);
                     return default;
                 }, () => { });
             }
         }
     }
 
-    private bool TryShiftCard(int slot, out UICardSlot position)
+    private bool TryShiftCard(int slot, out UICardSlot position, bool prevShift = false)
     {
-        if (slot > 0 && cardSlots[slot - 1].card == null)
-        {
-            return TryShiftCard(slot - 1, out position);
-        }
-
         position = cardSlots[slot];
-        return true;
+        if (slot == 0 || cardSlots[slot - 1].card != null)
+            return prevShift;
+
+        prevShift = true;
+        return TryShiftCard(slot - 1, out position, prevShift);
+
+        //bool shift = false;
+        //if (slot > 0 && cardSlots[slot - 1].card == null)
+        //{
+        //    if (TryShiftCard(slot - 1, out position))
+
+        //}
+
+        //position = cardSlots[slot];
+        //return true;
     }
 }
 

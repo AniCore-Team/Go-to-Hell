@@ -22,7 +22,7 @@ public class CardView : MonoBehaviour
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
-            .Play(1f, progress =>
+            .Play(0.5f, progress =>
             {
                 Color origin = Color.white;
                 Renderer renderer = null;
