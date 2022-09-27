@@ -48,7 +48,7 @@ public class BattleManager : MonoBehaviour
             currentCard = cardDetector.TargetObject;
             if (Input.GetMouseButtonUp(0))
             {
-                currentCard.Use();
+                currentCard.Use(battleWindow.ShiftToFreeSlots);
             }
         }
     }

@@ -1,5 +1,6 @@
 using Common;
 using PureAnimator;
+using System;
 using UnityEngine;
 
 public class CardView : MonoBehaviour
@@ -14,14 +15,14 @@ public class CardView : MonoBehaviour
         this.linkSlot = linkSlot;
     }
 
-    public void Use()
+    public void Use(Action endCommand)
     {
         linkSlot.IsLocked = false;
         linkSlot.card = null;
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
-            .Play(1f, progress =>
+            .Play(0.5f, progress =>
             {
                 Color origin = Color.white;
                 Renderer renderer = null;
@@ -32,12 +33,12 @@ public class CardView : MonoBehaviour
 
                 return default;
             }, () =>
-            { Destroy(); });
+            { Destroy(); endCommand?.Invoke(); });
     }
 
     public void Destroy()
     {
-        Object.Destroy(gameObject);
+        UnityEngine.Object.Destroy(gameObject);
     }
 
     public void HightLight(bool isActive)
