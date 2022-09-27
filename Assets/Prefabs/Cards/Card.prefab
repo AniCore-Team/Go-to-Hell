@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4193507927682352951}
   - component: {fileID: 6676175931006558441}
   - component: {fileID: 79801852484702071}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 6908017331209251346}
   - component: {fileID: 6713184717459679039}
   - component: {fileID: 4936694036383076853}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5173652508244730722}
   - component: {fileID: 8761466440274537337}
   - component: {fileID: 536744920967262806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,10 +340,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3111565609762313623, guid: bedfe33e21496624abcf1ce77dfb2609,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bedfe33e21496624abcf1ce77dfb2609,
         type: 3}
       propertyPath: m_Name
       value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bedfe33e21496624abcf1ce77dfb2609,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6433097612276984978, guid: bedfe33e21496624abcf1ce77dfb2609,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedfe33e21496624abcf1ce77dfb2609, type: 3}
