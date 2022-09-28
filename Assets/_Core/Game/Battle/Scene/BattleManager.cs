@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleWindow battleWindow;
 
     private GameManager gameManager;
+    private LoadingManager loadingManager;
     private Factory<CardView> factory;
 
     [SerializeField] private CardDetector cardDetector;
@@ -24,20 +25,32 @@ public class BattleManager : MonoBehaviour
     [Inject]
     private void Construct(
         GameManager gameManager,
+        LoadingManager loadingManager,
         Factory<CardView> factory
         )
     {
         this.gameManager = gameManager;
+        this.loadingManager = loadingManager;
         this.factory = factory;
         cardDetector = new CardDetector();
         battleWindow.Init();
+        loadingManager.onFinishLoad += StartBattle;
     }
 
-    IEnumerator Start()
+    private void StartBattle()
     {
-        yield return null;
-        StartRound();
-        battleWindow.onPassRound += NextRound;
+        //yield return null;
+        Services<PureAnimatorController>
+            .Get()
+            .GetPureAnimator()
+            .Play(2f, progress =>
+            {
+                return default;
+            }, () =>
+            {
+                StartRound();
+                battleWindow.onPassRound += NextRound;
+            });
     }
 
     private void Update()
@@ -51,6 +64,11 @@ public class BattleManager : MonoBehaviour
                 currentCard.Use(battleWindow.ShiftToFreeSlots);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        loadingManager.onFinishLoad -= StartBattle;
     }
 
     private void NextRound()

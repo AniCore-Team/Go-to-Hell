@@ -13,6 +13,7 @@ public class CardView : MonoBehaviour
     public void Linked(UICardSlot linkSlot)
     {
         this.linkSlot = linkSlot;
+        transform.SetParent(linkSlot.cardPoint);
     }
 
     public void Use(Action endCommand)
@@ -52,7 +53,7 @@ public class CardView : MonoBehaviour
             .Play(0.2f, progress =>
             {
                 if (this == null) return default;
-                transform.localScale = Vector3.one + Vector3.one * 0.2f * (isActive ? progress : 1 - progress) ;
+                transform.localScale = (Vector3.one + Vector3.one * 0.2f * (isActive ? progress : 1 - progress)) * 600f;
                 return default;
             }, () => { });
     }

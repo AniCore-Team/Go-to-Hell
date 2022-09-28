@@ -10,6 +10,7 @@ public class LoadingManager : MonoBehaviour
     [Inject] private LoadingConfig config;
 
     public static Action<string> OnLoadScene;
+    public event Action onFinishLoad;
 
     [SerializeField] private GameObject loadingBoard;
     [SerializeField] private Fade fade;
@@ -43,7 +44,7 @@ public class LoadingManager : MonoBehaviour
         yield return new WaitForSeconds(config.FadeSpeed / 2);
         loadingBoard.SetActive(false);
         yield return new WaitForSeconds(config.FadeSpeed / 2);
-
         fade.FadeOut();
+        onFinishLoad?.Invoke();
     }
 }
