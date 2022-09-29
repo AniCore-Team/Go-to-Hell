@@ -14,6 +14,7 @@ public class CardView : MonoBehaviour
     {
         this.linkSlot = linkSlot;
         transform.SetParent(linkSlot.cardPoint);
+        transform.localScale = Vector3.one * 600f;
     }
 
     public void Use(Action endCommand)

@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Common;
+using PureAnimator;
 
 public class Fade : MonoBehaviour
 {
@@ -11,60 +13,43 @@ public class Fade : MonoBehaviour
 
     public Action<bool> endFade;
 
-    private bool inOut;
-    private bool IsFade;
-
     public void Init(float time, Color color)
     {
         deltaTime = time;
         fadeIMG.color = color;
     }
 
-    public void FadeIn()
+    public void FadeIn(Action endCommand)
     {
-        inOut = true;
-        IsFade = true;
+        Color color = fadeIMG.color;
+        Services<PureAnimatorController>
+            .Get()
+            .GetPureAnimator()
+            .Play(deltaTime, progress =>
+            {
+                color.a = progress;
+                fadeIMG.color = color;
+                return default;
+            }, () =>
+            {
+                endCommand?.Invoke();
+            });
     }
 
-    public void FadeOut()
+    public void FadeOut(Action endCommand)
     {
-        inOut = false;
-        IsFade = true;
-    }
-
-    private void LateUpdate()
-    {
-        if(IsFade)
-        {
-            Color color = fadeIMG.color;
-            
-            if(inOut)
+        Color color = fadeIMG.color;
+        Services<PureAnimatorController>
+            .Get()
+            .GetPureAnimator()
+            .Play(deltaTime, progress =>
             {
-                if (fadeIMG.color.a < 255)
-                {
-                    color.a += deltaTime * Time.deltaTime;
-                    fadeIMG.color = color;
-                }
-                else
-                {
-                    IsFade = false;
-                }
-                
-            }
-            else
+                color.a = 1 - progress;
+                fadeIMG.color = color;
+                return default;
+            }, () =>
             {
-                if (fadeIMG.color.a > 0)
-                {
-                    color.a -= deltaTime * Time.deltaTime;
-                    fadeIMG.color = color;
-                }
-                else
-                {
-                    IsFade = false;
-                }
-            }
-        }
-        else
-        { return; }
+                endCommand?.Invoke();
+            });
     }
 }

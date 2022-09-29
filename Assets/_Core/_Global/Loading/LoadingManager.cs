@@ -33,18 +33,42 @@ public class LoadingManager : MonoBehaviour
 
     IEnumerator waitToLoad(string name)
     {
-        fade.FadeIn();
-        yield return new WaitForSeconds(config.FadeSpeed/2);
-        loadingBoard.SetActive(true);
-        fade.FadeOut();
-        yield return new WaitForSeconds(config.FadeSpeed / 2);
+        bool nextStep = false;
+
+        fade.FadeIn(() =>
+        {
+            loadingBoard.SetActive(true);
+            fade.FadeOut(() =>
+            {
+                nextStep = true;
+            });
+        });
+        yield return new WaitUntil(() => nextStep);
+        nextStep = false;
+
+        //var currentSceneName = SceneManager.GetActiveScene().name;
+        //AsyncOperation operation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+
+        //while (!operation.isDone)
+        //{
+        //    yield return null;
+        //}
+
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
+        //SceneManager.UnloadSceneAsync(currentSceneName);
+
         SceneManager.LoadScene(name);
-        yield return new WaitForSeconds(loadTime);
-        fade.FadeIn();
-        yield return new WaitForSeconds(config.FadeSpeed / 2);
-        loadingBoard.SetActive(false);
-        yield return new WaitForSeconds(config.FadeSpeed / 2);
-        fade.FadeOut();
+
+        fade.FadeIn(() =>
+        {
+            loadingBoard.SetActive(false);
+            fade.FadeOut(() =>
+            {
+                nextStep = true;
+            });
+        });
+        yield return new WaitUntil(() => nextStep);
+        nextStep = false;
         onFinishLoad?.Invoke();
     }
 }

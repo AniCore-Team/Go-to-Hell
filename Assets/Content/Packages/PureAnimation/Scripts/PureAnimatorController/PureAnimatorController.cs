@@ -53,6 +53,8 @@ namespace PureAnimator
             _queueNewAnimators = new HashSet<PureAnimation>();
             _releaseAnimations = new List<PureAnimation>();
             _animationPool = new PureAnimationPool(_context);
+
+            DontDestroyOnLoad(gameObject);
         }
 
         protected override void OnDestroyService()

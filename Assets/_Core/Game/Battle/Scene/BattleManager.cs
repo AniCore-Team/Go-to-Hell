@@ -18,7 +18,6 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] private CardDetector cardDetector;
     private CardView currentCard;
-    private Ray rayToCursor;
 
     private int battlePoint = 0;
 
@@ -60,7 +59,7 @@ public class BattleManager : MonoBehaviour
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
-            .Play(2f, progress =>
+            .Play(0.2f, progress =>
             {
                 return default;
             }, () =>
