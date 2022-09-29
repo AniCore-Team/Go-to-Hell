@@ -18,7 +18,7 @@ public class CardView : MonoBehaviour
 
     public void Use(Action endCommand)
     {
-        linkSlot.IsLocked = false;
+        linkSlot.SetLocked(false, false);
         linkSlot.card = null;
         Services<PureAnimatorController>
             .Get()

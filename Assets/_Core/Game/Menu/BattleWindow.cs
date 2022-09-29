@@ -62,7 +62,7 @@ public class BattleWindow : UIWindow
             var freeSlot = freeSlots.Dequeue();
             freeSlot.card = newCard;
             freeSlot.card.transform.position = freeSlot.cardSpawn.position;
-            freeSlot.IsLocked = false;
+            freeSlot.SetLocked(false, false);
             newCard.Linked(freeSlot);
             Services<PureAnimatorController>
             .Get()
@@ -98,7 +98,7 @@ public class BattleWindow : UIWindow
         foreach (var slot in cardSlots)
         {
             if (slot.IsLocked)
-                slot.IsLocked = false;
+                slot.SetLocked(false, false);
             else if (slot.card != null)
             {
                 slot.card.Destroy();
@@ -131,8 +131,8 @@ public class BattleWindow : UIWindow
                 toSlot.card = fromSlot.card;
                 toSlot.card.Linked(toSlot);
                 fromSlot.card = null;
-                toSlot.IsLocked = fromSlot.IsLocked;
-                fromSlot.IsLocked = false;
+                toSlot.SetLocked(fromSlot.IsLocked, false);
+                fromSlot.SetLocked(false, false);
 
                 Services<PureAnimatorController>
                 .Get()
@@ -181,7 +181,8 @@ public class UICardSlot
     public CardView card;
     public Transform cardPoint;
     public Transform cardSpawn;
-    [SerializeField] private Toggle locker;
+    [SerializeField] private Button locker;
+    [SerializeField] private GameObject checkMark;
 
     [SerializeField] private bool isLocked = false;
 
@@ -190,24 +191,24 @@ public class UICardSlot
     public bool IsLocked
     {
         get => isLocked;
-        set
-        {
-            isLocked = value;
-            locker.isOn = value;
-        }
     }
 
     public void Init(Func<bool, bool> func)
     {
         onUseLock = func;
-        locker.onValueChanged.AddListener(isOn =>
+        locker.onClick.AddListener(() =>
         {
-            if (!onUseLock(isOn))
-            {
-                locker.isOn = !isOn;
-                return;
-            }
-            isLocked = isOn;
+            SetLocked(!isLocked, true);
         });
+    }
+
+    public void SetLocked(bool value, bool isUseScore)
+    {
+        if (isUseScore)
+            if (!onUseLock(!isLocked))
+                return;
+
+        isLocked = value;
+        checkMark.SetActive(isLocked);
     }
 }

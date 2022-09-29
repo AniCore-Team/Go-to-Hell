@@ -42,11 +42,13 @@ public class BattleManager : MonoBehaviour
         if (!isLock)
         {
             battlePoint++;
+            battleWindow.SetPointText(battlePoint);
             return true;
         }
         else if (battlePoint > 0)
         {
             battlePoint--;
+            battleWindow.SetPointText(battlePoint);
             return true;
         }
         return false;
