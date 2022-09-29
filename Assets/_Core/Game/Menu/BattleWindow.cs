@@ -18,14 +18,15 @@ public class BattleWindow : UIWindow
     [SerializeField] private UICardSlot[] cardSlots;
 
     public event Action onPassRound;
+    //public event Func<bool, bool> onUseLock;
 
-    public void Init()
+    public void Init(Func<bool, bool> func)
     {
         passButton.onClick.AddListener(() =>
             onPassRound?.Invoke());
 
         foreach (var slot in cardSlots)
-            slot.Init();
+            slot.Init(func);
     }
 
     public void SetPointText(int value)
@@ -184,6 +185,8 @@ public class UICardSlot
 
     [SerializeField] private bool isLocked = false;
 
+    public event Func<bool, bool> onUseLock;
+
     public bool IsLocked
     {
         get => isLocked;
@@ -194,8 +197,17 @@ public class UICardSlot
         }
     }
 
-    public void Init()
+    public void Init(Func<bool, bool> func)
     {
-        locker.onValueChanged.AddListener(isOn => isLocked = isOn);
+        onUseLock = func;
+        locker.onValueChanged.AddListener(isOn =>
+        {
+            if (!onUseLock(isOn))
+            {
+                locker.isOn = !isOn;
+                return;
+            }
+            isLocked = isOn;
+        });
     }
 }

@@ -33,8 +33,23 @@ public class BattleManager : MonoBehaviour
         this.loadingManager = loadingManager;
         this.factory = factory;
         cardDetector = new CardDetector();
-        battleWindow.Init();
+        battleWindow.Init(IsLock);
         loadingManager.onFinishLoad += StartBattle;
+    }
+
+    private bool IsLock(bool isLock)
+    {
+        if (!isLock)
+        {
+            battlePoint++;
+            return true;
+        }
+        else if (battlePoint > 0)
+        {
+            battlePoint--;
+            return true;
+        }
+        return false;
     }
 
     private void StartBattle()
@@ -61,7 +76,11 @@ public class BattleManager : MonoBehaviour
             currentCard = cardDetector.TargetObject;
             if (Input.GetMouseButtonUp(0))
             {
+                if (battlePoint < currentCard.property.card.cost) return;
+
                 currentCard.Use(battleWindow.ShiftToFreeSlots);
+                battlePoint -= currentCard.property.card.cost;
+                battleWindow.SetPointText(battlePoint);
             }
         }
     }

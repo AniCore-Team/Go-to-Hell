@@ -9,4 +9,5 @@ public class CardProperty : ScriptableObject
     public Sprite icon;
     public GameObject prefab;
     public int max_level;
+    public int cost;
 }
