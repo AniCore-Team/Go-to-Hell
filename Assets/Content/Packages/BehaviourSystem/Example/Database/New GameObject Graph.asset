@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9035428900592195769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf10755743eb72d4cbc8df4bad3d3fd8, type: 3}
+  m_Name: Game Object State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 472, y: -120}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -9035428900592195769}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: dynamicInput_0
+        node: {fileID: 5216302795239853887}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: -9035428900592195769}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: -9035428900592195769}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: 4796661879458284580}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 0}
+  Transitions:
+  - Decisions:
+    - {fileID: 0}
+    TrueState: {fileID: 0}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 4796661879458284580}
+    FalsePortName: instanceInput_1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18494b729889b03438b3a4c72f7470da, type: 3}
+  m_Name: New GameObject Graph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 5216302795239853887}
+  - {fileID: -9035428900592195769}
+  - {fileID: 4796661879458284580}
+  BeginState: {fileID: 5216302795239853887}
+--- !u!114 &4796661879458284580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf10755743eb72d4cbc8df4bad3d3fd8, type: 3}
+  m_Name: Game Object State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 392}
+  ports:
+    keys:
+    - Enter
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 4796661879458284580}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_1
+        node: {fileID: -9035428900592195769}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+  Actions: []
+  Transitions: []
+--- !u!114 &5216302795239853887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf10755743eb72d4cbc8df4bad3d3fd8, type: 3}
+  m_Name: Game Object State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -264, y: -152}
+  ports:
+    keys:
+    - Enter
+    - dynamicInput_1
+    - dynamicInput_0
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 5216302795239853887}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: dynamicInput_1
+      _node: {fileID: 5216302795239853887}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: dynamicInput_0
+      _node: {fileID: 5216302795239853887}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -9035428900592195769}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 0}
+  Transitions:
+  - Decisions:
+    - {fileID: 0}
+    TrueState: {fileID: -9035428900592195769}
+    TruePortName: dynamicInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: dynamicInput_1

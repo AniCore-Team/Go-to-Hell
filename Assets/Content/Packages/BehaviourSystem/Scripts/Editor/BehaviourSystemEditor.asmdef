@@ -1,0 +1,20 @@
+{
+    "name": "BehaviourSystemEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:99f01f16bcdb0a045a02d4224d46468c",
+        "GUID:bfae7dacb7305a342839637935eea5a5",
+        "GUID:47f8ae5f990a7d64c989050e2065cc34"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

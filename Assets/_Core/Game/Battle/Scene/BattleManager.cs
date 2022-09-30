@@ -2,10 +2,7 @@ using Common;
 using PureAnimator;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 public class BattleManager : MonoBehaviour
@@ -17,9 +14,14 @@ public class BattleManager : MonoBehaviour
     private Factory<CardView> factory;
 
     [SerializeField] private CardDetector cardDetector;
+    [SerializeField] private BattleBehaviourGraph graph;
+    private BattleBehaviourController battleController;
     private CardView currentCard;
+    private StateRound stateRound;
 
     private int battlePoint = 0;
+
+    public StateRound StateRound => stateRound;
 
     [Inject]
     private void Construct(
@@ -32,11 +34,13 @@ public class BattleManager : MonoBehaviour
         this.loadingManager = loadingManager;
         this.factory = factory;
         cardDetector = new CardDetector();
-        battleWindow.Init(IsLock);
+        battleWindow.Init(CheckLock);
         loadingManager.onFinishLoad += StartBattle;
+        battleWindow.onPassRound += NextRound;
+        stateRound = StateRound.PrePlayer;
     }
 
-    private bool IsLock(bool isLock)
+    private bool CheckLock(bool isLock)
     {
         if (!isLock)
         {
@@ -55,7 +59,6 @@ public class BattleManager : MonoBehaviour
 
     private void StartBattle()
     {
-        //yield return null;
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
@@ -64,12 +67,23 @@ public class BattleManager : MonoBehaviour
                 return default;
             }, () =>
             {
-                StartRound();
-                battleWindow.onPassRound += NextRound;
+                battleController = new BattleBehaviourController();
+                battleController.TryInstall(this, graph);
+                //StartRound();
             });
     }
 
     private void Update()
+    {
+        battleController.BehaviourUpdate();
+    }
+
+    private void LateUpdate()
+    {
+        battleController.LateBehaviourUpdate();
+    }
+
+    public void UpdateRound()
     {
         cardDetector.Update();
         if (cardDetector.isTarget)
@@ -93,6 +107,7 @@ public class BattleManager : MonoBehaviour
 
     private void NextRound()
     {
+        stateRound = StateRound.PreEnemy;
         StartCoroutine(ChangeRound());
     }
 
@@ -110,6 +125,7 @@ public class BattleManager : MonoBehaviour
             newCards[i].property = randomCard;
         }
         battleWindow.SetCard(newCards);
+        stateRound = StateRound.Player;
     }
 
     private IEnumerator ChangeRound()
@@ -138,6 +154,16 @@ public class BattleManager : MonoBehaviour
         yield return new WaitUntil(() => nextStep);
         battleWindow.UnlockedAndClearCards();
     }
+}
+
+[Serializable]
+public enum StateRound
+{
+    None,
+    PrePlayer,
+    Player,
+    PreEnemy,
+    Enemy
 }
 
 [Serializable]

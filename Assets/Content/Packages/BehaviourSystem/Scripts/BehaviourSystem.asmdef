@@ -1,0 +1,16 @@
+{
+    "name": "BehaviourSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bfae7dacb7305a342839637935eea5a5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
