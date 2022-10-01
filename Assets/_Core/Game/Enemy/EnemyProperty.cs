@@ -6,4 +6,6 @@ using UnityEngine;
 public class EnemyProperty : ScriptableObject
 {
     public GameObject prefab;
+    public List<EnemyProperty> simpleCards;
+    public List<HardAttack> hardAttacks;
 }
