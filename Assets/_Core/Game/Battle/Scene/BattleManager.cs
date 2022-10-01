@@ -7,6 +7,44 @@ using Zenject;
 
 public class BattleManager : MonoBehaviour
 {
+    public struct PlayerStateData
+    {
+        public CardDetector cardDetector;
+        public CardView currentCard;
+        public BattleWindow battleWindow;
+
+        public PlayerStateData(CardDetector cardDetector, CardView currentCard, BattleWindow battleWindow)
+        {
+            this.cardDetector = cardDetector;
+            this.currentCard = currentCard;
+            this.battleWindow = battleWindow;
+        }
+    }
+
+    public struct PreparePlayerStateData
+    {
+        public ClientDeck deck;
+        public BattleWindow battleWindow;
+        public Factory<CardView> factory;
+
+        public PreparePlayerStateData(ClientDeck deck, BattleWindow battleWindow, Factory<CardView> factory)
+        {
+            this.deck = deck;
+            this.battleWindow = battleWindow;
+            this.factory = factory;
+        }
+    }
+
+    public struct PrepareEnemyStateData
+    {
+        public BattleWindow battleWindow;
+
+        public PrepareEnemyStateData(BattleWindow battleWindow)
+        {
+            this.battleWindow = battleWindow;
+        }
+    }
+
     [SerializeField] private BattleWindow battleWindow;
 
     private GameManager gameManager;
@@ -17,11 +55,24 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleBehaviourGraph graph;
     private BattleBehaviourController battleController;
     private CardView currentCard;
-    private StateRound stateRound;
+    public StateRound stateRound = StateRound.None;
 
-    private int battlePoint = 0;
+    [SerializeField] public int battlePoint = 0;
 
-    public StateRound StateRound => stateRound;
+    //public StateRound StateRound => stateRound;
+
+    public PlayerStateData GetPlayerStateData() => new PlayerStateData(
+        cardDetector,
+        currentCard,
+        battleWindow);
+
+    public PreparePlayerStateData GetPreparePlayerStateData() => new PreparePlayerStateData(
+        gameManager.ClientDeck,
+        battleWindow,
+        factory);
+
+    public PrepareEnemyStateData GetPrepareEnemyStateData() => new PrepareEnemyStateData(
+        battleWindow);
 
     [Inject]
     private void Construct(
@@ -69,35 +120,17 @@ public class BattleManager : MonoBehaviour
             {
                 battleController = new BattleBehaviourController();
                 battleController.TryInstall(this, graph);
-                //StartRound();
             });
     }
 
     private void Update()
     {
-        battleController.BehaviourUpdate();
+        battleController?.BehaviourUpdate();
     }
 
     private void LateUpdate()
     {
-        battleController.LateBehaviourUpdate();
-    }
-
-    public void UpdateRound()
-    {
-        cardDetector.Update();
-        if (cardDetector.isTarget)
-        {
-            currentCard = cardDetector.TargetObject;
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (battlePoint < currentCard.property.card.cost) return;
-
-                currentCard.Use(battleWindow.ShiftToFreeSlots);
-                battlePoint -= currentCard.property.card.cost;
-                battleWindow.SetPointText(battlePoint);
-            }
-        }
+        battleController?.LateBehaviourUpdate();
     }
 
     private void OnDestroy()
@@ -105,54 +138,9 @@ public class BattleManager : MonoBehaviour
         loadingManager.onFinishLoad -= StartBattle;
     }
 
-    private void NextRound()
+    public void NextRound()
     {
         stateRound = StateRound.PreEnemy;
-        StartCoroutine(ChangeRound());
-    }
-
-    public void StartRound()
-    {
-        battlePoint += 10;
-        battleWindow.SetPointText(battlePoint);
-        var count = battleWindow.GetCountFreeSlots();
-
-        CardView[] newCards = new CardView[count];
-        for (int i = 0; i < count; i++)
-        {
-            var randomCard = gameManager.ClientDeck.GetRandomCard();
-            newCards[i] = factory.Create(randomCard.card.prefab);
-            newCards[i].property = randomCard;
-        }
-        battleWindow.SetCard(newCards);
-        stateRound = StateRound.Player;
-    }
-
-    private IEnumerator ChangeRound()
-    {
-        yield return EndRound();
-
-        StartRound();
-    }
-
-    private IEnumerator EndRound()
-    {
-        bool nextStep = false;
-
-        Services<PureAnimatorController>
-            .Get()
-            .GetPureAnimator()
-            .Play(1f, progress =>
-            {
-                battleWindow.HideUnlockedCard(1 - progress);
-                return default;
-            }, () =>
-            {
-                nextStep = true;
-            });
-
-        yield return new WaitUntil(() => nextStep);
-        battleWindow.UnlockedAndClearCards();
     }
 }
 

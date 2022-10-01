@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using Common;
+using PureAnimator;
 using UnityEngine;
 
-public class EnemyRound : MonoBehaviour
+[CreateAssetMenu(menuName = "Behaviour/Battle/Actions/EnemyRound", fileName = "EnemyRound", order = 52)]
+public class EnemyRound : BattleAction
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void DoAction(BattleManager entity)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.DoAction(entity);
+        Services<PureAnimatorController>
+            .Get()
+            .GetPureAnimator()
+            .Play(1f, progress =>
+            {
+                return default;
+            }, () =>
+            {
+                entity.stateRound = StateRound.PrePlayer;
+            });
     }
 }
