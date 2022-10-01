@@ -38,15 +38,18 @@ public class BattleManager : MonoBehaviour
     public struct PrepareEnemyStateData
     {
         public BattleWindow battleWindow;
+        public EnemyController enemy;
 
-        public PrepareEnemyStateData(BattleWindow battleWindow)
+        public PrepareEnemyStateData(BattleWindow battleWindow, EnemyController enemy)
         {
             this.battleWindow = battleWindow;
+            this.enemy = enemy;
         }
     }
 
     [SerializeField] private BattleWindow battleWindow;
 
+    private BattleSceneManager battleSceneManager;
     private GameManager gameManager;
     private LoadingManager loadingManager;
     private Factory<CardView> factory;
@@ -72,15 +75,18 @@ public class BattleManager : MonoBehaviour
         factory);
 
     public PrepareEnemyStateData GetPrepareEnemyStateData() => new PrepareEnemyStateData(
-        battleWindow);
+        battleWindow,
+        battleSceneManager.BattleScene.EnemyController);
 
     [Inject]
     private void Construct(
+        BattleSceneManager battleSceneManager,
         GameManager gameManager,
         LoadingManager loadingManager,
         Factory<CardView> factory
         )
     {
+        this.battleSceneManager = battleSceneManager;
         this.gameManager = gameManager;
         this.loadingManager = loadingManager;
         this.factory = factory;

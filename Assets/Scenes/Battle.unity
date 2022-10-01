@@ -469,6 +469,8 @@ MonoBehaviour:
   cardDetector:
     targetObject: {fileID: 0}
   graph: {fileID: 11400000, guid: ed954041686640b4cb1c578209685f81, type: 2}
+  stateRound: 0
+  battlePoint: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class BattleSceneManager : MonoBehaviour
     private BattleScene currentScene;
     [Inject] private Factory<BattleScene> factory;
 
+    public BattleScene BattleScene => currentScene;
+
     [Inject]
     public void Construct(LevelsConfig levelsConfig)
     {

@@ -12,6 +12,8 @@ public class BattleScene : MonoBehaviour
     [Inject] private EnemyList enemyList;
     [Inject] private GameManager gameManager;
 
+    public EnemyController EnemyController => currentEnemy.GetComponent<EnemyController>();
+
     void Start()
     {
         player = Instantiate(playerPrefab);
@@ -21,10 +23,5 @@ public class BattleScene : MonoBehaviour
         currentEnemy = Instantiate(enemyList.list[gameManager.CurrentEnemyID].prefab);
         currentEnemy.transform.position = enemyPosition.position;
         currentEnemy.transform.rotation = enemyPosition.rotation;
-    }
-
-    void Update()
-    {
-        
     }
 }
