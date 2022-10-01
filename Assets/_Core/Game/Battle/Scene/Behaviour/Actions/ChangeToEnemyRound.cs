@@ -30,11 +30,11 @@ public class ChangeToEnemyRound : BattleAction
                 return default;
             }, () =>
             {
-                nextStep = true;
+                data.battleWindow.UnlockedAndClearCards();
+                data.battleWindow.HidePanel(() => { nextStep = true; });
             });
 
         yield return new WaitUntil(() => nextStep);
-        data.battleWindow.UnlockedAndClearCards();
         entity.stateRound = StateRound.Enemy;
     }
 }

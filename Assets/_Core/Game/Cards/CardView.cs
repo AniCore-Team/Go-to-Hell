@@ -58,4 +58,9 @@ public class CardView : MonoBehaviour
                 return default;
             }, () => { });
     }
+
+    public void Drop()
+    {
+        Destroy();
+    }
 }

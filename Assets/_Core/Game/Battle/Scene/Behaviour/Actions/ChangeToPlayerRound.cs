@@ -10,7 +10,7 @@ public class ChangeToPlayerRound : BattleAction
     {
         base.BeginAction(entity);
         data = entity.GetPreparePlayerStateData();
-        StartRound(entity);
+        data.battleWindow.ShowPanel(() => { StartRound(entity); });
     }
 
     public void StartRound(BattleManager entity)

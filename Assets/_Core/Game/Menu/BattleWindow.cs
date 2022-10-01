@@ -17,11 +17,13 @@ public class BattleWindow : UIWindow
     [SerializeField] private Button passButton;
     [SerializeField] private UICardSlot[] cardSlots;
 
+    private RectTransform downPanel;
+
     public event Action onPassRound;
-    //public event Func<bool, bool> onUseLock;
 
     public void Init(Func<bool, bool> func)
     {
+        downPanel = transform.GetChild(0).GetComponent<RectTransform>();
         passButton.onClick.AddListener(() =>
             onPassRound?.Invoke());
 
@@ -162,16 +164,32 @@ public class BattleWindow : UIWindow
 
         prevShift = true;
         return TryShiftCard(slot - 1, out position, prevShift);
+    }
 
-        //bool shift = false;
-        //if (slot > 0 && cardSlots[slot - 1].card == null)
-        //{
-        //    if (TryShiftCard(slot - 1, out position))
+    public void ShowPanel(Action endMove = default)
+    {
+        Services<PureAnimatorController>
+        .Get()
+        .GetPureAnimator()
+        .Play(0.3f, progress =>
+        {
+            downPanel.anchoredPosition = new Vector2(downPanel.anchoredPosition.x,
+                Mathf.Lerp(-downPanel.rect.height, 0, progress));
+            return default;
+        }, () => { endMove?.Invoke(); });
+    }
 
-        //}
-
-        //position = cardSlots[slot];
-        //return true;
+    public void HidePanel(Action endMove = default)
+    {
+        Services<PureAnimatorController>
+        .Get()
+        .GetPureAnimator()
+        .Play(0.3f, progress =>
+        {
+            downPanel.anchoredPosition = new Vector2(downPanel.anchoredPosition.x,
+                Mathf.Lerp(0, -downPanel.rect.height, progress));
+            return default;
+        }, () => { endMove?.Invoke(); });
     }
 }
 

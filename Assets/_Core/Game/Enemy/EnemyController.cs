@@ -17,4 +17,11 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetTrigger(AttackId);
     }
+
+    public float GetLegthAnimation()
+    {
+        var currentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        Debug.Log(currentClipInfo[0].clip.name);
+        return currentClipInfo[0].clip.length;
+    }
 }

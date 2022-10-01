@@ -21,12 +21,21 @@ public class EnemyRound : BattleAction
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
-            .Play(1f, progress =>
+            .Play(0.1f, progress =>
             {
                 return default;
             }, () =>
             {
-                entity.stateRound = StateRound.PrePlayer;
+                Services<PureAnimatorController>
+                    .Get()
+                    .GetPureAnimator()
+                    .Play(data.enemy.GetLegthAnimation(), progress =>
+                    {
+                        return default;
+                    }, () =>
+                    {
+                        entity.stateRound = StateRound.PrePlayer;
+                    });
             });
     }
 }
