@@ -2,9 +2,13 @@ using Common;
 using PureAnimator;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class CardView : MonoBehaviour
 {
+    [SerializeField] private TextMeshPro priceText;
+    [SerializeField] private Rigidbody rigidbody;
+
     public DeckSlot property;
     public UICardSlot linkSlot;
 
