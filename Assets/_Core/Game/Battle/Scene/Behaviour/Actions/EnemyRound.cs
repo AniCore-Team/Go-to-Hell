@@ -6,12 +6,12 @@ using static BattleManager;
 [CreateAssetMenu(menuName = "Behaviour/Battle/Actions/EnemyRound", fileName = "EnemyRound", order = 52)]
 public class EnemyRound : BattleAction
 {
-    private PrepareEnemyStateData data;
+    private EnemyStateData data;
 
     public override void BeginAction(BattleManager entity)
     {
         base.BeginAction(entity);
-        data = entity.GetPrepareEnemyStateData();
+        data = entity.GetEnemyStateData();
         data.enemy.Attack();
     }
 

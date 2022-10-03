@@ -38,11 +38,19 @@ public class BattleManager : MonoBehaviour
     public struct PrepareEnemyStateData
     {
         public BattleWindow battleWindow;
-        public EnemyController enemy;
 
-        public PrepareEnemyStateData(BattleWindow battleWindow, EnemyController enemy)
+        public PrepareEnemyStateData(BattleWindow battleWindow)
         {
             this.battleWindow = battleWindow;
+        }
+    }
+
+    public struct EnemyStateData
+    {
+        public EnemyController enemy;
+
+        public EnemyStateData(EnemyController enemy)
+        {
             this.enemy = enemy;
         }
     }
@@ -75,7 +83,9 @@ public class BattleManager : MonoBehaviour
         factory);
 
     public PrepareEnemyStateData GetPrepareEnemyStateData() => new PrepareEnemyStateData(
-        battleWindow,
+        battleWindow);
+
+    public EnemyStateData GetEnemyStateData() => new EnemyStateData(
         battleSceneManager.BattleScene.EnemyController);
 
     [Inject]

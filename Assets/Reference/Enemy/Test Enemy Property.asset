@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Test Enemy Property
   m_EditorClassIdentifier: 
   prefab: {fileID: 1952770077817428239, guid: 0a0579549ee5ad4499d309689ecbf4c6, type: 3}
-  simpleCards: []
+  simpleCards:
+  - {fileID: 11400000, guid: 1393695bea4a7904580815aa19ae73af, type: 2}
+  - {fileID: 11400000, guid: bed495cf9a1b6dd4a8d438b97bb08bbe, type: 2}
   hardAttacks: []
