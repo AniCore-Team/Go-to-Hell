@@ -35,6 +35,6 @@ public class ChangeToEnemyRound : BattleAction
             });
 
         yield return new WaitUntil(() => nextStep);
-        entity.stateRound = StateRound.Enemy;
+        entity.StateRound = StateRound.Enemy;
     }
 }

@@ -30,7 +30,7 @@ public class ChangeToPlayerRound : BattleAction
             newCards[i].property = randomCard;
             newCards[i].gameObject.name += i.ToString();
         }
-        dataPlayer.battleWindow.SetCard(newCards);
-        entity.stateRound = StateRound.Player;
+        dataPlayer.battleWindow.SetCard(() => { entity.StateRound = StateRound.Player; },
+            newCards);
     }
 }

@@ -44,6 +44,12 @@ public class BattleWindow : UIWindow
             }, () => { });
     }
 
+    public void SetActiveBottomPanel(bool value)
+    {
+        downPanel.GetComponent<CanvasGroup>().interactable = value;
+        downPanel.GetComponent<CanvasGroup>().blocksRaycasts = value;
+    }
+
     public int GetCountFreeSlots()
     {
         int count = 0;
@@ -55,12 +61,14 @@ public class BattleWindow : UIWindow
         return count;
     }
 
-    public void SetCard(params CardView[] newCards)
+    public void SetCard(Action endCommand, params CardView[] newCards)
     {
         //clear no loked card
         var freeSlots = GetFreeSlots();
-        foreach (var newCard in newCards)
+        for (var i = 0; i < newCards.Length; i++)
         {
+            var innerI = i;
+            var newCard = newCards[i];
             var freeSlot = freeSlots.Dequeue();
             freeSlot.card = newCard;
             freeSlot.card.transform.position = freeSlot.cardSpawn.position;
@@ -76,7 +84,12 @@ public class BattleWindow : UIWindow
                     freeSlot.cardPoint.position,
                     progress * speedCurve.Evaluate(progress));
                 return default;
-            }, () => { });
+            }, () =>
+            {
+                if (innerI > 0) return;
+                SetActiveBottomPanel(true);
+                endCommand?.Invoke();
+            });
         }
     }
 
@@ -168,6 +181,7 @@ public class BattleWindow : UIWindow
 
     public void ShowPanel(Action endMove = default)
     {
+        Debug.Log("ShowPanel");
         Services<PureAnimatorController>
         .Get()
         .GetPureAnimator()
@@ -176,7 +190,10 @@ public class BattleWindow : UIWindow
             downPanel.anchoredPosition = new Vector2(downPanel.anchoredPosition.x,
                 Mathf.Lerp(-downPanel.rect.height, 0, progress));
             return default;
-        }, () => { endMove?.Invoke(); });
+        }, () => 
+        {
+            endMove?.Invoke();
+        });
     }
 
     public void HidePanel(Action endMove = default)
