@@ -67,6 +67,15 @@ public class BattleManager : MonoBehaviour
     private BattleBehaviourController battleController;
     private CardView currentCard;
     public StateRound stateRound = StateRound.None;
+    public StateRound StateRound
+    {
+        get => stateRound;
+        set
+        {
+            Debug.Log($"<color=green>New state:</color> {value}");
+            stateRound = value;
+        }
+    }
 
     [SerializeField] public int battlePoint = 0;
 
@@ -104,7 +113,7 @@ public class BattleManager : MonoBehaviour
         battleWindow.Init(CheckLock);
         loadingManager.onFinishLoad += StartBattle;
         battleWindow.onPassRound += NextRound;
-        stateRound = StateRound.PrePlayer;
+        StateRound = StateRound.PrePlayer;
     }
 
     private bool CheckLock(bool isLock)
@@ -126,6 +135,7 @@ public class BattleManager : MonoBehaviour
 
     private void StartBattle()
     {
+        battleWindow.SetActiveBottomPanel(false);
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
@@ -156,7 +166,9 @@ public class BattleManager : MonoBehaviour
 
     public void NextRound()
     {
-        stateRound = StateRound.PreEnemy;
+        if (StateRound != StateRound.Player) return;
+        StateRound = StateRound.PreEnemy;
+        battleWindow.SetActiveBottomPanel(false);
     }
 }
 

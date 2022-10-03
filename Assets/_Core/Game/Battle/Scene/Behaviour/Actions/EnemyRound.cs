@@ -13,11 +13,6 @@ public class EnemyRound : BattleAction
         base.BeginAction(entity);
         data = entity.GetEnemyStateData();
         data.enemy.Attack();
-    }
-
-    public override void DoAction(BattleManager entity)
-    {
-        base.DoAction(entity);
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
@@ -34,8 +29,14 @@ public class EnemyRound : BattleAction
                         return default;
                     }, () =>
                     {
-                        entity.stateRound = StateRound.PrePlayer;
+                        entity.StateRound = StateRound.PrePlayer;
                     });
             });
+    }
+
+    public override void DoAction(BattleManager entity)
+    {
+        base.DoAction(entity);
+        
     }
 }
