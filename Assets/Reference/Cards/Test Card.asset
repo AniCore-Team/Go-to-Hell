@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Test Card
   m_EditorClassIdentifier: 
-  name: 
+  name: FireBall
   icon: {fileID: 21300000, guid: 6f37276e43c44ef4a8851d493d770ea4, type: 3}
-  prefab: {fileID: 4323546440690243252, guid: ae21c2c8830d86643a4c5f942e2ad6b0, type: 3}
+  prefab: {fileID: 7580125403857476687, guid: 13d0fa1ccdeafd74ea6fd862d1735c00, type: 3}
   max_level: 20
   cost: 5
+  duration: 0
+  target: 2
