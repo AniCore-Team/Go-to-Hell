@@ -9,12 +9,14 @@ public class BattleManager : MonoBehaviour
 {
     public struct PlayerStateData
     {
+        public BaseCharacter player;
         public CardDetector cardDetector;
         public CardView currentCard;
         public BattleWindow battleWindow;
 
-        public PlayerStateData(CardDetector cardDetector, CardView currentCard, BattleWindow battleWindow)
+        public PlayerStateData(BaseCharacter player, CardDetector cardDetector, CardView currentCard, BattleWindow battleWindow)
         {
+            this.player = player;
             this.cardDetector = cardDetector;
             this.currentCard = currentCard;
             this.battleWindow = battleWindow;
@@ -48,10 +50,12 @@ public class BattleManager : MonoBehaviour
     public struct EnemyStateData
     {
         public EnemyController enemy;
+        public Action<StateRound> OnNextRound;
 
-        public EnemyStateData(EnemyController enemy)
+        public EnemyStateData(EnemyController enemy, Action<StateRound> OnNextRound)
         {
             this.enemy = enemy;
+            this.OnNextRound = OnNextRound;
         }
     }
 
@@ -82,6 +86,7 @@ public class BattleManager : MonoBehaviour
     //public StateRound StateRound => stateRound;
 
     public PlayerStateData GetPlayerStateData() => new PlayerStateData(
+        battleSceneManager.BattleScene.PlayerController,
         cardDetector,
         currentCard,
         battleWindow);
@@ -95,7 +100,8 @@ public class BattleManager : MonoBehaviour
         battleWindow);
 
     public EnemyStateData GetEnemyStateData() => new EnemyStateData(
-        battleSceneManager.BattleScene.EnemyController);
+        battleSceneManager.BattleScene.EnemyController,
+        NextRound);
 
     [Inject]
     private void Construct(
@@ -121,13 +127,13 @@ public class BattleManager : MonoBehaviour
         if (!isLock)
         {
             battlePoint++;
-            battleWindow.SetPointText(battlePoint);
+            battleWindow.RepaintPointText(battlePoint);
             return true;
         }
         else if (battlePoint > 0)
         {
             battlePoint--;
-            battleWindow.SetPointText(battlePoint);
+            battleWindow.RepaintPointText(battlePoint);
             return true;
         }
         return false;
@@ -169,6 +175,11 @@ public class BattleManager : MonoBehaviour
         if (StateRound != StateRound.Player) return;
         StateRound = StateRound.PreEnemy;
         battleWindow.SetActiveBottomPanel(false);
+    }
+
+    public void NextRound(StateRound nextRound)
+    {
+        StateRound = nextRound;
     }
 }
 

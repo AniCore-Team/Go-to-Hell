@@ -500,6 +500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!4 &832575519
 Transform:
   m_ObjectHideFlags: 0
@@ -766,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 6165485891874437341, guid: d0bb04b11f60ccf4aa417b51f8ff3bed,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -241.4734
+      value: -241.47339
       objectReference: {fileID: 0}
     - target: {fileID: 6165485892717740430, guid: d0bb04b11f60ccf4aa417b51f8ff3bed,
         type: 3}

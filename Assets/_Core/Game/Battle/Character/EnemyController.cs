@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : BaseCharacter
 {
     [SerializeField] private Image cardAttackImage;
     [SerializeField] private EnemyProperty enemyProperty;
-    private Animator animator;
     private CardProperty nextAttack;
     private int roundCounter = 0;
 
-    private readonly int AttackId = Animator.StringToHash("Attack");
+    public CardProperty CurrentCard => nextAttack;
+    //private readonly int AttackId = Animator.StringToHash("Attack Faerball");
 
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        base.Start();
+        nextRound = StateRound.PrePlayer;
     }
 
     public void PreparingToAttack()
@@ -32,18 +33,6 @@ public class EnemyController : MonoBehaviour
         }
 
         SetNextAttack(enemyProperty.simpleCards[Random.Range(0, enemyProperty.simpleCards.Count)]);
-    }
-
-    public void Attack()
-    {
-        animator.SetTrigger(AttackId);
-    }
-
-    public float GetLegthAnimation()
-    {
-        var currentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-        Debug.Log(currentClipInfo[0].clip.name);
-        return currentClipInfo[0].clip.length;
     }
 
     private void SetNextAttack(CardProperty card)

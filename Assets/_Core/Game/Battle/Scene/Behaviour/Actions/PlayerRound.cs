@@ -23,10 +23,19 @@ public class PlayerRound : BattleAction
             {
                 if (entity.battlePoint < data.currentCard.property.card.cost) return;
 
+
+                data.battleWindow.SetActiveBottomPanel(false);
+                data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+
                 data.currentCard.Use(data.battleWindow.ShiftToFreeSlots);
                 entity.battlePoint -= data.currentCard.property.card.cost;
-                data.battleWindow.SetPointText(entity.battlePoint);
+                data.battleWindow.RepaintPointText(entity.battlePoint);
             }
         }
+    }
+
+    private void CastControl()
+    {
+        data.battleWindow.SetActiveBottomPanel(true);
     }
 }

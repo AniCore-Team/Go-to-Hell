@@ -31,7 +31,7 @@ public class BattleWindow : UIWindow
             slot.Init(func);
     }
 
-    public void SetPointText(int value)
+    public void RepaintPointText(int value)
     {
         pointText.text = value.ToString();
         Services<PureAnimatorController>

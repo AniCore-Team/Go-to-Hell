@@ -25,6 +25,7 @@ public class CardProperty : ScriptableObject
     public int cost;
     public int duration;
     public TargetEffect target;
+    public BaseActions effectAction;
 
 #if UNITY_EDITOR
     private void OnValidate()

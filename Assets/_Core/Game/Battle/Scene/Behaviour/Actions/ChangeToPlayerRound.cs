@@ -19,7 +19,7 @@ public class ChangeToPlayerRound : BattleAction
     {
         dataEnemy.enemy.PreparingToAttack();
         entity.battlePoint += 10;
-        dataPlayer.battleWindow.SetPointText(entity.battlePoint);
+        dataPlayer.battleWindow.RepaintPointText(entity.battlePoint);
         var count = dataPlayer.battleWindow.GetCountFreeSlots();
 
         CardView[] newCards = new CardView[count];
