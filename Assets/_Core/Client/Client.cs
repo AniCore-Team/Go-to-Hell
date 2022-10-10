@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Client
 {
@@ -14,6 +16,7 @@ public class Client
 
     public void SetClient(string name, CardsList cardsList)
     {
+        //Random.seed = (int)DateTime.UtcNow.Ticks;
         client_name = name;
         deck = new ClientDeck();
         Deck.AddCardToDeck(cardsList.list[Random.Range(0, cardsList.list.Count)]);

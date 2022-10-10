@@ -17,6 +17,7 @@ public class CreateNewGameWindow : UIWindow
         Utils.AddListenerToButton(play, Play);
         Utils.AddListenerToButton(cancel, Cancel);
         ActivateWindow();
+        field.text = $"Player{Random.Range(1, 10000)}";
     }
 
     public void Play()

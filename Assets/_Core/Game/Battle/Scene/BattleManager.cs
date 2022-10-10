@@ -9,49 +9,82 @@ public class BattleManager : MonoBehaviour
 {
     public struct PlayerStateData
     {
+        public BaseCharacter player;
+        public EnemyController enemy;
         public CardDetector cardDetector;
         public CardView currentCard;
         public BattleWindow battleWindow;
+        public BattleManager battleManager;
+        public Action<StateRound> OnNextRound;
 
-        public PlayerStateData(CardDetector cardDetector, CardView currentCard, BattleWindow battleWindow)
+        public PlayerStateData(
+            BaseCharacter player,
+            EnemyController enemy,
+            CardDetector cardDetector,
+            CardView currentCard,
+            BattleWindow battleWindow,
+            BattleManager battleManager,
+            Action<StateRound> OnNextRound
+            )
         {
+            this.player = player;
+            this.enemy = enemy;
             this.cardDetector = cardDetector;
             this.currentCard = currentCard;
             this.battleWindow = battleWindow;
+            this.battleManager = battleManager;
+            this.OnNextRound = OnNextRound;
         }
     }
 
     public struct PreparePlayerStateData
     {
+        public BaseCharacter player;
         public ClientDeck deck;
         public BattleWindow battleWindow;
         public Factory<CardView> factory;
 
-        public PreparePlayerStateData(ClientDeck deck, BattleWindow battleWindow, Factory<CardView> factory)
+        public PreparePlayerStateData(
+            BaseCharacter player,
+            ClientDeck deck,
+            BattleWindow battleWindow,
+            Factory<CardView> factory
+            )
         {
             this.deck = deck;
             this.battleWindow = battleWindow;
             this.factory = factory;
+            this.player = player;
         }
     }
 
     public struct PrepareEnemyStateData
     {
         public BattleWindow battleWindow;
+        public EnemyController enemy;
 
-        public PrepareEnemyStateData(BattleWindow battleWindow)
+        public PrepareEnemyStateData(BattleWindow battleWindow, EnemyController enemy)
         {
             this.battleWindow = battleWindow;
+            this.enemy = enemy;
         }
     }
 
     public struct EnemyStateData
     {
+        public BaseCharacter player;
         public EnemyController enemy;
+        public Action<StateRound> OnNextRound;
 
-        public EnemyStateData(EnemyController enemy)
+        public EnemyStateData(
+            BaseCharacter player,
+            EnemyController enemy,
+            Action<StateRound> OnNextRound
+            )
         {
+            this.player = player;
             this.enemy = enemy;
+            this.OnNextRound = OnNextRound;
         }
     }
 
@@ -82,20 +115,31 @@ public class BattleManager : MonoBehaviour
     //public StateRound StateRound => stateRound;
 
     public PlayerStateData GetPlayerStateData() => new PlayerStateData(
+        battleSceneManager.BattleScene.PlayerController,
+        battleSceneManager.BattleScene.EnemyController,
         cardDetector,
         currentCard,
-        battleWindow);
+        battleWindow,
+        this,
+        NextRound
+        );
 
     public PreparePlayerStateData GetPreparePlayerStateData() => new PreparePlayerStateData(
+        battleSceneManager.BattleScene.PlayerController,
         gameManager.ClientDeck,
         battleWindow,
         factory);
 
     public PrepareEnemyStateData GetPrepareEnemyStateData() => new PrepareEnemyStateData(
-        battleWindow);
+        battleWindow,
+        battleSceneManager.BattleScene.EnemyController
+        );
 
     public EnemyStateData GetEnemyStateData() => new EnemyStateData(
-        battleSceneManager.BattleScene.EnemyController);
+        battleSceneManager.BattleScene.PlayerController,
+        battleSceneManager.BattleScene.EnemyController,
+        NextRound
+        );
 
     [Inject]
     private void Construct(
@@ -121,13 +165,13 @@ public class BattleManager : MonoBehaviour
         if (!isLock)
         {
             battlePoint++;
-            battleWindow.SetPointText(battlePoint);
+            battleWindow.RepaintPointText(battlePoint);
             return true;
         }
         else if (battlePoint > 0)
         {
             battlePoint--;
-            battleWindow.SetPointText(battlePoint);
+            battleWindow.RepaintPointText(battlePoint);
             return true;
         }
         return false;
@@ -169,6 +213,11 @@ public class BattleManager : MonoBehaviour
         if (StateRound != StateRound.Player) return;
         StateRound = StateRound.PreEnemy;
         battleWindow.SetActiveBottomPanel(false);
+    }
+
+    public void NextRound(StateRound nextRound)
+    {
+        StateRound = nextRound;
     }
 }
 

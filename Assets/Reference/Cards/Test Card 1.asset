@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Test Card 1
   m_EditorClassIdentifier: 
-  name: 
+  name: ArchangelFeather
+  id: 1
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  prefab: {fileID: 4323546440690243252, guid: ae21c2c8830d86643a4c5f942e2ad6b0, type: 3}
+  prefab: {fileID: 4382336680616892371, guid: 9e8640df2bed92d4dac378adbad51d30, type: 3}
   max_level: 20
   cost: 5
+  duration: 1
+  target: 1

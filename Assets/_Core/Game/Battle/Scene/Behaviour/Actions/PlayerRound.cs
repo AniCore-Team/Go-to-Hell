@@ -10,6 +10,8 @@ public class PlayerRound : BattleAction
     {
         base.BeginAction(entity);
         data = entity.GetPlayerStateData();
+        if (data.player.isStun)
+            data.OnNextRound?.Invoke(StateRound.PreEnemy);
     }
 
     public override void DoAction(BattleManager entity)
@@ -23,10 +25,34 @@ public class PlayerRound : BattleAction
             {
                 if (entity.battlePoint < data.currentCard.property.card.cost) return;
 
+
+                data.battleWindow.SetActiveBottomPanel(false);
+                entity.enabled = false;
+                //data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                switch (data.enemy.CurrentCard.target)
+                {
+                    case TargetEffect.All:
+                        data.enemy.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        break;
+                    case TargetEffect.Self:
+                        data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        break;
+                    case TargetEffect.Other:
+                        data.enemy.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        break;
+                }
+
                 data.currentCard.Use(data.battleWindow.ShiftToFreeSlots);
                 entity.battlePoint -= data.currentCard.property.card.cost;
-                data.battleWindow.SetPointText(entity.battlePoint);
+                data.battleWindow.RepaintPointText(entity.battlePoint);
             }
         }
+    }
+
+    private void CastControl()
+    {
+        data.battleWindow.SetActiveBottomPanel(true);
+        data.battleManager.enabled = true;
     }
 }

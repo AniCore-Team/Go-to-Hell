@@ -12,31 +12,27 @@ public class EnemyRound : BattleAction
     {
         base.BeginAction(entity);
         data = entity.GetEnemyStateData();
-        data.enemy.Attack();
-        Services<PureAnimatorController>
-            .Get()
-            .GetPureAnimator()
-            .Play(0.1f, progress =>
-            {
-                return default;
-            }, () =>
-            {
-                Services<PureAnimatorController>
-                    .Get()
-                    .GetPureAnimator()
-                    .Play(data.enemy.GetLegthAnimation(), progress =>
-                    {
-                        return default;
-                    }, () =>
-                    {
-                        entity.StateRound = StateRound.PrePlayer;
-                    });
-            });
+
+        if (data.enemy.isStun)
+            data.OnNextRound?.Invoke(StateRound.PrePlayer);
+
+        switch (data.enemy.CurrentCard.target)
+        {
+            case TargetEffect.All:
+                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+            case TargetEffect.Self:
+                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+            case TargetEffect.Other:
+                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+        }
     }
 
-    public override void DoAction(BattleManager entity)
+    private void CastControl()
     {
-        base.DoAction(entity);
-        
+        data.OnNextRound?.Invoke(StateRound.PrePlayer);
     }
 }

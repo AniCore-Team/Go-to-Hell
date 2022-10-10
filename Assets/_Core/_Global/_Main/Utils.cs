@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using PureAnimator;
 
 public class Utils
 {
@@ -15,4 +16,6 @@ public class Utils
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => action());
     }
+
+    public static TransformChanges EmptyPureAnimation(float progress) => default;
 }

@@ -13,6 +13,7 @@ public class BattleScene : MonoBehaviour
     [Inject] private GameManager gameManager;
 
     public EnemyController EnemyController => currentEnemy.GetComponent<EnemyController>();
+    public BaseCharacter PlayerController => player.GetComponent<BaseCharacter>();
 
     void Start()
     {

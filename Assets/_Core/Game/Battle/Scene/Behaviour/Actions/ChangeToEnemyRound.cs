@@ -1,7 +1,5 @@
-using Common;
 using PureAnimator;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using static BattleManager;
 
@@ -9,32 +7,38 @@ using static BattleManager;
 public class ChangeToEnemyRound : BattleAction
 {
     private PrepareEnemyStateData data;
+    private BattleManager entity;
 
     public override void BeginAction(BattleManager entity)
     {
         base.BeginAction(entity);
+        this.entity = entity;
         data = entity.GetPrepareEnemyStateData();
-        entity.StartCoroutine(EndRound(entity));
+
+        PureAnimation.Play(1f, progress =>
+        {
+            data.battleWindow.HideUnlockedCard(1 - progress);
+            return default;
+        }, () =>
+        {
+            data.battleWindow.UnlockedAndClearCards();
+            data.battleWindow.HidePanel(() => AsyncTickAttack());
+        });
     }
 
-    public IEnumerator EndRound(BattleManager entity)
+    private void AsyncTickAttack()
     {
-        bool nextStep = false;
+        data.enemy.CardEffectsController.AsyncTick(AsyncTickStun, TypeEffect.Attack);
+    }
 
-        Services<PureAnimatorController>
-            .Get()
-            .GetPureAnimator()
-            .Play(1f, progress =>
-            {
-                data.battleWindow.HideUnlockedCard(1 - progress);
-                return default;
-            }, () =>
-            {
-                data.battleWindow.UnlockedAndClearCards();
-                data.battleWindow.HidePanel(() => { nextStep = true; });
-            });
+    private void AsyncTickStun()
+    {
+        data.enemy.isStun = data.enemy.CardEffectsController.IsStun;
+        data.enemy.CardEffectsController.AsyncTick(EndTick, TypeEffect.Stun);
+    }
 
-        yield return new WaitUntil(() => nextStep);
+    private void EndTick()
+    {
         entity.StateRound = StateRound.Enemy;
     }
 }
