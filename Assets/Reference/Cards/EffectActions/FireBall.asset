@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222031dee7936a64d8afacc0c60615f2, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  target: 2
-  damage: 1
-  speed: 10
   nameAnimation: Attack Faerball
+  duration: 0
+  typeEffect: 0
+  target: 2
+  damage: 2
+  speed: 10
   particleSystemPrefab: {fileID: 6308049187893580758, guid: 51a7be7f4b18c634c92270adec61b942,
     type: 3}
   explosionPrefab: {fileID: 6308049187893580758, guid: 902941a25f5ecf1419a85c014b757031,

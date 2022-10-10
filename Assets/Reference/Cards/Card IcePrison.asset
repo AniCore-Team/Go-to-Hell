@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card IcePrison
   m_EditorClassIdentifier: 
-  name: 
+  name: IcePrison
+  id: 1
   icon: {fileID: 21300000, guid: b0eb8df8c7fde3a49974fbb9adb33edd, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 8246f1d2fa1ccdc4887f1cbc8cd998fe, type: 3}
   max_level: 20
   cost: 5
+  duration: 0
+  target: 2
+  effectAction: {fileID: 11400000, guid: ae34b9e066b5e844a9870fd872571841, type: 2}

@@ -1,7 +1,11 @@
 using BehaviourSystem;
+using Common;
+using PureAnimator;
 
 public class BattleAction : BehaviourAction<BattleManager>
 {
+    protected PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
+
     public override void BeginAction(BattleManager entity)
     { }
 

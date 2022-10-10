@@ -18,6 +18,7 @@ public class BattleWindow : UIWindow
     [SerializeField] private UICardSlot[] cardSlots;
 
     private RectTransform downPanel;
+    private bool isShowDownPanel;
 
     public event Action onPassRound;
 
@@ -181,7 +182,12 @@ public class BattleWindow : UIWindow
 
     public void ShowPanel(Action endMove = default)
     {
-        Debug.Log("ShowPanel");
+        if (isShowDownPanel)
+        {
+            endMove?.Invoke();
+            return;
+        }
+
         Services<PureAnimatorController>
         .Get()
         .GetPureAnimator()
@@ -192,12 +198,19 @@ public class BattleWindow : UIWindow
             return default;
         }, () => 
         {
+            isShowDownPanel = true;
             endMove?.Invoke();
         });
     }
 
     public void HidePanel(Action endMove = default)
     {
+        if (!isShowDownPanel)
+        {
+            endMove?.Invoke();
+            return;
+        }
+
         Services<PureAnimatorController>
         .Get()
         .GetPureAnimator()
@@ -206,7 +219,11 @@ public class BattleWindow : UIWindow
             downPanel.anchoredPosition = new Vector2(downPanel.anchoredPosition.x,
                 Mathf.Lerp(0, -downPanel.rect.height, progress));
             return default;
-        }, () => { endMove?.Invoke(); });
+        }, () =>
+        {
+            isShowDownPanel = false;
+            endMove?.Invoke();
+        });
     }
 }
 

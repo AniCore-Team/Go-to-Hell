@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class PlayerController : BaseCharacter
 {
-    protected override void Start()
-    {
-        base.Start();
 
-    }
 }

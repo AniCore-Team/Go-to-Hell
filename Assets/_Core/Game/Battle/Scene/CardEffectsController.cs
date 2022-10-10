@@ -1,148 +1,73 @@
-using Common;
-using PureAnimator;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
-public interface ICardAction
-{
-    public event Action OnFinishedCast;
-
-    public string NameAnimation { get; }
-
-    public void Cast(BaseCharacter self, BaseCharacter[] other);
-    public void Tick(BaseCharacter self, BaseCharacter other);
-    public void End();
-}
-
-public class Effect
-{
-    private CardID id;
-    private int duration;
-    private TargetEffect target;
-    private int count;
-
-    private ICardAction cardAction;
-    public event Action OnFinishedCast;
-
-    public CardID ID => id;
-    public bool CheckDuration => count >= duration;
-
-    public Effect(CardID id, int duration, TargetEffect target)
-    {
-        this.id = id;
-        this.duration = duration;
-        this.target = target;
-        count = 0;
-    }
-
-    public Effect(ICardAction action)
-    {
-        cardAction = action;
-    }
-
-
-    public void PowerUp(CardProperty newCard)
-    {
-
-    }
-
-    public void PowerUp(Effect effect)
-    {
-
-    }
-
-    public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter)
-    {
-        getCharacter(TargetEffect.Self)[0].Attack(cardAction.NameAnimation);
-        Services<PureAnimatorController>
-            .Get()
-            .GetPureAnimator()
-            .Play(0.1f, progress =>
-            {
-                return default;
-            }, () =>
-            {
-                //var allTimeAnimation = getCharacter(TargetEffect.Self)[0].GetLegthAnimation();
-                var eventTimeAnimations = getCharacter(TargetEffect.Self)[0].GetEventTimeAnimation();
-
-                for (var i = 0; i < eventTimeAnimations.Length; i++)
-                {
-                    Services<PureAnimatorController>
-                        .Get()
-                        .GetPureAnimator()
-                        .Play(eventTimeAnimations[i], progress =>
-                        {
-                            return default;
-                        }, () =>
-                        {
-                            cardAction.OnFinishedCast += OnFinishedCast;
-                            cardAction.Cast(getCharacter(TargetEffect.Self)[0], getCharacter(TargetEffect.Other));
-                        });
-                }
-            });
-    }
-
-    public void RoundAction()
-    {
-        count++;
-    }
-
-    public void EndAction()
-    {
-        cardAction.OnFinishedCast -= OnFinishedCast;
-        OnFinishedCast = null;
-    }
-}
 
 public class CardEffectsController
 {
     private Dictionary<CardID, Effect> effects = new Dictionary<CardID, Effect>();
+    private Queue<Action<Action>> usingTicks = new Queue<Action<Action>>();
     private List<CardID> dropEffects = new List<CardID>();
 
     private BaseCharacter selfCharacter;
     private BaseCharacter otherCharacter;
+    private Action end;
+
+    public bool IsStun => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Stun);
 
     public void Init(BaseCharacter self, BaseCharacter other)
     {
         selfCharacter = self;
         otherCharacter = other;
     }
-    
+
+    public bool Contains(CardID cardID) => effects.ContainsKey(cardID);
+
     public void AddEffect(CardProperty newCard, Action finishedCast)
     {
-        //var effect = new Effect
-        //(
-        //    newCard.id,
-        //    newCard.duration,
-        //    newCard.target
-        //);
-        var effect = new Effect(newCard.effectAction);
-        effect.OnFinishedCast += finishedCast;
-        effect.BeginAction(GetCharacters);
+        var effect = new Effect(newCard.id, newCard.effectAction);
+        //effect.OnFinishedCast += finishedCast;
 
-        if (newCard.duration > 0)
+        if (newCard.effectAction.duration > 0)
         {
             if (effects.ContainsKey(newCard.id))
                 effects[newCard.id].PowerUp(effect);
             else
                 effects.Add(newCard.id, effect);
+
+            effects[newCard.id].BeginAction(GetCharacters, finishedCast);
         }
+        else
+            effect.BeginAction(GetCharacters, finishedCast);
     }
 
-    public void Tick()
+    public void AsyncTick(Action endTick, TypeEffect typeEffect)
     {
-        foreach (Effect effect in effects.Values)
+        CheckTicks(typeEffect);
+        AsyncUseTick(AsyncCheckEndTicks, endTick);
+    }
+
+    private void AsyncCheckEndTicks(Action endTick)
+    {
+        CheckFinishedTicks();
+        AsyncUseTick(FinishTick, endTick);
+    }
+
+    private void AsyncUseTick(Action<Action> nextTick, Action endTick)
+    {
+        if (usingTicks.Count == 0)
         {
-            effect.RoundAction();
-            if (effect.CheckDuration)
-            {
-                effect.EndAction();
-                dropEffects.Add(effect.ID);
-            }
+            nextTick?.Invoke(endTick);
+            return;
         }
-        DropEffects();
+
+        usingTicks.Dequeue()(() => AsyncUseTick(nextTick, endTick));
+    }
+
+    private void CallEndTick(Action endTick)
+    {
+        endTick?.Invoke();
     }
 
     private void DropEffects()
@@ -151,6 +76,38 @@ public class CardEffectsController
             effects.Remove(card);
 
         dropEffects.Clear();
+    }
+
+    private void FinishTick(Action endTick)
+    {
+        DropEffects();
+        CallEndTick(endTick);
+    }
+
+    private void CheckTicks(TypeEffect typeEffect)
+    {
+        usingTicks.Clear();
+        foreach (Effect effect in effects.Values)
+        {
+            if (effect.typeEffect != typeEffect) return;
+
+            usingTicks.Enqueue(effect.RoundAction);
+        }
+    }
+
+    private void CheckFinishedTicks()
+    {
+        usingTicks.Clear();
+        foreach (Effect effect in effects.Values)
+        {
+            //if (effect.typeEffect != TypeEffect.Attack) return;
+
+            if (effect.CheckDuration)
+            {
+                usingTicks.Enqueue(effect.EndAction);
+                dropEffects.Add(effect.ID);
+            }
+        }
     }
 
     private BaseCharacter[] GetCharacters(TargetEffect target)

@@ -11,6 +11,7 @@ public enum TargetEffect
 public enum CardID
 {
     FireBall,
+    IcePrison,
     ArchangelFeather
 }
 

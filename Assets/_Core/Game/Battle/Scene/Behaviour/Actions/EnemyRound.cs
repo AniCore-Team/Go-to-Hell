@@ -13,27 +13,22 @@ public class EnemyRound : BattleAction
         base.BeginAction(entity);
         data = entity.GetEnemyStateData();
 
-        data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+        if (data.enemy.isStun)
+            data.OnNextRound?.Invoke(StateRound.PrePlayer);
 
-        //Services<PureAnimatorController>
-        //    .Get()
-        //    .GetPureAnimator()
-        //    .Play(0.1f, progress =>
-        //    {
-        //        return default;
-        //    }, () =>
-        //    {
-        //        Services<PureAnimatorController>
-        //            .Get()
-        //            .GetPureAnimator()
-        //            .Play(data.enemy.GetLegthAnimation(), progress =>
-        //            {
-        //                return default;
-        //            }, () =>
-        //            {
-        //                entity.StateRound = StateRound.PrePlayer;
-        //            });
-        //    });
+        switch (data.enemy.CurrentCard.target)
+        {
+            case TargetEffect.All:
+                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+            case TargetEffect.Self:
+                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+            case TargetEffect.Other:
+                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                break;
+        }
     }
 
     private void CastControl()

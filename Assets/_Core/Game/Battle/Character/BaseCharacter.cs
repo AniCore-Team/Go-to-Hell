@@ -13,6 +13,8 @@ public class BaseCharacter : MonoBehaviour
 
     private readonly int HitId = Animator.StringToHash("Hit");
 
+    public bool isStun = false;
+
     public CardEffectsController CardEffectsController => cardEffectsController;
     public StateRound NextRound => nextRound;
 

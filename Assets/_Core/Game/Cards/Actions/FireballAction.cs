@@ -1,18 +1,18 @@
 ﻿using Common;
 using PureAnimator;
+using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Cards/Actions/Create New Card")]
+[CreateAssetMenu(fileName = "Fireball", menuName = "Cards/Actions/Fireball")]
 public class FireballAction : BaseActions
 {
-    public TargetEffect target;
     public int damage;
     public float speed;
     public ParticleSystem particleSystemPrefab;
     public ParticleSystem explosionPrefab;
 
-    public override void Cast(BaseCharacter self, BaseCharacter[] other)
+    public override void Cast(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
         var effect = Object.Instantiate(particleSystemPrefab, self.frontEffectSpawn.position, Quaternion.identity);
 
@@ -37,6 +37,7 @@ public class FireballAction : BaseActions
             {
                 other[0].Damage(damage);
                 Destroy(effect.gameObject);
+
                 var explosion = Object.Instantiate(explosionPrefab, endPoint, Quaternion.identity);
                 Services<PureAnimatorController>
                     .Get()
@@ -47,17 +48,17 @@ public class FireballAction : BaseActions
                     }, () =>
                     {
                         Destroy(explosion.gameObject);
-                        FinishedCast();
+                        finishedCast?.Invoke();
                     });
             });
     }
 
-    public override void End()
+    public override void End(Action endTick, Effect owner)
     {
-        
+        endTick?.Invoke();
     }
 
-    public override void Tick(BaseCharacter self, BaseCharacter other)
+    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other)
     {
         
     }
