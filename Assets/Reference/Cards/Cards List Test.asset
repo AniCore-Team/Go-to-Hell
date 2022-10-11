@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e2eb87f5b36a849bb4438f06b2ac09, type: 3}
-  m_Name: Test Enemy Property
+  m_Script: {fileID: 11500000, guid: 1ae14bcab8a84324d8348718224e1f98, type: 3}
+  m_Name: Cards List Test
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1952770077817428239, guid: 0a0579549ee5ad4499d309689ecbf4c6, type: 3}
-  simpleCards:
-  - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}
+  list:
   - {fileID: 11400000, guid: 266a949273e326545836e8395be1c85d, type: 2}
-  hardAttacks: []
+  - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}

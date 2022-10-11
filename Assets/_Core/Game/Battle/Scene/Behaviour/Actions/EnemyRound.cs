@@ -14,7 +14,10 @@ public class EnemyRound : BattleAction
         data = entity.GetEnemyStateData();
 
         if (data.enemy.isStun)
+        {
             data.OnNextRound?.Invoke(StateRound.PrePlayer);
+            return;
+        }
 
         switch (data.enemy.CurrentCard.target)
         {

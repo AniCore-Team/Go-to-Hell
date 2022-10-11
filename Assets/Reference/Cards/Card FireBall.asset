@@ -19,5 +19,5 @@ MonoBehaviour:
   max_level: 20
   cost: 5
   duration: 0
-  target: 0
+  target: 2
   effectAction: {fileID: 11400000, guid: 4d73a6d22ce99d84caac7ec5d255c370, type: 2}
