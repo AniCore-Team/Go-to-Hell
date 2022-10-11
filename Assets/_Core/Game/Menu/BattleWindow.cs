@@ -1,10 +1,8 @@
 using Common;
 using PureAnimator;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +13,8 @@ public class BattleWindow : UIWindow
 
     [SerializeField] private TMP_Text pointText;
     [SerializeField] private Button passButton;
+    [SerializeField] private CharacterHUD playerHUD;
+    [SerializeField] private CharacterHUD enemyHUD;
     [SerializeField] private UICardSlot[] cardSlots;
 
     private RectTransform downPanel;
@@ -22,11 +22,17 @@ public class BattleWindow : UIWindow
 
     public event Action onPassRound;
 
+    public CharacterHUD PlayerHUD => playerHUD;
+    public CharacterHUD EnemyHUD => enemyHUD;
+
     public void Init(Func<bool, bool> func)
     {
         downPanel = transform.GetChild(0).GetComponent<RectTransform>();
         passButton.onClick.AddListener(() =>
             onPassRound?.Invoke());
+
+        playerHUD.Init();
+        enemyHUD.Init();
 
         foreach (var slot in cardSlots)
             slot.Init(func);

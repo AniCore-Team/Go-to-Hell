@@ -8,11 +8,14 @@ public class BaseCharacter : MonoBehaviour
     protected Animator animator;
     public Transform frontEffectSpawn;
 
+    public CharacterHUD characterHUD;
     private CardEffectsController cardEffectsController;
     protected StateRound nextRound;
 
     private readonly int HitId = Animator.StringToHash("Hit");
 
+    private int health = 100;
+    private int maxHealth = 100;
     public bool isStun = false;
 
     public CardEffectsController CardEffectsController => cardEffectsController;
@@ -29,7 +32,15 @@ public class BaseCharacter : MonoBehaviour
 
     public void Damage(int damage)
     {
+        health -= damage;
+        characterHUD.SetHealth(health / (float)maxHealth);
         animator.Play(HitId);
+
+        if (health <= 0)
+            if (this is EnemyController)
+                Translator.Send(InnerProtocol.WinBattle);
+            else
+                Translator.Send(InnerProtocol.WinBattle);
     }
 
     public void Heal(int heal)

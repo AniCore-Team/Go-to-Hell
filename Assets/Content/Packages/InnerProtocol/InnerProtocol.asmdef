@@ -1,0 +1,16 @@
+{
+    "name": "InnerProtocol",
+    "rootNamespace": "InnerProtocol",
+    "references": [
+        "GUID:49be88066ede2774eb912b3fe5ccd223"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -100,6 +100,11 @@ public class BattleManager : MonoBehaviour
     private BattleBehaviourController battleController;
     private CardView currentCard;
     public StateRound stateRound = StateRound.None;
+
+    [SerializeField] public int battlePoint = 0;
+
+    private CustomSignal onFinishBattle;
+
     public StateRound StateRound
     {
         get => stateRound;
@@ -109,10 +114,6 @@ public class BattleManager : MonoBehaviour
             stateRound = value;
         }
     }
-
-    [SerializeField] public int battlePoint = 0;
-
-    //public StateRound StateRound => stateRound;
 
     public PlayerStateData GetPlayerStateData() => new PlayerStateData(
         battleSceneManager.BattleScene.PlayerController,
@@ -158,6 +159,9 @@ public class BattleManager : MonoBehaviour
         loadingManager.onFinishLoad += StartBattle;
         battleWindow.onPassRound += NextRound;
         StateRound = StateRound.PrePlayer;
+
+        onFinishBattle = OnFinishBattle;
+        Translator.Add<InnerProtocol>(onFinishBattle);
     }
 
     private bool CheckLock(bool isLock)
@@ -190,6 +194,9 @@ public class BattleManager : MonoBehaviour
             {
                 battleController = new BattleBehaviourController();
                 battleController.TryInstall(this, graph);
+
+                battleSceneManager.BattleScene.PlayerController.characterHUD = battleWindow.PlayerHUD;
+                battleSceneManager.BattleScene.EnemyController.characterHUD = battleWindow.EnemyHUD;
             });
     }
 
@@ -218,6 +225,21 @@ public class BattleManager : MonoBehaviour
     public void NextRound(StateRound nextRound)
     {
         StateRound = nextRound;
+    }
+
+    private void OnFinishBattle(Enum code)
+    {
+        switch (code)
+        {
+            case InnerProtocol.WinBattle:
+                Translator.Remove<InnerProtocol>(onFinishBattle);
+                loadingManager.LoadScene("Location");
+                break;
+            case InnerProtocol.LoseBattle:
+                Translator.Remove<InnerProtocol>(onFinishBattle);
+                loadingManager.LoadScene("Location");
+                break;
+        }
     }
 }
 

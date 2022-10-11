@@ -16,7 +16,7 @@ MonoBehaviour:
   duration: 1
   typeEffect: 1
   target: 2
-  damage: 1
+  damage: 10
   speed: 20
   particleSystemPrefab: {fileID: 6308049187893580758, guid: c56e0002632443548a8ea46eb6f088d6,
     type: 3}
