@@ -23,7 +23,7 @@ public class PlayerRound : BattleAction
             data.currentCard = data.cardDetector.TargetObject;
             if (Input.GetMouseButtonUp(0))
             {
-                if (entity.battlePoint < data.currentCard.property.card.cost) return;
+                if (entity.battlePoint < data.currentCard.Property.card.cost) return;
 
 
                 data.battleWindow.SetActiveBottomPanel(false);
@@ -32,19 +32,19 @@ public class PlayerRound : BattleAction
                 switch (data.enemy.CurrentCard.target)
                 {
                     case TargetEffect.All:
-                        data.enemy.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
-                        data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        data.enemy.CardEffectsController.AddEffect(data.currentCard.Property.card, CastControl);
+                        data.player.CardEffectsController.AddEffect(data.currentCard.Property.card, CastControl);
                         break;
                     case TargetEffect.Self:
-                        data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        data.player.CardEffectsController.AddEffect(data.currentCard.Property.card, CastControl);
                         break;
                     case TargetEffect.Other:
-                        data.enemy.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
+                        data.enemy.CardEffectsController.AddEffect(data.currentCard.Property.card, CastControl);
                         break;
                 }
 
                 data.currentCard.Use(data.battleWindow.ShiftToFreeSlots);
-                entity.battlePoint -= data.currentCard.property.card.cost;
+                entity.battlePoint -= data.currentCard.Property.card.cost;
                 data.battleWindow.RepaintPointText(entity.battlePoint);
             }
         }

@@ -9,10 +9,20 @@ public class CardView : MonoBehaviour
     [SerializeField] private TextMeshPro priceText;
     [SerializeField] private Rigidbody rigidbody;
 
-    public DeckSlot property;
-    public UICardSlot linkSlot;
+    private DeckSlot property;
+    [HideInInspector] public UICardSlot linkSlot;
 
     private bool isHightLight = false;
+
+    public DeckSlot Property
+    {
+        get => property;
+        set
+        {
+            property = value;
+            priceText.text = property.card.cost.ToString();
+        }
+    }
 
     public void Linked(UICardSlot linkSlot)
     {

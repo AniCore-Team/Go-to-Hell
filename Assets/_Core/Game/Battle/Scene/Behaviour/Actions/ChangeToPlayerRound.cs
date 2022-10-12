@@ -49,7 +49,7 @@ public class ChangeToPlayerRound : BattleAction
         {
             var randomCard = dataPlayer.deck.GetRandomCard();
             newCards[i] = dataPlayer.factory.Create(randomCard.card.prefab);
-            newCards[i].property = randomCard;
+            newCards[i].Property = randomCard;
             newCards[i].gameObject.name += i.ToString();
         }
         dataPlayer.battleWindow.SetCard(() => entity.StateRound = StateRound.Player,
