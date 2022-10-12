@@ -153,6 +153,7 @@ public class BattleWindow : UIWindow
                 toSlot.card = fromSlot.card;
                 toSlot.card.Linked(toSlot);
                 fromSlot.card = null;
+                fromSlot.SetActiveLocker(false);
                 toSlot.SetLocked(fromSlot.IsLocked, false);
                 fromSlot.SetLocked(false, false);
 
@@ -268,5 +269,10 @@ public class UICardSlot
 
         isLocked = value;
         checkMark.SetActive(isLocked);
+    }
+
+    public void SetActiveLocker(bool isActive)
+    {
+        locker.gameObject.SetActive(isActive);
     }
 }

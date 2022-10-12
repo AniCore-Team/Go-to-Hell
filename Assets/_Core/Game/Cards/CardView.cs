@@ -27,6 +27,7 @@ public class CardView : MonoBehaviour
     public void Linked(UICardSlot linkSlot)
     {
         this.linkSlot = linkSlot;
+        this.linkSlot.SetActiveLocker(true);
         transform.SetParent(linkSlot.cardPoint);
         transform.localScale = Vector3.one * 600f;
     }
@@ -34,6 +35,7 @@ public class CardView : MonoBehaviour
     public void Use(Action endCommand)
     {
         linkSlot.SetLocked(false, false);
+        linkSlot.SetActiveLocker(false);
         linkSlot.card = null;
         Services<PureAnimatorController>
             .Get()
