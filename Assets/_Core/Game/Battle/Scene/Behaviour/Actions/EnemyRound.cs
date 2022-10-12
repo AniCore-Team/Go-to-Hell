@@ -19,6 +19,7 @@ public class EnemyRound : BattleAction
             return;
         }
 
+        data.enemy.HideCardIcon();
         switch (data.enemy.CurrentCard.target)
         {
             case TargetEffect.All:

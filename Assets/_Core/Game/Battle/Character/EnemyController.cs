@@ -39,5 +39,11 @@ public class EnemyController : BaseCharacter
     {
         nextAttack = card;
         cardAttackImage.sprite = card.icon;
+        cardAttackImage.gameObject.SetActive(true);
+    }
+
+    public void HideCardIcon()
+    {
+        cardAttackImage.gameObject.SetActive(false);
     }
 }
