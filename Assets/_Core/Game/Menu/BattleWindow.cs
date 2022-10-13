@@ -19,6 +19,7 @@ public class BattleWindow : UIWindow
 
     private RectTransform downPanel;
     private bool isShowDownPanel;
+    private int battlePoint;
 
     public event Action onPassRound;
 
@@ -35,12 +36,27 @@ public class BattleWindow : UIWindow
         enemyHUD.Init();
 
         foreach (var slot in cardSlots)
-            slot.Init(func);
+            slot.Init(func, CheckLockers);
+    }
+
+    private void CheckLockers()
+    {
+        if (battlePoint == 0)
+        {
+            foreach (var card in cardSlots)
+                if (!card.IsLocked)
+                    card.SetInteractableLocker(false);
+        }
+        else
+            foreach (var card in cardSlots)
+                card.SetInteractableLocker(true);
     }
 
     public void RepaintPointText(int value)
     {
-        pointText.text = value.ToString();
+        battlePoint = value;
+        pointText.text = battlePoint.ToString();
+
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
@@ -231,48 +247,5 @@ public class BattleWindow : UIWindow
             isShowDownPanel = false;
             endMove?.Invoke();
         });
-    }
-}
-
-[Serializable]
-public class UICardSlot
-{
-    public CardView card;
-    public Transform cardPoint;
-    public Transform cardSpawn;
-    [SerializeField] private Button locker;
-    [SerializeField] private GameObject checkMark;
-
-    [SerializeField] private bool isLocked = false;
-
-    public event Func<bool, bool> onUseLock;
-
-    public bool IsLocked
-    {
-        get => isLocked;
-    }
-
-    public void Init(Func<bool, bool> func)
-    {
-        onUseLock = func;
-        locker.onClick.AddListener(() =>
-        {
-            SetLocked(!isLocked, true);
-        });
-    }
-
-    public void SetLocked(bool value, bool isUseScore)
-    {
-        if (isUseScore)
-            if (!onUseLock(!isLocked))
-                return;
-
-        isLocked = value;
-        checkMark.SetActive(isLocked);
-    }
-
-    public void SetActiveLocker(bool isActive)
-    {
-        locker.gameObject.SetActive(isActive);
     }
 }
