@@ -22,7 +22,13 @@ public class CardEffectsController
         otherCharacter = other;
     }
 
-    public bool Contains(CardID cardID) => effects.ContainsKey(cardID);
+    public bool ContainsLongTimeObjects(CardID cardID)
+    {
+        if (effects.ContainsKey(cardID))
+            return effects[cardID].HasContainsLongTimeObjects;
+        else
+            return false;
+    }
 
     public void AddEffect(CardProperty newCard, Action finishedCast)
     {

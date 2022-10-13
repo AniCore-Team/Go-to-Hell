@@ -11,6 +11,7 @@ public class Effect
     private TargetEffect target;
     public TypeEffect typeEffect;
     private int count;
+    public bool isPowered;
     private List<GameObject> longTimeObjects = new List<GameObject>();
 
     private ICardAction cardAction;
@@ -18,6 +19,7 @@ public class Effect
 
     public CardID ID => id;
     public bool CheckDuration => count >= duration;
+    public bool HasContainsLongTimeObjects => longTimeObjects.Count > 0;
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
 
@@ -37,7 +39,7 @@ public class Effect
 
     public void PowerUp(Effect effect)
     {
-
+        isPowered = true;
     }
 
     public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)
@@ -54,9 +56,6 @@ public class Effect
     public void EndAction(Action endTick)
     {
         cardAction.End(endTick, this);
-        //cardAction.OnFinishedCast -= OnFinishedCast;
-        //OnFinishedCast = null;
-        //endTick?.Invoke();
     }
 
     public void AddLongTimeObjects(params GameObject[] newObjects)

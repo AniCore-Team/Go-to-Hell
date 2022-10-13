@@ -100,7 +100,7 @@ public class IcePrisonAction : BaseActions
 
     private void AsyncExplosionAnimation(CastData castData, Action finishedCast)
     {
-        //if (!other[0].CardEffectsController.Contains(CardID.IcePrison))
+        if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.IcePrison))
         {
             var startPoint = castData.other.transform.position + Vector3.down * 5f;
             var endPoint = castData.other.transform.position;
@@ -116,14 +116,16 @@ public class IcePrisonAction : BaseActions
                         progress);
                     return default;
                 },
-                () => EndExplosionAnimation(castData, finishedCast) );
+                () => EndExplosionAnimation(castData, finishedCast));
         }
+        else
+            finishedCast();
     }
 
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
-        castData.other.Damage(damage);
+        castData.other.Damage(castData.owner.isPowered ? (int)(damage * 1.5f) : damage);
 
         AsyncCastExplosion(default, castData.endMove);
         AsyncExplosionAnimation(castData, finishedCast);
