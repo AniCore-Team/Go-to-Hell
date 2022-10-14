@@ -41,7 +41,8 @@ public class BaseCharacter : MonoBehaviour
     {
         health -= damage;
         characterHUD.SetHealth(health / (float)maxHealth);
-        animator.SetTrigger(HitId);
+        if (animator.enabled)
+            animator.SetTrigger(HitId);
 
         if (health <= 0)
             if (this is EnemyController)
@@ -67,8 +68,16 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void Attack(TypeAttack typeAttack)
     {
-        animator.SetInteger(TypeAttackId, (int)typeAttack);
-        animator.SetTrigger(AttackId);
+        if (animator.enabled)
+        {
+            animator.SetInteger(TypeAttackId, (int)typeAttack);
+            animator.SetTrigger(AttackId);
+        }
+    }
+
+    public void SetAnimatorActive(bool isActive)
+    {
+        animator.enabled = isActive;
     }
 
     public float GetLegthAnimation()

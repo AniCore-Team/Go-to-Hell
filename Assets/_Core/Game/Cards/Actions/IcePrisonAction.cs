@@ -127,6 +127,16 @@ public class IcePrisonAction : BaseActions
         Destroy(castData.effect.gameObject);
         castData.other.Damage(castData.owner.isPowered ? (int)(damage * 1.5f) : damage);
 
+        PureAnimation.Play(0.1f,
+            progress => default,
+            () => {
+                float delay = castData.other.GetLegthAnimation() - 0.1f;
+                Debug.Log(delay);
+                PureAnimation.Play(delay / 4f,
+                    progress => default,
+                    () => castData.other.SetAnimatorActive(false) );
+            });
+
         AsyncCastExplosion(default, castData.endMove);
         AsyncExplosionAnimation(castData, finishedCast);
     }

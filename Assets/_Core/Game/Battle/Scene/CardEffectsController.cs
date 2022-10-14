@@ -86,6 +86,7 @@ public class CardEffectsController
 
     private void FinishTick(Action endTick)
     {
+        selfCharacter.SetAnimatorActive(true);
         DropEffects();
         CallEndTick(endTick);
     }
