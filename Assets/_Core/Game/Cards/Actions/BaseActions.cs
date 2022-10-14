@@ -5,13 +5,13 @@ using UnityEngine;
 
 public abstract class BaseActions : ScriptableObject, ICardAction
 {
-    public string nameAnimation;
+    public BaseCharacter.TypeAttack nameAnimation;
     public int duration = 0;
     public TypeEffect typeEffect;
     public TargetEffect target;
     public event Action OnFinishedCast;
 
-    public string NameAnimation => nameAnimation;
+    public BaseCharacter.TypeAttack NameAnimation => nameAnimation;
 
     public TypeEffect TypeEffect => typeEffect;
 

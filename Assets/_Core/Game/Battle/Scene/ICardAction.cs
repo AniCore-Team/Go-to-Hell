@@ -4,7 +4,7 @@ public interface ICardAction
 {
     public event Action OnFinishedCast;
 
-    public string NameAnimation { get; }
+    public BaseCharacter.TypeAttack NameAnimation { get; }
     public TypeEffect TypeEffect { get; }
     public TargetEffect TargetEffect { get; }
     public int Duration { get; }

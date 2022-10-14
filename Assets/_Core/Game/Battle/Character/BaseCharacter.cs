@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
+    public enum TypeAttack
+    {
+        Fireball
+    }
+
     protected Animator animator;
     public Transform frontEffectSpawn;
 
@@ -13,6 +18,8 @@ public class BaseCharacter : MonoBehaviour
     protected StateRound nextRound;
 
     private readonly int HitId = Animator.StringToHash("Hit");
+    private readonly int TypeAttackId = Animator.StringToHash("TypeAttack");
+    private readonly int AttackId = Animator.StringToHash("Attack");
 
     private int health = 100;
     private int maxHealth = 100;
@@ -34,7 +41,7 @@ public class BaseCharacter : MonoBehaviour
     {
         health -= damage;
         characterHUD.SetHealth(health / (float)maxHealth);
-        animator.Play(HitId);
+        animator.SetTrigger(HitId);
 
         if (health <= 0)
             if (this is EnemyController)
@@ -58,9 +65,10 @@ public class BaseCharacter : MonoBehaviour
 
     }
 
-    public void Attack(string nameAnimation)
+    public virtual void Attack(TypeAttack typeAttack)
     {
-        animator.Play(nameAnimation);
+        animator.SetInteger(TypeAttackId, (int)typeAttack);
+        animator.SetTrigger(AttackId);
     }
 
     public float GetLegthAnimation()
