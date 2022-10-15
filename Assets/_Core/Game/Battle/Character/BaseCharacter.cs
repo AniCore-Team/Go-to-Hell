@@ -28,7 +28,7 @@ public class BaseCharacter : MonoBehaviour
     public CardEffectsController CardEffectsController => cardEffectsController;
     public StateRound NextRound => nextRound;
 
-    protected virtual void Start()
+    public virtual void Init()
     {
         animator = GetComponentInChildren<Animator>();
 

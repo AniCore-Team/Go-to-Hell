@@ -13,9 +13,9 @@ public class EnemyController : BaseCharacter
     public CardProperty CurrentCard => nextAttack;
     //private readonly int AttackId = Animator.StringToHash("Attack Faerball");
 
-    protected override void Start()
+    public override void Init()
     {
-        base.Start();
+        base.Init();
         nextRound = StateRound.PrePlayer;
     }
 
