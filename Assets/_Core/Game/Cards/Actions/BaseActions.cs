@@ -25,6 +25,8 @@ public abstract class BaseActions : ScriptableObject, ICardAction
 
     public abstract void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast);
 
+    public virtual void PowerUp(Effect owner) { }
+
     protected void FinishedCast()
     {
         OnFinishedCast?.Invoke();

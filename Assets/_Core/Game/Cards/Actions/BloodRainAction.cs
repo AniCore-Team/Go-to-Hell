@@ -56,6 +56,12 @@ public class BloodRainAction : BaseActions
         AsyncCastExplosion(finishedCast, other[0], other[0].transform.position + Vector3.up * 1.5f);
     }
 
+    public override void PowerUp(Effect owner)
+    {
+        base.PowerUp(owner);
+        owner.duration++;
+    }
+
     private void AsyncCastExplosion(Action endTick, BaseCharacter other, Vector3 endPoint)
     {
         var explosion = Object.Instantiate(bloodExplosionPrefab, endPoint, Quaternion.identity);

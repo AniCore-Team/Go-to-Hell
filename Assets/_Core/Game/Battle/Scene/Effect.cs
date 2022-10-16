@@ -7,7 +7,7 @@ using UnityEngine;
 public class Effect
 {
     private CardID id;
-    private int duration;
+    public int duration;
     private TargetEffect target;
     public TypeEffect typeEffect;
     private int count;
@@ -40,6 +40,7 @@ public class Effect
     public void PowerUp(Effect effect)
     {
         isPowered = true;
+        cardAction.PowerUp(this);
     }
 
     public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)

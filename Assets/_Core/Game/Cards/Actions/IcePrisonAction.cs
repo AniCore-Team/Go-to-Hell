@@ -21,6 +21,7 @@ public class IcePrisonAction : BaseActions
 
     public int damage;
     public float speed;
+    public float powerUpDamageMultiplicer = 1.5f;
     public ParticleSystem particleSystemPrefab;
     public ParticleSystem explosionPrefab;
     public GameObject icePrefab;
@@ -125,7 +126,7 @@ public class IcePrisonAction : BaseActions
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
-        castData.other.Damage(castData.owner.isPowered ? (int)(damage * 1.5f) : damage);
+        castData.other.Damage(castData.owner.isPowered ? (int)(damage * powerUpDamageMultiplicer) : damage);
 
         PureAnimation.Play(0.1f,
             progress => default,

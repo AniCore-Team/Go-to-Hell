@@ -33,7 +33,6 @@ public class CardEffectsController
     public void AddEffect(CardProperty newCard, Action finishedCast)
     {
         var effect = new Effect(newCard.id, newCard.effectAction);
-        //effect.OnFinishedCast += finishedCast;
 
         if (newCard.effectAction.duration > 0)
         {

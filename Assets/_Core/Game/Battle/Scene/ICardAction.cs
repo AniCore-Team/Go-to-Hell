@@ -12,4 +12,5 @@ public interface ICardAction
     public void Cast(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast);
     public void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast);
     public void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner);
+    public void PowerUp(Effect owner);
 }
