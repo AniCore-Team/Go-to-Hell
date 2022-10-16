@@ -15,7 +15,7 @@ public class Effect
     private List<GameObject> longTimeObjects = new List<GameObject>();
 
     private ICardAction cardAction;
-    //public event Action OnFinishedCast;
+    private Func<TargetEffect, BaseCharacter[]> getCharacter;
 
     public CardID ID => id;
     public bool CheckDuration => count >= duration;
@@ -44,18 +44,26 @@ public class Effect
 
     public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)
     {
-        AsyncWaitAnimationEvent(getCharacter, finishedCast);
+        this.getCharacter = getCharacter;
+        AsyncWaitAnimationEvent(finishedCast);
     }
 
     public void RoundAction(Action endRoundAction)
     {
         count++;
-        endRoundAction?.Invoke();
+        cardAction.Tick(
+            this,
+            getCharacter(target)[0],
+            getCharacter(target == TargetEffect.Self ? TargetEffect.Other : TargetEffect.Self),
+            endRoundAction);
     }
 
     public void EndAction(Action endTick)
     {
-        cardAction.End(endTick, this);
+        cardAction.End(endTick,
+            getCharacter(target)[0],
+            getCharacter(target == TargetEffect.Self ? TargetEffect.Other : TargetEffect.Self),
+            this);
     }
 
     public void AddLongTimeObjects(params GameObject[] newObjects)
@@ -76,7 +84,7 @@ public class Effect
         longTimeObjects.Clear();
     }
 
-    private void AsyncWaitAnimationEvent(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)
+    private void AsyncWaitAnimationEvent(Action finishedCast)
     {
         getCharacter(target)[0].Attack(cardAction.NameAnimation);
         PureAnimation.Play(0.1f, Utils.EmptyPureAnimation, () =>
@@ -88,13 +96,13 @@ public class Effect
             {
                 PureAnimation.Play(eventTimeAnimations[i], Utils.EmptyPureAnimation, () =>
                 {
-                    CastToEvent(getCharacter, finishedCast);
+                    CastToEvent(finishedCast);
                 });
             }
         });
     }
 
-    private void CastToEvent(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)
+    private void CastToEvent(Action finishedCast)
     {
         //cardAction.OnFinishedCast += OnFinishedCast;
         cardAction.Cast(

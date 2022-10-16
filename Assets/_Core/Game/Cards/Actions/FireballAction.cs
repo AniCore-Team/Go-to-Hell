@@ -53,12 +53,12 @@ public class FireballAction : BaseActions
             });
     }
 
-    public override void End(Action endTick, Effect owner)
+    public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
         endTick?.Invoke();
     }
 
-    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other)
+    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
         
     }

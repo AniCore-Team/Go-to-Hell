@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cards List Test
   m_EditorClassIdentifier: 
   list:
-  - {fileID: 11400000, guid: 266a949273e326545836e8395be1c85d, type: 2}
   - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}
+  - {fileID: 11400000, guid: 0b28b3850fd1d72449ecbbf20582a89b, type: 2}

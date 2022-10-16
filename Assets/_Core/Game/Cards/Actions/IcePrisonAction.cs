@@ -38,7 +38,7 @@ public class IcePrisonAction : BaseActions
         AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
-    public override void End(Action endTick, Effect owner)
+    public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
         Vector3 spawnPoint = Vector3.zero;
         foreach (var obj in owner.GetLongTimeObjects())
@@ -52,9 +52,9 @@ public class IcePrisonAction : BaseActions
         AsyncCastExplosion(endTick, spawnPoint);
     }
 
-    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other)
+    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-
+        finishedCast();
     }
 
     private void AsyncCastExplosion(Action endTick, Vector3 endPoint)

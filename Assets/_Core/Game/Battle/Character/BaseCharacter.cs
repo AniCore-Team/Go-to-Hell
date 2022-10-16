@@ -12,6 +12,7 @@ public class BaseCharacter : MonoBehaviour
 
     protected Animator animator;
     public Transform frontEffectSpawn;
+    public Transform topEffectSpawn;
 
     public CharacterHUD characterHUD;
     private CardEffectsController cardEffectsController;

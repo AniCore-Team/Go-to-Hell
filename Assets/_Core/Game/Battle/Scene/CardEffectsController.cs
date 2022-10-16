@@ -96,7 +96,7 @@ public class CardEffectsController
         usingTicks.Clear();
         foreach (Effect effect in effects.Values)
         {
-            if (effect.typeEffect != typeEffect) return;
+            if (effect.typeEffect != typeEffect) continue;
 
             usingTicks.Enqueue(effect.RoundAction);
         }
