@@ -13,7 +13,8 @@ public enum CardID
     FireBall,
     IcePrison,
     ArchangelFeather,
-    BloodRain
+    BloodRain,
+    EdemApple
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards/Create New Card")]

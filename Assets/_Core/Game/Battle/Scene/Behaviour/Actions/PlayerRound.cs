@@ -29,7 +29,7 @@ public class PlayerRound : BattleAction
                 data.battleWindow.SetActiveBottomPanel(false);
                 entity.enabled = false;
                 //data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);
-                switch (data.enemy.CurrentCard.target)
+                switch (data.currentCard.Property.card.target)
                 {
                     case TargetEffect.All:
                         data.enemy.CardEffectsController.AddEffect(data.currentCard.Property.card, CastControl);

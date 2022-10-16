@@ -54,7 +54,11 @@ public class BaseCharacter : MonoBehaviour
 
     public void Heal(int heal)
     {
+        health += heal;
+        characterHUD.SetHealth(health / (float)maxHealth);
 
+        if (health >= maxHealth)
+            health = maxHealth;
     }
 
     public void DefenceUp(int value)
