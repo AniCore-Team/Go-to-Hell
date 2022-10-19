@@ -126,19 +126,26 @@ public class IcePrisonAction : BaseActions
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
+        AsyncCastExplosion(default, castData.endMove);
+
+        bool isDefended = castData.other.CardEffectsController.CheckDefence();
         castData.other.Damage(castData.owner.isPowered ? (int)(damage * powerUpDamageMultiplicer) : damage);
+
+        if (isDefended)
+        {
+            finishedCast?.Invoke();
+            return;
+        }
 
         PureAnimation.Play(0.1f,
             progress => default,
             () => {
                 float delay = castData.other.GetLegthAnimation() - 0.1f;
-                Debug.Log(delay);
                 PureAnimation.Play(delay / 4f,
                     progress => default,
                     () => castData.other.SetAnimatorActive(false) );
             });
 
-        AsyncCastExplosion(default, castData.endMove);
         AsyncExplosionAnimation(castData, finishedCast);
     }
 

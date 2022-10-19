@@ -12,13 +12,14 @@ public class Effect
     public TypeEffect typeEffect;
     private int count;
     public bool isPowered;
+    public bool isUsed;
     private List<GameObject> longTimeObjects = new List<GameObject>();
 
     private ICardAction cardAction;
     private Func<TargetEffect, BaseCharacter[]> getCharacter;
 
     public CardID ID => id;
-    public bool CheckDuration => count >= duration;
+    public bool CheckEnded => count >= duration || isUsed;
     public bool HasContainsLongTimeObjects => longTimeObjects.Count > 0;
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
@@ -62,6 +63,14 @@ public class Effect
     public void EndAction(Action endTick)
     {
         cardAction.End(endTick,
+            getCharacter(target)[0],
+            getCharacter(target == TargetEffect.Self ? TargetEffect.Other : TargetEffect.Self),
+            this);
+    }
+
+    public void UseEffect(Action endTick)
+    {
+        isUsed = cardAction.Use(endTick,
             getCharacter(target)[0],
             getCharacter(target == TargetEffect.Self ? TargetEffect.Other : TargetEffect.Self),
             this);

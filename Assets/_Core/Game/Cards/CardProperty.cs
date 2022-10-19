@@ -14,7 +14,8 @@ public enum CardID
     IcePrison,
     ArchangelFeather,
     BloodRain,
-    EdemApple
+    EdemApple,
+    Shield
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards/Create New Card")]

@@ -3,5 +3,6 @@
     Attack,
     Stun,
     Buff,
-    Debuff
+    Debuff,
+    Shield
 }

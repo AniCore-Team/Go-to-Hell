@@ -40,6 +40,9 @@ public class BaseCharacter : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (CardEffectsController.UseDefence(ref damage))
+            return;
+
         health -= damage;
         characterHUD.SetHealth(health / (float)maxHealth);
         if (animator.enabled)
