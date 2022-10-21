@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87edae9dacf60c240b4542653c2e9c0d, type: 3}
+  m_Name: EdemAngel
+  m_EditorClassIdentifier: 
+  nameAnimation: 0
+  duration: 5
+  typeEffect: 4
+  target: 1
+  shieldPrefab: {fileID: 6864947871480063766, guid: 694f04acd48a0624eb6e3edd413c5791,
+    type: 3}
+  durability: 3
+  bonusEffect: {fileID: 11400000, guid: b860fb873d90261439c0750260e47c42, type: 2}

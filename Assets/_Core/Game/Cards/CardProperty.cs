@@ -15,7 +15,8 @@ public enum CardID
     ArchangelFeather,
     BloodRain,
     EdemApple,
-    Shield
+    Shield,
+    EdemAngel
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards/Create New Card")]
@@ -27,8 +28,6 @@ public class CardProperty : ScriptableObject
     public GameObject prefab;
     public int max_level;
     public int cost;
-    public int duration;
-    public TargetEffect target;
     public BaseActions effectAction;
 
 #if UNITY_EDITOR

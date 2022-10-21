@@ -22,7 +22,12 @@ public class ChangeToPlayerRound : BattleAction
 
     private void AsyncTickAttack()
     {
-        dataPlayer.player.CardEffectsController.AsyncTick(AsyncTickStun, TypeEffect.Attack);
+        dataPlayer.player.CardEffectsController.AsyncTick(AsyncTickShield, TypeEffect.Attack);
+    }
+
+    private void AsyncTickShield()
+    {
+        dataPlayer.player.CardEffectsController.AsyncTick(AsyncTickStun, TypeEffect.Shield);
     }
 
     private void AsyncTickStun()

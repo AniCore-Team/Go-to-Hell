@@ -8,6 +8,7 @@ public class Effect
 {
     private CardID id;
     public int duration;
+    public int durability;
     private TargetEffect target;
     public TypeEffect typeEffect;
     private int count;
@@ -44,10 +45,13 @@ public class Effect
         cardAction.PowerUp(this);
     }
 
-    public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast)
+    public void BeginAction(Func<TargetEffect, BaseCharacter[]> getCharacter, Action finishedCast, bool fastCast)
     {
         this.getCharacter = getCharacter;
-        AsyncWaitAnimationEvent(finishedCast);
+        if (fastCast)
+            CastToEvent(finishedCast);
+        else
+            AsyncWaitAnimationEvent(finishedCast);
     }
 
     public void RoundAction(Action endRoundAction)

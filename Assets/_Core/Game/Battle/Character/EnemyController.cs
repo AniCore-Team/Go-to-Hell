@@ -32,7 +32,8 @@ public class EnemyController : BaseCharacter
                 }
         }
 
-        SetNextAttack(enemyProperty.simpleCards[Random.Range(0, enemyProperty.simpleCards.Count)]);
+        if (enemyProperty.simpleCards.Count > 0)
+            SetNextAttack(enemyProperty.simpleCards[Random.Range(0, enemyProperty.simpleCards.Count)]);
     }
 
     private void SetNextAttack(CardProperty card)

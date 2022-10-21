@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Edem Guard
   m_EditorClassIdentifier: 
-  name: 
+  name: Edem Guard
+  id: 6
   icon: {fileID: 21300000, guid: 8831f1eaa1df1a74ea7e09cfe111705d, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 7e95680f4b613bc4c870c04160aed0e9, type: 3}
   max_level: 20
-  cost: 5
+  cost: 10
+  effectAction: {fileID: 11400000, guid: 2a8cf0af8a87a30418f0a2237f751dc1, type: 2}

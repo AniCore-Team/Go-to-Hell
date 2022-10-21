@@ -4,8 +4,8 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[CreateAssetMenu(fileName = "Shield", menuName = "Cards/Actions/Shield")]
-public class ShieldAction : BaseActions
+[CreateAssetMenu(fileName = "EdemAngel", menuName = "Cards/Actions/EdemAngel")]
+public class EdemAngelAction : BaseActions
 {
     private class CastData
     {
@@ -17,6 +17,8 @@ public class ShieldAction : BaseActions
     }
 
     public GameObject shieldPrefab;
+    public int durability;
+    public CardProperty bonusEffect;
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
 
@@ -28,11 +30,17 @@ public class ShieldAction : BaseActions
             self = self,
             other = other[0]
         };
-        if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
-            if (castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
-                castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).durability++;
-            else
-                AsyncMoveEffectAnimation(castData, finishedCast);
+        if (self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
+        {
+            int d = 0;
+            self.CardEffectsController.UseDefence(ref d);
+        }
+
+        if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
+        {
+            AsyncMoveEffectAnimation(castData, finishedCast);
+            owner.durability = durability;
+        }
     }
 
     public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
@@ -46,21 +54,37 @@ public class ShieldAction : BaseActions
         }
 
         owner.ClearLongTimeObjects();
-        endTick?.Invoke();
+        if (owner.durability > 0)
+            self.CardEffectsController.AddEffect(bonusEffect, endTick, true);
+        else
+            endTick?.Invoke();
     }
 
     public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-        owner.duration++;
         finishedCast();
     }
 
     public override bool Use(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
         base.Use(endTick, self, other, owner);
-        End(endTick, self, other, owner);
+        if (owner.durability > durability)
+            owner.durability = durability;
+        owner.durability--;
 
-        return true;
+        if (owner.durability == 0)
+        {
+            End(endTick, self, other, owner);
+            return true;
+        }
+
+        return false;
+    }
+
+    public override void PowerUp(Effect owner)
+    {
+        base.PowerUp(owner);
+        owner.duration++;
     }
 
     private void AsyncMoveEffectAnimation(CastData castData, Action finishedCast)

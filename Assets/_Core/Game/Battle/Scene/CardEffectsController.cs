@@ -30,7 +30,10 @@ public class CardEffectsController
             return false;
     }
 
-    public void AddEffect(CardProperty newCard, Action finishedCast)
+    public Effect GetEffect(CardID cardID)
+        => effects[cardID];
+
+    public void AddEffect(CardProperty newCard, Action finishedCast, bool fastCast = false)
     {
         var effect = new Effect(newCard.id, newCard.effectAction);
         bool blocked = newCard.effectAction.TargetEffect == TargetEffect.Other && CheckDefence();
@@ -41,10 +44,10 @@ public class CardEffectsController
             else
                 effects.Add(newCard.id, effect);
 
-            effects[newCard.id].BeginAction(GetCharacters, finishedCast);
+            effects[newCard.id].BeginAction(GetCharacters, finishedCast, fastCast);
         }
         else
-            effect.BeginAction(GetCharacters, finishedCast);
+            effect.BeginAction(GetCharacters, finishedCast, fastCast);
     }
 
     public void AsyncTick(Action endTick, TypeEffect typeEffect)

@@ -20,19 +20,22 @@ public class EnemyRound : BattleAction
         }
 
         data.enemy.HideCardIcon();
-        switch (data.enemy.CurrentCard.target)
-        {
-            case TargetEffect.All:
-                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
-                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
-                break;
-            case TargetEffect.Self:
-                data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
-                break;
-            case TargetEffect.Other:
-                data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
-                break;
-        }
+        if (data.enemy.CurrentCard)
+            switch (data.enemy.CurrentCard.effectAction.target)
+            {
+                case TargetEffect.All:
+                    data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                    data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                    break;
+                case TargetEffect.Self:
+                    data.enemy.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                    break;
+                case TargetEffect.Other:
+                    data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
+                    break;
+            }
+        else
+            CastControl();
     }
 
     private void CastControl()
