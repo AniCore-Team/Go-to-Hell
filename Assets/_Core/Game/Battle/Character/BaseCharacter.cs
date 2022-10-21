@@ -12,6 +12,7 @@ public class BaseCharacter : MonoBehaviour
 
     protected Animator animator;
     public Transform frontEffectSpawn;
+    public Transform topEffectSpawn;
 
     public CharacterHUD characterHUD;
     private CardEffectsController cardEffectsController;
@@ -28,7 +29,7 @@ public class BaseCharacter : MonoBehaviour
     public CardEffectsController CardEffectsController => cardEffectsController;
     public StateRound NextRound => nextRound;
 
-    protected virtual void Start()
+    public virtual void Init()
     {
         animator = GetComponentInChildren<Animator>();
 
@@ -39,6 +40,9 @@ public class BaseCharacter : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (CardEffectsController.UseDefence(ref damage))
+            return;
+
         health -= damage;
         characterHUD.SetHealth(health / (float)maxHealth);
         if (animator.enabled)
@@ -53,7 +57,11 @@ public class BaseCharacter : MonoBehaviour
 
     public void Heal(int heal)
     {
+        health += heal;
+        characterHUD.SetHealth(health / (float)maxHealth);
 
+        if (health >= maxHealth)
+            health = maxHealth;
     }
 
     public void DefenceUp(int value)

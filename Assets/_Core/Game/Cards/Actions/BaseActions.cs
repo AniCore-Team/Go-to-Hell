@@ -21,9 +21,13 @@ public abstract class BaseActions : ScriptableObject, ICardAction
 
     public abstract void Cast(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast);
 
-    public abstract void End(Action endTick, Effect owner);
+    public abstract void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner);
 
-    public abstract void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other);
+    public abstract void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast);
+
+    public virtual bool Use(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner) => false;
+
+    public virtual void PowerUp(Effect owner) { }
 
     protected void FinishedCast()
     {

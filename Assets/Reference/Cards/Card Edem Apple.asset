@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Edem Apple
   m_EditorClassIdentifier: 
-  name: 
+  name: Edem Apple
+  id: 4
   icon: {fileID: 21300000, guid: ec5ba04cbf55ff544812d187b7786b05, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 6ac4884949f1bc34eb9aa42eee85d501, type: 3}
   max_level: 20
-  cost: 5
+  cost: 3
+  duration: 0
+  target: 1
+  effectAction: {fileID: 11400000, guid: ee83cbd59fcf93d4982e739ea29b4259, type: 2}

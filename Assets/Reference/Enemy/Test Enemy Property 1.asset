@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95e2eb87f5b36a849bb4438f06b2ac09, type: 3}
-  m_Name: Test Enemy Property
+  m_Name: Test Enemy Property 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3525691555419777139, guid: 9cb33b206bbdb154e9937619707f5c1b, type: 3}
+  prefab: {fileID: 919132149155446097, guid: be9be93468249be46a35687d67e4c288, type: 3}
   simpleCards:
-  - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}
   - {fileID: 11400000, guid: 266a949273e326545836e8395be1c85d, type: 2}
   hardAttacks: []

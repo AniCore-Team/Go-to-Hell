@@ -21,6 +21,7 @@ public class IcePrisonAction : BaseActions
 
     public int damage;
     public float speed;
+    public float powerUpDamageMultiplicer = 1.5f;
     public ParticleSystem particleSystemPrefab;
     public ParticleSystem explosionPrefab;
     public GameObject icePrefab;
@@ -38,7 +39,7 @@ public class IcePrisonAction : BaseActions
         AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
-    public override void End(Action endTick, Effect owner)
+    public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
         Vector3 spawnPoint = Vector3.zero;
         foreach (var obj in owner.GetLongTimeObjects())
@@ -52,9 +53,9 @@ public class IcePrisonAction : BaseActions
         AsyncCastExplosion(endTick, spawnPoint);
     }
 
-    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other)
+    public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-
+        finishedCast();
     }
 
     private void AsyncCastExplosion(Action endTick, Vector3 endPoint)
@@ -125,19 +126,26 @@ public class IcePrisonAction : BaseActions
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
-        castData.other.Damage(castData.owner.isPowered ? (int)(damage * 1.5f) : damage);
+        AsyncCastExplosion(default, castData.endMove);
+
+        bool isDefended = castData.other.CardEffectsController.CheckDefence();
+        castData.other.Damage(castData.owner.isPowered ? (int)(damage * powerUpDamageMultiplicer) : damage);
+
+        if (isDefended)
+        {
+            finishedCast?.Invoke();
+            return;
+        }
 
         PureAnimation.Play(0.1f,
             progress => default,
             () => {
                 float delay = castData.other.GetLegthAnimation() - 0.1f;
-                Debug.Log(delay);
                 PureAnimation.Play(delay / 4f,
                     progress => default,
                     () => castData.other.SetAnimatorActive(false) );
             });
 
-        AsyncCastExplosion(default, castData.endMove);
         AsyncExplosionAnimation(castData, finishedCast);
     }
 

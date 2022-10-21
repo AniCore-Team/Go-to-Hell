@@ -33,9 +33,8 @@ public class CardEffectsController
     public void AddEffect(CardProperty newCard, Action finishedCast)
     {
         var effect = new Effect(newCard.id, newCard.effectAction);
-        //effect.OnFinishedCast += finishedCast;
-
-        if (newCard.effectAction.duration > 0)
+        bool blocked = newCard.effectAction.TargetEffect == TargetEffect.Other && CheckDefence();
+        if (newCard.effectAction.duration > 0 && !blocked)
         {
             if (effects.ContainsKey(newCard.id))
                 effects[newCard.id].PowerUp(effect);
@@ -52,6 +51,26 @@ public class CardEffectsController
     {
         CheckTicks(typeEffect);
         AsyncUseTick(AsyncCheckEndTicks, endTick);
+    }
+
+    public bool CheckDefence()
+    {
+        return effects.Any(eff => eff.Value.typeEffect == TypeEffect.Shield);
+    }
+
+    public bool UseDefence(ref int damage)
+    {
+        if (effects.Any(eff => eff.Value.typeEffect == TypeEffect.Shield))
+        {
+            var shield = effects.FirstOrDefault(eff => eff.Value.typeEffect == TypeEffect.Shield).Value;
+            shield.UseEffect(() => { });
+            CheckFinishedTicks();
+            DropEffects();
+
+            return true;
+        }
+
+        return false;
     }
 
     private void AsyncCheckEndTicks(Action endTick)
@@ -96,7 +115,7 @@ public class CardEffectsController
         usingTicks.Clear();
         foreach (Effect effect in effects.Values)
         {
-            if (effect.typeEffect != typeEffect) return;
+            if (effect.typeEffect != typeEffect) continue;
 
             usingTicks.Enqueue(effect.RoundAction);
         }
@@ -109,7 +128,7 @@ public class CardEffectsController
         {
             //if (effect.typeEffect != TypeEffect.Attack) return;
 
-            if (effect.CheckDuration)
+            if (effect.CheckEnded)
             {
                 usingTicks.Enqueue(effect.EndAction);
                 dropEffects.Add(effect.ID);

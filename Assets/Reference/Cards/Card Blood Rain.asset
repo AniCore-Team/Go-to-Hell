@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Blood Rain
   m_EditorClassIdentifier: 
-  name: 
+  name: Blood Rain
+  id: 3
   icon: {fileID: 21300000, guid: 2155bad8419c6c84ea45ebab53678471, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 9ab02082814e2ef489ab09b42d0ef0e4, type: 3}
   max_level: 20
   cost: 5
+  duration: 3
+  target: 0
+  effectAction: {fileID: 11400000, guid: ed963c4d2c7f4494e83afa41543f9fc4, type: 2}
