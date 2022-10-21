@@ -97,6 +97,7 @@ public class BattleWindow : UIWindow
             freeSlot.card.transform.position = freeSlot.cardSpawn.position;
             freeSlot.SetLocked(false, false);
             newCard.Linked(freeSlot);
+            newCard.transform.localRotation = Quaternion.Euler(0, 180, 0);
             Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
