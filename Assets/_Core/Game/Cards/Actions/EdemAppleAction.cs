@@ -56,7 +56,7 @@ public class EdemAppleAction : BaseActions
 
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
-        Destroy(castData.effect.gameObject);
+        Destroy(castData.effect.gameObject,2f);
         castData.self.Heal(health);
 
         finishedCast?.Invoke();
