@@ -47,6 +47,7 @@ public class BloodRainAction : BaseActions
         }
 
         owner.ClearLongTimeObjects();
+        endTick?.Invoke();
     }
 
     public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
