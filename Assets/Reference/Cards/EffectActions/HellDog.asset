@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456af0b10bcf99c4791cbd66c83b6380, type: 3}
+  m_Name: HellDog
+  m_EditorClassIdentifier: 
+  nameAnimation: 0
+  duration: 2
+  typeEffect: 5
+  target: 2
+  damage: 15
+  speed: 8
+  spawnEffectPrefab: {fileID: 6308049187893580758, guid: 902941a25f5ecf1419a85c014b757031,
+    type: 3}
+  hellDogPrefab: {fileID: 1219724064001135743, guid: daa341936e1cd3b4096a129c8b38e8eb,
+    type: 3}
+  attackExplosionPrefab: {fileID: 8560559060874494747, guid: 7d8c60432185f9c478ae522bea2ed085,
+    type: 3}

@@ -4,5 +4,6 @@
     Stun,
     Buff,
     Debuff,
-    Shield
+    Shield,
+    Summon
 }

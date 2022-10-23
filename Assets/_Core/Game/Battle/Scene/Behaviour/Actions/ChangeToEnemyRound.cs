@@ -28,7 +28,12 @@ public class ChangeToEnemyRound : BattleAction
 
     private void AsyncTickAttack()
     {
-        data.enemy.CardEffectsController.AsyncTick(AsyncTickShield, TypeEffect.Attack);
+        data.enemy.CardEffectsController.AsyncTick(AsyncTickSummon, TypeEffect.Attack);
+    }
+
+    private void AsyncTickSummon()
+    {
+        data.enemy.CardEffectsController.AsyncTick(AsyncTickShield, TypeEffect.Summon);
     }
 
     private void AsyncTickShield()
