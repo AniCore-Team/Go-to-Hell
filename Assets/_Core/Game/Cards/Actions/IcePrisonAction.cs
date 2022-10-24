@@ -1,9 +1,7 @@
 ﻿using Common;
 using PureAnimator;
 using System;
-using System.Net;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 using Object = UnityEngine.Object;
 
 [CreateAssetMenu(fileName = "IcePrison", menuName = "Cards/Actions/IcePrison")]
