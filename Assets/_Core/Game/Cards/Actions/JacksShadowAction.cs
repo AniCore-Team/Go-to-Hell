@@ -76,7 +76,7 @@ public class JacksShadowAction : BaseActions
     {
         if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.JacksShadow))
         {
-            var effect = Object.Instantiate(JacksShadowPrefab, castData.other.transform.position + Vector3.forward * 2f, Quaternion.identity);
+            var effect = Object.Instantiate(JacksShadowPrefab, castData.other.transform.position + Vector3.right * 2f, Quaternion.identity);
             castData.owner.AddLongTimeObjects(effect);
             castData.effect = effect;
 
