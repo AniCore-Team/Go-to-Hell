@@ -28,11 +28,14 @@ public class ShieldAction : BaseActions
             self = self,
             other = other[0]
         };
-        if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
-            if (castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
-                castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).durability++;
-            else
-                AsyncMoveEffectAnimation(castData, finishedCast);
+        if (self.CardEffectsController.IsDebuff)
+            finishedCast?.Invoke();
+        else
+            if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
+                if (castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
+                    castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).durability++;
+                else
+                    AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
     public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)

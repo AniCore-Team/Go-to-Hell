@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Stun
   m_EditorClassIdentifier: 
   nameAnimation: 0
-  duration: 0
-  typeEffect: 0
-  target: 0
-  stunPrefab: {fileID: 0}
+  duration: 1
+  typeEffect: 1
+  target: 2
+  stunPrefab: {fileID: 2866037682217901478, guid: 12a947f4ab0a0c341bae207fc15d0273,
+    type: 3}

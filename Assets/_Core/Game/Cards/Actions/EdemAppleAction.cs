@@ -9,15 +9,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "EdemApple", menuName = "Cards/Actions/EdemApple")]
 public class EdemAppleAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
     public int health;
     public ParticleSystem particleSystemPrefab;
 
@@ -57,7 +48,10 @@ public class EdemAppleAction : BaseActions
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
-        castData.self.Heal(health);
+        if (castData.self.CardEffectsController.IsDebuff)
+            finishedCast?.Invoke();
+        else
+            castData.self.Heal(castData.self.CardEffectsController.IsDebuff ? health / 2 : health);
 
         finishedCast?.Invoke();
     }

@@ -8,16 +8,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "HellDog", menuName = "Cards/Actions/HellDog")]
 public class HellDogAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
-
     public int damage;
     public float speed;
     public ParticleSystem spawnEffectPrefab;
@@ -158,7 +148,7 @@ public class HellDogAction : BaseActions
 
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
-        castData.other.Damage(damage);
+        Damage(castData, damage);
         AsyncWaitAnimationEvent(castData, finishedCast);
     }
 

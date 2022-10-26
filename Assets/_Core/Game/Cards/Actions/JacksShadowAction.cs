@@ -7,16 +7,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "JacksShadow", menuName = "Cards/Actions/JacksShadow")]
 public class JacksShadowAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
-
     public int damage;
     [Range(0f, 1f)] public float thresholdStun;
     public CardProperty stunEffect;
@@ -158,7 +148,7 @@ public class JacksShadowAction : BaseActions
         //Destroy(castData.effect.gameObject);
         if (UnityEngine.Random.value > thresholdStun)
         {
-            castData.other.Damage(damage);
+            Damage(castData, damage);
             AsyncExplosionAnimation(castData, finishedCast);
         }
         else

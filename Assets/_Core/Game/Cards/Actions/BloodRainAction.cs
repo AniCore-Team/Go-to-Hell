@@ -1,24 +1,12 @@
 ﻿using Common;
 using PureAnimator;
 using System;
-using System.Net;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 using Object = UnityEngine.Object;
 
 [CreateAssetMenu(fileName = "BloodRain", menuName = "Cards/Actions/BloodRain")]
 public class BloodRainAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
-
     public int damage;
     public float speed;
     public ParticleSystem bloodRainPrefab;
@@ -52,7 +40,13 @@ public class BloodRainAction : BaseActions
 
     public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-        other[0].Damage(damage);
+        var castData = new CastData
+        {
+            owner = owner,
+            self = self,
+            other = other[0]
+        };
+        Damage(castData, damage);
 
         AsyncCastExplosion(finishedCast, other[0], other[0].transform.position + Vector3.up * 1.5f);
     }

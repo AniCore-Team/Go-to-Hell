@@ -7,15 +7,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "EdemAngel", menuName = "Cards/Actions/EdemAngel")]
 public class EdemAngelAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
     public GameObject shieldPrefab;
     public int durability;
     public CardProperty bonusEffect;
