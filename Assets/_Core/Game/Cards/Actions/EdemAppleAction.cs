@@ -40,6 +40,7 @@ public class EdemAppleAction : BaseActions
         castData.effect = effect.gameObject;
         #endregion GetMoveData
 
+        castData.self.Heal(castData.self.CardEffectsController.IsDebuff ? health / 2 : health);
         PureAnimation.Play(effect.main.duration + effect.main.startLifetime.constant,
             progress => default,
             () => EndMoveEffectAnimation(castData, finishedCast) );
@@ -48,10 +49,6 @@ public class EdemAppleAction : BaseActions
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         Destroy(castData.effect.gameObject);
-        if (castData.self.CardEffectsController.IsDebuff)
-            finishedCast?.Invoke();
-        else
-            castData.self.Heal(castData.self.CardEffectsController.IsDebuff ? health / 2 : health);
 
         finishedCast?.Invoke();
     }

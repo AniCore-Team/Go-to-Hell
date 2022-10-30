@@ -40,6 +40,10 @@ public abstract class BaseActions : ScriptableObject, ICardAction
 
     protected void Damage(CastData castData, int damage)
     {
-        castData.other.Damage(castData.self.CardEffectsController.IsDebuff ? damage / 2 : damage);
+        int newDamage = castData.self.CardEffectsController.IsDebuff ? damage / 2 : damage;
+        newDamage = castData.self.CardEffectsController.IsBuff ?
+            newDamage * castData.self.CardEffectsController.GetEffect(CardID.HellScream).powerEffect :
+            newDamage;
+        castData.other.Damage(newDamage);
     }
 }

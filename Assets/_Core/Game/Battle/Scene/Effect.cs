@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class Effect
 {
-    private CardID id;
     public int duration;
-    public int durability;
-    private TargetEffect target;
+    public int powerEffect;
     public TypeEffect typeEffect;
-    private int count;
     public bool isPowered;
     public bool isUsed;
+
+    private CardID id;
+    private TargetEffect target;
+    private int count;
     private List<GameObject> longTimeObjects = new List<GameObject>();
 
     private ICardAction cardAction;

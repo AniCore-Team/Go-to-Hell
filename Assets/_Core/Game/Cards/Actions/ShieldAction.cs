@@ -33,7 +33,7 @@ public class ShieldAction : BaseActions
         else
             if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
                 if (castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
-                    castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).durability++;
+                    castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).powerEffect++;
                 else
                     AsyncMoveEffectAnimation(castData, finishedCast);
     }
