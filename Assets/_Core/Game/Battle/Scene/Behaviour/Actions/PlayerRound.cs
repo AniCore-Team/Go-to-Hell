@@ -1,5 +1,6 @@
 using UnityEngine;
 using static BattleManager;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [CreateAssetMenu(menuName = "Behaviour/Battle/Actions/PlayerRound", fileName = "NewPlayerRoundAction", order = 52)]
 public class PlayerRound : BattleAction
@@ -25,7 +26,7 @@ public class PlayerRound : BattleAction
             {
                 if (entity.battlePoint < data.currentCard.Property.card.cost) return;
 
-
+                data.cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Player);
                 data.battleWindow.SetActiveBottomPanel(false);
                 entity.enabled = false;
                 //data.player.CardEffectsController.AddEffect(data.currentCard.property.card, CastControl);

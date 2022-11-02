@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
         public CardView currentCard;
         public BattleWindow battleWindow;
         public BattleManager battleManager;
+        public CinemachineSwitcher cinemachineSwitcher;
         public Action<StateRound> OnNextRound;
 
         public PlayerStateData(
@@ -24,6 +25,7 @@ public class BattleManager : MonoBehaviour
             CardView currentCard,
             BattleWindow battleWindow,
             BattleManager battleManager,
+            CinemachineSwitcher cinemachineSwitcher,
             Action<StateRound> OnNextRound
             )
         {
@@ -33,6 +35,7 @@ public class BattleManager : MonoBehaviour
             this.currentCard = currentCard;
             this.battleWindow = battleWindow;
             this.battleManager = battleManager;
+            this.cinemachineSwitcher = cinemachineSwitcher;
             this.OnNextRound = OnNextRound;
         }
     }
@@ -42,18 +45,21 @@ public class BattleManager : MonoBehaviour
         public BaseCharacter player;
         public ClientDeck deck;
         public BattleWindow battleWindow;
+        public CinemachineSwitcher cinemachineSwitcher;
         public Factory<CardView> factory;
 
         public PreparePlayerStateData(
             BaseCharacter player,
             ClientDeck deck,
             BattleWindow battleWindow,
+            CinemachineSwitcher cinemachineSwitcher,
             Factory<CardView> factory
             )
         {
             this.deck = deck;
             this.battleWindow = battleWindow;
             this.factory = factory;
+            this.cinemachineSwitcher = cinemachineSwitcher;
             this.player = player;
         }
     }
@@ -62,11 +68,17 @@ public class BattleManager : MonoBehaviour
     {
         public BattleWindow battleWindow;
         public EnemyController enemy;
+        public CinemachineSwitcher cinemachineSwitcher;
 
-        public PrepareEnemyStateData(BattleWindow battleWindow, EnemyController enemy)
+        public PrepareEnemyStateData(
+            BattleWindow battleWindow,
+            EnemyController enemy,
+            CinemachineSwitcher cinemachineSwitcher
+            )
         {
             this.battleWindow = battleWindow;
             this.enemy = enemy;
+            this.cinemachineSwitcher = cinemachineSwitcher;
         }
     }
 
@@ -74,22 +86,26 @@ public class BattleManager : MonoBehaviour
     {
         public BaseCharacter player;
         public EnemyController enemy;
+        public CinemachineSwitcher cinemachineSwitcher;
         public Action<StateRound> OnNextRound;
 
         public EnemyStateData(
             BaseCharacter player,
             EnemyController enemy,
+            CinemachineSwitcher cinemachineSwitcher,
             Action<StateRound> OnNextRound
             )
         {
             this.player = player;
             this.enemy = enemy;
+            this.cinemachineSwitcher = cinemachineSwitcher;
             this.OnNextRound = OnNextRound;
         }
     }
 
     [SerializeField] private BattleWindow battleWindow;
 
+    private CinemachineSwitcher cinemachineSwitcher;
     private BattleSceneManager battleSceneManager;
     private GameManager gameManager;
     private LoadingManager loadingManager;
@@ -122,6 +138,7 @@ public class BattleManager : MonoBehaviour
         currentCard,
         battleWindow,
         this,
+        cinemachineSwitcher,
         NextRound
         );
 
@@ -129,27 +146,32 @@ public class BattleManager : MonoBehaviour
         battleSceneManager.BattleScene.PlayerController,
         gameManager.ClientDeck,
         battleWindow,
+        cinemachineSwitcher,
         factory);
 
     public PrepareEnemyStateData GetPrepareEnemyStateData() => new PrepareEnemyStateData(
         battleWindow,
-        battleSceneManager.BattleScene.EnemyController
+        battleSceneManager.BattleScene.EnemyController,
+        cinemachineSwitcher
         );
 
     public EnemyStateData GetEnemyStateData() => new EnemyStateData(
         battleSceneManager.BattleScene.PlayerController,
         battleSceneManager.BattleScene.EnemyController,
+        cinemachineSwitcher,
         NextRound
         );
 
     [Inject]
     private void Construct(
+        CinemachineSwitcher cinemachineSwitcher,
         BattleSceneManager battleSceneManager,
         GameManager gameManager,
         LoadingManager loadingManager,
         Factory<CardView> factory
         )
     {
+        this.cinemachineSwitcher = cinemachineSwitcher;
         this.battleSceneManager = battleSceneManager;
         this.gameManager = gameManager;
         this.loadingManager = loadingManager;

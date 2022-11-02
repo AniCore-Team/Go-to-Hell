@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Effect
 {
+    private CinemachineSwitcher cinemachineSwitcher;
     public int duration;
     public int powerEffect;
     public TypeEffect typeEffect;
@@ -26,9 +27,10 @@ public class Effect
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
 
-    public Effect(CardID id, ICardAction action)
+    public Effect(CardID id, ICardAction action, CinemachineSwitcher cinemachineSwitcher)
     {
         this.id = id;
+        this.cinemachineSwitcher = cinemachineSwitcher;
         target = action.TargetEffect;
         duration = action.Duration;
         cardAction = action;
@@ -119,6 +121,7 @@ public class Effect
 
     private void CastToEvent(Action finishedCast)
     {
+        cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Battle);
         //cardAction.OnFinishedCast += OnFinishedCast;
         cardAction.Cast(
             this,
