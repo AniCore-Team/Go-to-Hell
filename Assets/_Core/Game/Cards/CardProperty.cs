@@ -16,7 +16,12 @@ public enum CardID
     BloodRain,
     EdemApple,
     Shield,
-    EdemAngel
+    EdemAngel,
+    HellDog,
+    JacksShadow,
+    Stun,
+    HellSwarm,
+    HellScream
 }
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Cards/Create New Card")]

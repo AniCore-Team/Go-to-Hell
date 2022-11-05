@@ -8,16 +8,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "HellDog", menuName = "Cards/Actions/HellDog")]
 public class HellDogAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
-
     public int damage;
     public float speed;
     public ParticleSystem spawnEffectPrefab;
@@ -72,17 +62,22 @@ public class HellDogAction : BaseActions
 
     private void AsyncSpawnEffect(CastData castData, Action finishedCast)
     {
-        var effect = Object.Instantiate(hellDogPrefab, castData.self.summonPointSpawn.position, Quaternion.identity);
-        castData.owner.AddLongTimeObjects(effect);
+        if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.HellDog))
+        {
+            var effect = Object.Instantiate(hellDogPrefab, castData.self.summonPointSpawn.position, Quaternion.identity);
+            castData.owner.AddLongTimeObjects(effect);
 
-        AsyncCastExplosion(effect.transform.position, finishedCast);
+            AsyncCastExplosion(effect.transform.position, finishedCast);
+        }
+        else
+            finishedCast?.Invoke();
     }
 
     private void AsyncCastExplosion(Vector3 endPoint, Action finishedCast)
     {
         var explosion = Object.Instantiate(spawnEffectPrefab, endPoint, Quaternion.identity);
 
-        PureAnimation.Play(explosion.main.duration + explosion.main.startLifetime.constant,
+        PureAnimation.Play(explosion.main.duration,
             progress => default,
             () =>
             {
@@ -153,7 +148,7 @@ public class HellDogAction : BaseActions
 
     private void EndMoveEffectAnimation(CastData castData, Action finishedCast)
     {
-        castData.other.Damage(damage);
+        Damage(castData, damage);
         AsyncWaitAnimationEvent(castData, finishedCast);
     }
 

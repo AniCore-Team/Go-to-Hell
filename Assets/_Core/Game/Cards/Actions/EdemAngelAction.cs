@@ -7,15 +7,6 @@ using Object = UnityEngine.Object;
 [CreateAssetMenu(fileName = "EdemAngel", menuName = "Cards/Actions/EdemAngel")]
 public class EdemAngelAction : BaseActions
 {
-    private class CastData
-    {
-        public Effect owner;
-        public BaseCharacter self;
-        public BaseCharacter other;
-        public GameObject effect;
-        public Vector3 endMove;
-    }
-
     public GameObject shieldPrefab;
     public int durability;
     public CardProperty bonusEffect;
@@ -39,7 +30,7 @@ public class EdemAngelAction : BaseActions
         if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
         {
             AsyncMoveEffectAnimation(castData, finishedCast);
-            owner.durability = durability;
+            owner.powerEffect = durability;
         }
     }
 
@@ -54,7 +45,7 @@ public class EdemAngelAction : BaseActions
         }
 
         owner.ClearLongTimeObjects();
-        if (owner.durability > 0)
+        if (owner.powerEffect > 0)
             self.CardEffectsController.AddEffect(bonusEffect, endTick, true);
         else
             endTick?.Invoke();
@@ -68,11 +59,11 @@ public class EdemAngelAction : BaseActions
     public override bool Use(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
         base.Use(endTick, self, other, owner);
-        if (owner.durability > durability)
-            owner.durability = durability;
-        owner.durability--;
+        if (owner.powerEffect > durability)
+            owner.powerEffect = durability;
+        owner.powerEffect--;
 
-        if (owner.durability == 0)
+        if (owner.powerEffect == 0)
         {
             End(endTick, self, other, owner);
             return true;

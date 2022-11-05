@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Hell swarm
   m_EditorClassIdentifier: 
-  name: 
+  name: Hell swarm
+  id: 10
   icon: {fileID: 21300000, guid: b9599e12625ced14ea74419c14e94b95, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 7cbafa2910a5ee042afb9656d03e69fe, type: 3}
   max_level: 20
-  cost: 5
+  cost: 8
+  effectAction: {fileID: 11400000, guid: b580b41d3ee8e514ba7795a2cc54268e, type: 2}

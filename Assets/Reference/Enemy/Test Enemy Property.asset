@@ -15,5 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 3525691555419777139, guid: 9cb33b206bbdb154e9937619707f5c1b, type: 3}
   simpleCards:
   - {fileID: 11400000, guid: a2a601bdb6cc283469335d2f4e1e07f9, type: 2}
-  - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}
   hardAttacks: []

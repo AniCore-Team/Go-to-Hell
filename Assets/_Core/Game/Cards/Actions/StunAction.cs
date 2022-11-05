@@ -4,8 +4,8 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[CreateAssetMenu(fileName = "Shield", menuName = "Cards/Actions/Shield")]
-public class ShieldAction : BaseActions
+[CreateAssetMenu(fileName = "Stun", menuName = "Cards/Actions/Stun")]
+public class StunAction : BaseActions
 {
     private class CastData
     {
@@ -16,7 +16,7 @@ public class ShieldAction : BaseActions
         public Vector3 endMove;
     }
 
-    public GameObject shieldPrefab;
+    public GameObject stunPrefab;
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
 
@@ -28,24 +28,15 @@ public class ShieldAction : BaseActions
             self = self,
             other = other[0]
         };
-        if (self.CardEffectsController.IsDebuff)
-            finishedCast?.Invoke();
-        else
-            if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Shield))
-                if (castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.EdemAngel))
-                    castData.self.CardEffectsController.GetEffect(CardID.EdemAngel).powerEffect++;
-                else
-                    AsyncMoveEffectAnimation(castData, finishedCast);
+        if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.Stun))
+            AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
     public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
     {
-        Vector3 spawnPoint = Vector3.zero;
         foreach (var obj in owner.GetLongTimeObjects())
         {
-            spawnPoint = obj.transform.GetChild(0).position;
-            obj.AddComponent<Rigidbody>();
-            Destroy(obj, 2f);
+            Destroy(obj);
         }
 
         owner.ClearLongTimeObjects();
@@ -54,38 +45,27 @@ public class ShieldAction : BaseActions
 
     public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-        owner.duration++;
         finishedCast();
     }
 
-    public override bool Use(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
-    {
-        base.Use(endTick, self, other, owner);
-        End(endTick, self, other, owner);
+    //public override bool Use(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
+    //{
+    //    base.Use(endTick, self, other, owner);
+    //    End(endTick, self, other, owner);
 
-        return true;
-    }
+    //    return true;
+    //}
 
     private void AsyncMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         #region GetMoveData
-        var effect = Object.Instantiate(shieldPrefab, castData.self.transform.position, Quaternion.identity);
+        var effect = Object.Instantiate(stunPrefab, castData.other.topEffectSpawn.position, Quaternion.identity);
         castData.owner.AddLongTimeObjects(effect);
         castData.effect = effect.gameObject;
         #endregion GetMoveData
 
         var renders = effect.GetComponentsInChildren<Renderer>();
-        PureAnimation.Play(1f,
-            progress =>
-            {
-                foreach (var render in renders)
-                {
-                    Color color = render.material.color;
-                    color.a = progress;
-                    render.material.color = color;
-                }
-                return default;
-            },
+        PureAnimation.Play(1f, Utils.EmptyPureAnimation,
             () => AsyncExplosionAnimation(castData, finishedCast));
     }
 

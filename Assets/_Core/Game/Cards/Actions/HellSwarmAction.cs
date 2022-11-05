@@ -4,8 +4,8 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[CreateAssetMenu(fileName = "IcePrison", menuName = "Cards/Actions/IcePrison")]
-public class IcePrisonAction : BaseActions
+[CreateAssetMenu(fileName = "HellSwarm", menuName = "Cards/Actions/HellSwarm")]
+public class HellSwarmAction : BaseActions
 {
     public int damage;
     public float speed;
@@ -24,7 +24,11 @@ public class IcePrisonAction : BaseActions
             self = self,
             other = other[0]
         };
-        AsyncMoveEffectAnimation(castData, finishedCast);
+
+        if (self.CardEffectsController.IsDebuff)
+            finishedCast?.Invoke();
+        else
+            AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
     public override void End(Action endTick, BaseCharacter self, BaseCharacter[] other, Effect owner)
@@ -33,7 +37,8 @@ public class IcePrisonAction : BaseActions
         foreach (var obj in owner.GetLongTimeObjects())
         {
             spawnPoint = obj.transform.GetChild(0).position;
-            Destroy(obj);
+            obj.AddComponent<Rigidbody>();
+            Destroy(obj, 3f);
         }
 
         owner.ClearLongTimeObjects();
@@ -88,19 +93,14 @@ public class IcePrisonAction : BaseActions
 
     private void AsyncExplosionAnimation(CastData castData, Action finishedCast)
     {
-        if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.IcePrison))
+        if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.HellSwarm))
         {
-            var startPoint = castData.other.transform.position + Vector3.down * 5f;
+            var startPoint = castData.other.transform.position;
             var endPoint = castData.other.transform.position;
             var ice = Object.Instantiate(icePrefab, startPoint, Quaternion.identity);
             castData.owner.AddLongTimeObjects(ice);
 
-            PureAnimation.Play(1f,
-                progress =>
-                {
-                    ice.transform.position = endPoint;
-                    return default;
-                },
+            PureAnimation.Play(1f, Utils.EmptyPureAnimation,
                 () => EndExplosionAnimation(castData, finishedCast));
         }
         else
@@ -121,14 +121,14 @@ public class IcePrisonAction : BaseActions
             return;
         }
 
-        PureAnimation.Play(0.1f,
-            progress => default,
-            () => {
-                float delay = castData.other.GetLegthAnimation() - 0.1f;
-                PureAnimation.Play(delay / 4f,
-                    progress => default,
-                    () => castData.other.SetAnimatorActive(false) );
-            });
+        //PureAnimation.Play(0.1f,
+        //    progress => default,
+        //    () => {
+        //        float delay = castData.other.GetLegthAnimation() - 0.1f;
+        //        PureAnimation.Play(delay / 4f,
+        //            progress => default,
+        //            () => castData.other.SetAnimatorActive(false) );
+        //    });
 
         AsyncExplosionAnimation(castData, finishedCast);
     }

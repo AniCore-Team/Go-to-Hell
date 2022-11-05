@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Hell Scream
   m_EditorClassIdentifier: 
-  name: 
+  name: Hell Scream
+  id: 11
   icon: {fileID: 21300000, guid: 3a5550af30823cd4799b4d9fef62054d, type: 3}
   prefab: {fileID: 7580125403857476687, guid: b757bcbf94d364e4b9aed94233a99d4b, type: 3}
   max_level: 20
   cost: 5
+  effectAction: {fileID: 11400000, guid: 46d4a43b8a6abe14e96e3d03d8dcb07f, type: 2}

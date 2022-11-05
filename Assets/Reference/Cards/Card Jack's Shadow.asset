@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
   m_Name: Card Jack's Shadow
   m_EditorClassIdentifier: 
-  name: 
+  name: Jack's Shadow
+  id: 8
   icon: {fileID: 21300000, guid: 6ae453cca5c0b964cab3be872b6f6f88, type: 3}
   prefab: {fileID: 7580125403857476687, guid: 84120039be9298e45a55c0a8246cab16, type: 3}
   max_level: 20
-  cost: 5
+  cost: 8
+  effectAction: {fileID: 11400000, guid: 257f3674dc4bae046b20680e454b14fd, type: 2}

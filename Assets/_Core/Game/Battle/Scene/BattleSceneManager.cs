@@ -18,7 +18,9 @@ public class BattleSceneManager : MonoBehaviour
 
     void Start()
     {
-        SpawnScene(0, 0, false);
+        int level = 0;
+        int subLevel = Random.Range(0, levelsConfig.LevelsStruct[level].subs.Length);
+        SpawnScene(level, subLevel, false);
     }
 
     private void SpawnScene(int level, int sub, bool isBoss)

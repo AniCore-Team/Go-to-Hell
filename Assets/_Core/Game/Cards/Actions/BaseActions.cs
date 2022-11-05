@@ -5,6 +5,15 @@ using UnityEngine;
 
 public abstract class BaseActions : ScriptableObject, ICardAction
 {
+    protected class CastData
+    {
+        public Effect owner;
+        public BaseCharacter self;
+        public BaseCharacter other;
+        public GameObject effect;
+        public Vector3 endMove;
+    }
+
     public BaseCharacter.TypeAttack nameAnimation;
     public int duration = 0;
     public TypeEffect typeEffect;
@@ -29,9 +38,12 @@ public abstract class BaseActions : ScriptableObject, ICardAction
 
     public virtual void PowerUp(Effect owner) { }
 
-    protected void FinishedCast()
+    protected void Damage(CastData castData, int damage)
     {
-        OnFinishedCast?.Invoke();
-        OnFinishedCast = null;
+        int newDamage = castData.self.CardEffectsController.IsDebuff ? damage / 2 : damage;
+        newDamage = castData.self.CardEffectsController.IsBuff ?
+            newDamage * castData.self.CardEffectsController.GetEffect(CardID.HellScream).powerEffect :
+            newDamage;
+        castData.other.Damage(newDamage);
     }
 }

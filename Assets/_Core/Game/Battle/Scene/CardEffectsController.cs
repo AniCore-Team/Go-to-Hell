@@ -15,6 +15,8 @@ public class CardEffectsController
     private Action end;
 
     public bool IsStun => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Stun);
+    public bool IsDebuff => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Debuff);
+    public bool IsBuff => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Buff);
 
     public void Init(BaseCharacter self, BaseCharacter other)
     {

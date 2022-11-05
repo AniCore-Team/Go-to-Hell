@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6daeace4a699e6f498a8863172e268fe, type: 3}
+  m_Name: JacksShadow
+  m_EditorClassIdentifier: 
+  nameAnimation: 0
+  duration: 2
+  typeEffect: 0
+  target: 2
+  damage: 10
+  thresholdStun: 0.25
+  stunEffect: {fileID: 11400000, guid: a86f04fd7066620438f630c9a80eafbd, type: 2}
+  dustSpawnPrefab: {fileID: 8560559060874494747, guid: 7d8c60432185f9c478ae522bea2ed085,
+    type: 3}
+  JacksShadowPrefab: {fileID: 1219724064001135743, guid: daa341936e1cd3b4096a129c8b38e8eb,
+    type: 3}
+  shadowSpikePrefab: {fileID: 3524429566768073634, guid: 60581c285d2392f40b436fbf6f5d3d53,
+    type: 3}
+  bloodExplosionPrefab: {fileID: 6308049187893580758, guid: 902941a25f5ecf1419a85c014b757031,
+    type: 3}

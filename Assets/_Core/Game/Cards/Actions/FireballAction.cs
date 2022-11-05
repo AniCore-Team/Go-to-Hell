@@ -35,7 +35,13 @@ public class FireballAction : BaseActions
                 return default;
             }, () => 
             {
-                other[0].Damage(damage);
+                var castData = new CastData
+                {
+                    owner = owner,
+                    self = self,
+                    other = other[0]
+                };
+                Damage(castData, damage);
                 Destroy(effect.gameObject);
 
                 var explosion = Object.Instantiate(explosionPrefab, endPoint, Quaternion.identity);

@@ -2,16 +2,18 @@
 using PureAnimator;
 using System;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 using Object = UnityEngine.Object;
 
-[CreateAssetMenu(fileName = "BloodRain", menuName = "Cards/Actions/BloodRain")]
-public class BloodRainAction : BaseActions
+[CreateAssetMenu(fileName = "HellScream", menuName = "Cards/Actions/HellScream")]
+public class HellScreamAction : BaseActions
 {
     public int damage;
     public float speed;
-    public ParticleSystem bloodRainPrefab;
-    public ParticleSystem bloodCloudfPrefab;
-    public ParticleSystem bloodExplosionPrefab;
+    public float powerUpDamageMultiplicer = 1.5f;
+    public ParticleSystem particleSystemPrefab;
+    public ParticleSystem explosionPrefab;
+    public GameObject icePrefab;
 
     private PureAnimation PureAnimation => Services<PureAnimatorController>.Get().GetPureAnimator();
 
@@ -23,6 +25,7 @@ public class BloodRainAction : BaseActions
             self = self,
             other = other[0]
         };
+
         AsyncMoveEffectAnimation(castData, finishedCast);
     }
 
@@ -31,76 +34,63 @@ public class BloodRainAction : BaseActions
         Vector3 spawnPoint = Vector3.zero;
         foreach (var obj in owner.GetLongTimeObjects())
         {
-            Destroy(obj);
+            spawnPoint = obj.transform.position;
+            obj.AddComponent<Rigidbody>();
+            Destroy(obj, 3f);
         }
 
         owner.ClearLongTimeObjects();
-        endTick?.Invoke();
+        AsyncCastExplosion(endTick, spawnPoint);
     }
 
     public override void Tick(Effect owner, BaseCharacter self, BaseCharacter[] other, Action finishedCast)
     {
-        var castData = new CastData
-        {
-            owner = owner,
-            self = self,
-            other = other[0]
-        };
-        Damage(castData, damage);
-
-        AsyncCastExplosion(finishedCast, other[0], other[0].transform.position + Vector3.up * 1.5f);
+        finishedCast();
     }
 
     public override void PowerUp(Effect owner)
     {
         base.PowerUp(owner);
-        owner.duration++;
+        owner.powerEffect += damage;
     }
 
-    private void AsyncCastExplosion(Action endTick, BaseCharacter other, Vector3 endPoint)
+    private void AsyncCastExplosion(Action endTick, Vector3 endPoint)
     {
-        var explosion = Object.Instantiate(bloodExplosionPrefab, endPoint, Quaternion.identity);
-        PureAnimation.Play(0.1f,
-            progress => default,
-            () =>
+        var explosion = Object.Instantiate(explosionPrefab, endPoint, Quaternion.identity);
+        PureAnimation.Play(explosion.main.startLifetime.constant, progress =>
             {
-                float delay = other.GetLegthAnimation() - 0.1f;
-                PureAnimation.Play(delay,
-                    progress => default,
-                    () =>
-                    {
-                        Destroy(explosion.gameObject);
-                        endTick?.Invoke();
-                    });
+                return default;
+            }, () =>
+            {
+                Destroy(explosion.gameObject);
+                endTick?.Invoke();
             });
     }
 
     private void AsyncMoveEffectAnimation(CastData castData, Action finishedCast)
     {
         #region GetMoveData
-        var effect = Object.Instantiate(bloodRainPrefab, castData.other.topEffectSpawn.position, Quaternion.identity);
-
-        var endPoint = castData.other.topEffectSpawn.position;
+        var effect = Object.Instantiate(particleSystemPrefab, castData.self.transform.position, Quaternion.identity);
 
         castData.effect = effect.gameObject;
-        castData.endMove = endPoint;
         #endregion GetMoveData
 
-        PureAnimation.Play(4f,
-            progress => default,
+        PureAnimation.Play(effect.main.duration + effect.main.startLifetime.constant,
+            Utils.EmptyPureAnimation,
             () => EndMoveEffectAnimation(castData, finishedCast) );
     }
 
     private void AsyncExplosionAnimation(CastData castData, Action finishedCast)
     {
-        if (!castData.other.CardEffectsController.ContainsLongTimeObjects(CardID.BloodRain))
+        if (!castData.self.CardEffectsController.ContainsLongTimeObjects(CardID.HellScream))
         {
-            var startPoint = castData.other.transform.position + Vector3.up * 1.5f;
-            var ice = Object.Instantiate(bloodCloudfPrefab, startPoint, Quaternion.identity);
-            castData.owner.AddLongTimeObjects(ice.gameObject);
+            var startPoint = castData.self.transform.position;
+            var endPoint = castData.self.transform.position;
+            var ice = Object.Instantiate(icePrefab, startPoint, Quaternion.identity);
+            castData.owner.AddLongTimeObjects(ice);
+            castData.owner.powerEffect = damage;
 
-            PureAnimation.Play(1f,
-                progress => default,
+            PureAnimation.Play(1f, Utils.EmptyPureAnimation,
                 () => EndExplosionAnimation(castData, finishedCast));
         }
         else

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 773c3a95ec4107449b911ba2b2080bed, type: 3}
-  m_Name: Card Hell Dog
+  m_Name: Card Stun
   m_EditorClassIdentifier: 
-  name: Hell Dog
-  id: 7
-  icon: {fileID: 21300000, guid: 7ce57e0d515a0f646a9835350880bacd, type: 3}
-  prefab: {fileID: 7580125403857476687, guid: 58e7e35f52dd37b4297eb30dabd93e82, type: 3}
+  name: Arrow02
+  id: 9
+  icon: {fileID: 21300000, guid: 5380029221b074c4f82b7904261fa57e, type: 3}
+  prefab: {fileID: 100000, guid: f2d359f4a4c02174a943030c9d305ff5, type: 3}
   max_level: 20
-  cost: 10
-  effectAction: {fileID: 11400000, guid: bf2cbc26f3e659641859f6bf30daa17f, type: 2}
+  cost: 0
+  effectAction: {fileID: 11400000, guid: be18f9fdb00e8de479f7171610e2ca3f, type: 2}

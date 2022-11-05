@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0ef99781f9a83478db8257b621a452, type: 3}
+  m_Name: HellScream
+  m_EditorClassIdentifier: 
+  nameAnimation: 0
+  duration: 1
+  typeEffect: 2
+  target: 1
+  damage: 2
+  speed: 0
+  powerUpDamageMultiplicer: 2
+  particleSystemPrefab: {fileID: 6308049187893580758, guid: 026e2e3db9904d7438740d0ab86587b4,
+    type: 3}
+  explosionPrefab: {fileID: 6308049187893580758, guid: 919cfa7de9ca56a42a88077da718d9ca,
+    type: 3}
+  icePrefab: {fileID: 2866037682217901478, guid: 12a947f4ab0a0c341bae207fc15d0273,
+    type: 3}
