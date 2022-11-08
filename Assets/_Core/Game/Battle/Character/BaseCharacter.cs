@@ -30,13 +30,13 @@ public class BaseCharacter : MonoBehaviour
     public CardEffectsController CardEffectsController => cardEffectsController;
     public StateRound NextRound => nextRound;
 
-    public virtual void Init()
+    public virtual void Init(CinemachineSwitcher cinemachineSwitcher)
     {
         animator = GetComponentInChildren<Animator>();
 
         var baseControllers = FindObjectsOfType<BaseCharacter>();
         cardEffectsController = new CardEffectsController();
-        cardEffectsController.Init(this, baseControllers.FirstOrDefault(c => c != this));
+        cardEffectsController.Init(this, baseControllers.FirstOrDefault(c => c != this), cinemachineSwitcher);
     }
 
     public void Damage(int damage)
@@ -53,7 +53,7 @@ public class BaseCharacter : MonoBehaviour
             if (this is EnemyController)
                 Translator.Send(InnerProtocol.WinBattle);
             else
-                Translator.Send(InnerProtocol.WinBattle);
+                Translator.Send(InnerProtocol.LoseBattle);
     }
 
     public void Heal(int heal)

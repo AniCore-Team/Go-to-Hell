@@ -13,6 +13,7 @@ public class BattleScene : MonoBehaviour
 
     [Inject] private EnemyList enemyList;
     [Inject] private GameManager gameManager;
+    [Inject] private CinemachineSwitcher cinemachineSwitcher;
 
     //public EnemyController EnemyController => currentEnemy.GetComponent<EnemyController>();
     //public PlayerController PlayerController => player.GetComponent<PlayerController>();
@@ -22,12 +23,12 @@ public class BattleScene : MonoBehaviour
     void Start()
     {
         /*player = */Instantiate(playerPrefab, player.transform);
-        player.Init();
+        player.Init(cinemachineSwitcher);
         //player.transform.position = playerPosition.position;
         //player.transform.rotation = playerPosition.rotation;
 
         /*currentEnemy = */Instantiate(enemyList.list[gameManager.CurrentEnemyID].prefab, enemy.transform);
-        enemy.Init();
+        enemy.Init(cinemachineSwitcher);
         //currentEnemy.transform.position = enemyPosition.position;
         //currentEnemy.transform.rotation = enemyPosition.rotation;
     }

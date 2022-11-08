@@ -21,6 +21,8 @@ public class EnemyRound : BattleAction
 
         data.enemy.HideCardIcon();
         if (data.enemy.CurrentCard)
+        {
+            data.cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Enemy);
             switch (data.enemy.CurrentCard.effectAction.target)
             {
                 case TargetEffect.All:
@@ -34,6 +36,7 @@ public class EnemyRound : BattleAction
                     data.player.CardEffectsController.AddEffect(data.enemy.CurrentCard, CastControl);
                     break;
             }
+        }
         else
             CastControl();
     }

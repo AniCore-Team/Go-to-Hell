@@ -4,6 +4,8 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     private int currentEnemyID;
+    private int indexEvent = -1;
+    private bool isUsedEvent;
 
     public int CurrentEnemyID => currentEnemyID;
     public ClientDeck ClientDeck => client.Deck;
@@ -17,6 +19,23 @@ public class GameManager : MonoBehaviour
         currentEnemyID = val;
     }
 
-    private void Update()
-    { }
+    public void SetUsingEvent(int indexEvent)
+    {
+        this.indexEvent = indexEvent;
+    }
+
+    public void SetUsedEvent()
+    {
+        isUsedEvent = true;
+    }
+
+    public int GetUsedIndexEvent()
+    {
+        if (isUsedEvent)
+        {
+            isUsedEvent = false;
+            return indexEvent;
+        }
+        return -1;
+    }
 }

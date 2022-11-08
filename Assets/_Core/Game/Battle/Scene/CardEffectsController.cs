@@ -12,16 +12,19 @@ public class CardEffectsController
 
     private BaseCharacter selfCharacter;
     private BaseCharacter otherCharacter;
+    private CinemachineSwitcher cinemachineSwitcher;
     private Action end;
 
     public bool IsStun => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Stun);
     public bool IsDebuff => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Debuff);
     public bool IsBuff => effects.Values.Any(effect => effect.typeEffect == TypeEffect.Buff);
+    public CinemachineSwitcher CinemachineSwitcher => cinemachineSwitcher;
 
-    public void Init(BaseCharacter self, BaseCharacter other)
+    public void Init(BaseCharacter self, BaseCharacter other, CinemachineSwitcher cinemachineSwitcher)
     {
         selfCharacter = self;
         otherCharacter = other;
+        this.cinemachineSwitcher = cinemachineSwitcher;
     }
 
     public bool ContainsLongTimeObjects(CardID cardID)
@@ -37,7 +40,7 @@ public class CardEffectsController
 
     public void AddEffect(CardProperty newCard, Action finishedCast, bool fastCast = false)
     {
-        var effect = new Effect(newCard.id, newCard.effectAction);
+        var effect = new Effect(newCard.id, newCard.effectAction, cinemachineSwitcher);
         bool blocked = newCard.effectAction.TargetEffect == TargetEffect.Other && CheckDefence();
         if (newCard.effectAction.duration > 0 && !blocked)
         {
