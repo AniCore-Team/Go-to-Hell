@@ -255,6 +255,7 @@ public class BattleManager : MonoBehaviour
         {
             case InnerProtocol.WinBattle:
                 Translator.Remove<InnerProtocol>(onFinishBattle);
+                gameManager.SetUsedEvent();
                 loadingManager.LoadScene("Location");
                 break;
             case InnerProtocol.LoseBattle:

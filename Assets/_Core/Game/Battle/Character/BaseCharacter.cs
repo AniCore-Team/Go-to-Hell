@@ -53,7 +53,7 @@ public class BaseCharacter : MonoBehaviour
             if (this is EnemyController)
                 Translator.Send(InnerProtocol.WinBattle);
             else
-                Translator.Send(InnerProtocol.WinBattle);
+                Translator.Send(InnerProtocol.LoseBattle);
     }
 
     public void Heal(int heal)

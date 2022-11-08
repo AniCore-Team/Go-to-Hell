@@ -7,6 +7,7 @@ public class LocationEventObject : MonoBehaviour
 {
     [SerializeField] private LocationEventType currentType;
     [SerializeField] private int enemyID;
+    private LevelController levelController;
     private bool isEntered;
 
     [Inject] private GameManager gameManager;
@@ -36,6 +37,11 @@ public class LocationEventObject : MonoBehaviour
         }
     }
 
+    public void SetOwner(LevelController levelController)
+    {
+        this.levelController = levelController;
+    }
+
     private void SendEvent()
     {
         if(currentType == LocationEventType.BATTLE)
@@ -43,6 +49,7 @@ public class LocationEventObject : MonoBehaviour
             gameManager.SetCurrentEnemy(enemyID);
         }
 
+        levelController.UsingLocationEvent(this);
         LocationEvents.SendEvent(currentType);
     }
 }
