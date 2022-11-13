@@ -86,7 +86,7 @@ public class BloodRainAction : BaseActions
         castData.endMove = endPoint;
         #endregion GetMoveData
 
-        PureAnimation.Play(2f,
+        PureAnimation.Play(4f,
             progress => default,
             () => EndMoveEffectAnimation(castData, finishedCast) );
     }

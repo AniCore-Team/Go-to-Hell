@@ -33,8 +33,7 @@ public class IcePrisonAction : BaseActions
         foreach (var obj in owner.GetLongTimeObjects())
         {
             spawnPoint = obj.transform.GetChild(0).position;
-            obj.AddComponent<Rigidbody>();
-            Destroy(obj, 3f);
+            Destroy(obj);
         }
 
         owner.ClearLongTimeObjects();
@@ -99,10 +98,7 @@ public class IcePrisonAction : BaseActions
             PureAnimation.Play(1f,
                 progress =>
                 {
-                    ice.transform.position = Vector3.Lerp(
-                        startPoint,
-                        endPoint,
-                        progress);
+                    ice.transform.position = endPoint;
                     return default;
                 },
                 () => EndExplosionAnimation(castData, finishedCast));
