@@ -9,6 +9,7 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
     [SerializeField] private LevelsConfig levelsConfig;
     [SerializeField] private EnemyList enemyList;
     [SerializeField] private CardsList cardsList;
+    [SerializeField] private DefaultPlayerCards playerCards;
 
     public override void InstallBindings()
     {
@@ -17,7 +18,8 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
             loadingConfig,
             levelsConfig,
             enemyList,
-            cardsList
+            cardsList,
+            playerCards
             );
     }
 }

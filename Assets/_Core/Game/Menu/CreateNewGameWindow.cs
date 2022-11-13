@@ -9,8 +9,21 @@ public class CreateNewGameWindow : UIWindow
     [SerializeField] private Button play, cancel;
     [SerializeField] private GameObject errorText;
 
-    [Inject] private Client client;
-    [Inject] private CardsList cardsList;
+    private Client client;
+    private CardsList cardsList;
+    private DefaultPlayerCards playerCards;
+
+    [Inject]
+    private void Construct(
+        Client client,
+        CardsList cardsList,
+        DefaultPlayerCards playerCards
+        )
+    {
+        this.client = client;
+        this.cardsList = cardsList;
+        this.playerCards = playerCards;
+    }
 
     public void SetProperty()
     {
@@ -28,7 +41,7 @@ public class CreateNewGameWindow : UIWindow
         }
         else
         {
-            client.SetClient(field.text, cardsList);
+            client.SetClient(field.text, playerCards);
             errorText.SetActive(false);
             LoadingManager.OnLoadScene.Invoke("Location");
             DisactivateWindow();

@@ -14,13 +14,12 @@ public class Client
 
     public ClientDeck Deck => deck;
 
-    public void SetClient(string name, CardsList cardsList)
+    public void SetClient(string name, DefaultPlayerCards cardsList)
     {
         //Random.seed = (int)DateTime.UtcNow.Ticks;
         client_name = name;
         deck = new ClientDeck();
-        Deck.AddCardToDeck(cardsList.list[Random.Range(0, cardsList.list.Count)]);
-        Deck.AddCardToDeck(cardsList.list[Random.Range(0, cardsList.list.Count)]);
-        Deck.AddCardToDeck(cardsList.list[Random.Range(0, cardsList.list.Count)]);
+        foreach (var card in cardsList.list)
+            Deck.AddCardToDeck(card);
     }
 }

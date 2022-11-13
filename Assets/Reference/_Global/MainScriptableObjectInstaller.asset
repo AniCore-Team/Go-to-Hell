@@ -17,3 +17,4 @@ MonoBehaviour:
   levelsConfig: {fileID: 11400000, guid: 2b845f615f052ee459351383e4576ab1, type: 2}
   enemyList: {fileID: 11400000, guid: e56f9b9461e7f8947bb6607d6b5825b8, type: 2}
   cardsList: {fileID: 11400000, guid: 31519eb3bc84caa4db903cd183bfb18e, type: 2}
+  playerCards: {fileID: 11400000, guid: 7b9f40d39d71c0641bcd0f1f289beac3, type: 2}
