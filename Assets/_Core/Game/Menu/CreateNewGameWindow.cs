@@ -41,7 +41,12 @@ public class CreateNewGameWindow : UIWindow
         }
         else
         {
-            client.SetClient(field.text, playerCards);
+            if (!client.LoadClient("ClientSlot1", cardsList))
+            {
+                client.SetClient(field.text, playerCards);
+                client.SaveClient("ClientSlot1");
+            }
+
             errorText.SetActive(false);
             LoadingManager.OnLoadScene.Invoke("Location");
             DisactivateWindow();

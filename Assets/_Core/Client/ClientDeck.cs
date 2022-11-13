@@ -28,7 +28,7 @@ public class ClientDeck
     }
 }
 
-public struct DeckSlot
+public class DeckSlot
 {
     public CardProperty card;
     public int level;
@@ -41,7 +41,8 @@ public struct DeckSlot
 
     public void LevelUp()
     {
-        if (level >= card.max_level) return;
+        if (level >= card.max_level)
+            return;
 
         level++;
     }
