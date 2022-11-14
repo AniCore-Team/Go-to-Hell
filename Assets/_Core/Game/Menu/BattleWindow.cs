@@ -8,6 +8,14 @@ using UnityEngine.UI;
 
 public class BattleWindow : UIWindow
 {
+    [SerializeField] private CanvasGroup BottomPanel;
+    [SerializeField] private CanvasGroup TopPanel;
+    [SerializeField] private CanvasGroup WinPanel;
+
+    [SerializeField] private Button doneButton;
+    [SerializeField] private Image newCard;
+
+
     [SerializeField] private AnimationCurve pulseCurve;
     [SerializeField] private AnimationCurve speedCurve;
 
@@ -28,6 +36,10 @@ public class BattleWindow : UIWindow
 
     public void Init(Func<bool, bool> func)
     {
+        BottomPanel.alpha = 1;
+        TopPanel.alpha = 1;
+        WinPanel.alpha = 0;
+
         downPanel = transform.GetChild(0).GetComponent<RectTransform>();
         passButton.onClick.AddListener(() =>
             onPassRound?.Invoke());
@@ -37,6 +49,16 @@ public class BattleWindow : UIWindow
 
         foreach (var slot in cardSlots)
             slot.Init(func, CheckLockers);
+    }
+
+    public void ShowWin(Sprite newCard, Action winFunc)
+    {
+        BottomPanel.alpha = 0;
+        TopPanel.alpha = 0;
+        WinPanel.alpha = 1;
+
+        this.newCard.sprite = newCard;
+        doneButton.onClick.AddListener(() => winFunc());
     }
 
     private void CheckLockers()

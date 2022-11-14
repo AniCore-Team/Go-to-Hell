@@ -1,9 +1,13 @@
 {
-  "nameClient": "Player5538",
+  "nameClient": "Player9807",
   "cardIDs": [
-    0
+    0,
+    4,
+    1
   ],
   "cardLevels": [
-    2
+    1,
+    1,
+    1
   ]
 }

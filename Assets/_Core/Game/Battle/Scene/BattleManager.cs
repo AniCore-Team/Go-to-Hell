@@ -255,10 +255,15 @@ public class BattleManager : MonoBehaviour
         {
             case InnerProtocol.WinBattle:
                 Translator.Remove<InnerProtocol>(onFinishBattle);
-                gameManager.ClientDeck.AddCardToDeck(gameManager.CardsList.list[UnityEngine.Random.Range(0, gameManager.CardsList.list.Count)]);
-                gameManager.SaveClient("ClientSlot1");
-                gameManager.SetUsedEvent();
-                loadingManager.LoadScene("Location");
+                cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Win);
+                var newCard = gameManager.CardsList.list[UnityEngine.Random.Range(0, gameManager.CardsList.list.Count)];
+                battleWindow.ShowWin(newCard.icon, () =>
+                {
+                    gameManager.ClientDeck.AddCardToDeck(newCard);
+                    gameManager.SaveClient("ClientSlot1");
+                    gameManager.SetUsedEvent();
+                    loadingManager.LoadScene("Location");
+                });
                 break;
             case InnerProtocol.LoseBattle:
                 Translator.Remove<InnerProtocol>(onFinishBattle);
