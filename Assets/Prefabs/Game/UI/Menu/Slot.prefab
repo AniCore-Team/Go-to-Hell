@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newGamePanel: {fileID: 9148858413922009024}
-  loadGamePanel: {fileID: 9148858414135113469}
+  loadGamePanel: {fileID: 7229902741183853769}
   clickableButton: {fileID: 9148858413873117831}
 --- !u!1 &9148858413922009024
 GameObject:
