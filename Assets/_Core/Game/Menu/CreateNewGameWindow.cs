@@ -3,41 +3,44 @@ using UnityEngine.UI;
 using TMPro;
 using Zenject;
 
-public class CreateNewGameWindow : UIWindow
+namespace UI.Menu
 {
-    [SerializeField] private TMP_InputField field;
-    [SerializeField] private Button play, cancel;
-    [SerializeField] private GameObject errorText;
-
-    [Inject] private Client client;
-    [Inject] private CardsList cardsList;
-
-    public void SetProperty()
+    public class CreateNewGameWindow : UIWindow
     {
-        Utils.AddListenerToButton(play, Play);
-        Utils.AddListenerToButton(cancel, Cancel);
-        ActivateWindow();
-        field.text = $"Player{Random.Range(1, 10000)}";
-    }
+        [SerializeField] private TMP_InputField field;
+        [SerializeField] private Button play, cancel;
+        [SerializeField] private GameObject errorText;
 
-    public void Play()
-    {
-        if(field.text == "")
+        [Inject] private Client client;
+        [Inject] private CardsList cardsList;
+
+        public void SetProperty()
         {
-            errorText.SetActive(true);
+            Utils.AddListenerToButton(play, Play);
+            Utils.AddListenerToButton(cancel, Cancel);
+            ActivateWindow();
+            field.text = $"Player{Random.Range(1, 10000)}";
         }
-        else
+
+        public void Play()
         {
-            client.SetClient(field.text, cardsList);
+            if (field.text == "")
+            {
+                errorText.SetActive(true);
+            }
+            else
+            {
+                client.SetClient(field.text, cardsList);
+                errorText.SetActive(false);
+                LoadingManager.OnLoadScene.Invoke("Location");
+                DisactivateWindow();
+            }
+        }
+
+        public void Cancel()
+        {
             errorText.SetActive(false);
-            LoadingManager.OnLoadScene.Invoke("Location");
             DisactivateWindow();
         }
-    }
-
-    public void Cancel()
-    {
-        errorText.SetActive(false);
-        DisactivateWindow();
     }
 }
