@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e2eb87f5b36a849bb4438f06b2ac09, type: 3}
   m_Name: Test Enemy Property 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4144126948000010456, guid: 29ddda4cf3fac77468fcc210ab80f2d5, type: 3}
+  prefab: {fileID: 4023783814361746400, guid: b8c6dc015f1d7bf48b1a2febc16f2bfc, type: 3}
   simpleCards:
   - {fileID: 11400000, guid: 266a949273e326545836e8395be1c85d, type: 2}
   - {fileID: 11400000, guid: d731324a6fe33ae46a6a057a5ae44d38, type: 2}
