@@ -3,11 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using Zenject;
 
-public class CreateNewGameWindow : UIWindow
+namespace UI.Menu
 {
-    [SerializeField] private TMP_InputField field;
-    [SerializeField] private Button play, cancel;
-    [SerializeField] private GameObject errorText;
+    public class CreateNewGameWindow : UIWindow
+    {
+        [SerializeField] private TMP_InputField field;
+        [SerializeField] private Button play, cancel;
+        [SerializeField] private GameObject errorText;
 
     private Client client;
     private CardsList cardsList;
@@ -25,13 +27,13 @@ public class CreateNewGameWindow : UIWindow
         this.playerCards = playerCards;
     }
 
-    public void SetProperty()
-    {
-        Utils.AddListenerToButton(play, Play);
-        Utils.AddListenerToButton(cancel, Cancel);
-        ActivateWindow();
-        field.text = $"Player{Random.Range(1, 10000)}";
-    }
+        public void SetProperty()
+        {
+            Utils.AddListenerToButton(play, Play);
+            Utils.AddListenerToButton(cancel, Cancel);
+            ActivateWindow();
+            field.text = $"Player{Random.Range(1, 10000)}";
+        }
 
     public void Play()
     {
@@ -53,9 +55,10 @@ public class CreateNewGameWindow : UIWindow
         }
     }
 
-    public void Cancel()
-    {
-        errorText.SetActive(false);
-        DisactivateWindow();
+        public void Cancel()
+        {
+            errorText.SetActive(false);
+            DisactivateWindow();
+        }
     }
 }

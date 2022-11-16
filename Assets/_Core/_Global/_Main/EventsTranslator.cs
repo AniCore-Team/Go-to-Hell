@@ -36,7 +36,7 @@ public class EventsTranslator
         eventsDataList.Clear();
     }
 
-    public static void SendListener(string key)
+    public static void Call(string key)
     {
         foreach (var item in eventsList)
         {
@@ -47,7 +47,7 @@ public class EventsTranslator
         }
     }
 
-    public static void SendListener(string key, ISendData data)
+    public static void Call(string key, ISendData data)
     {
         foreach (var item in eventsDataList)
         {
