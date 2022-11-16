@@ -2,12 +2,12 @@
   "nameClient": "Player6311",
   "cardIDs": [
     3,
+    4,
     0,
-    7,
-    4
+    7
   ],
   "cardLevels": [
-    1,
+    2,
     1,
     1,
     1
