@@ -54,11 +54,15 @@ public class BattleWindow : UIWindow
     public void ShowWin(Sprite newCard, Action winFunc)
     {
         BottomPanel.gameObject.SetActive(false);
-        TopPanel.alpha = 0;
-        WinPanel.alpha = 1;
-
         this.newCard.sprite = newCard;
-        doneButton.onClick.AddListener(() => winFunc());
+
+        var animator = Services<PureAnimatorController>.Get().GetPureAnimator();
+        animator.Play(1.5f, progress =>
+        {
+            TopPanel.alpha = 1 - progress;
+            WinPanel.alpha = progress;
+            return default;
+        }, () => doneButton.onClick.AddListener(() => winFunc()));
     }
 
     private void CheckLockers()
