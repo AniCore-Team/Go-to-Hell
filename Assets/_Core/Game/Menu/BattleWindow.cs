@@ -97,6 +97,7 @@ public class BattleWindow : UIWindow
     {
         downPanel.GetComponent<CanvasGroup>().interactable = value;
         downPanel.GetComponent<CanvasGroup>().blocksRaycasts = value;
+        passButton.interactable = value;
     }
 
     public int GetCountFreeSlots()
