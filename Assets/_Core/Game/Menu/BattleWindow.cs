@@ -53,7 +53,7 @@ public class BattleWindow : UIWindow
 
     public void ShowWin(Sprite newCard, Action winFunc)
     {
-        BottomPanel.enabled = false;
+        BottomPanel.gameObject.SetActive(false);
         TopPanel.alpha = 0;
         WinPanel.alpha = 1;
 

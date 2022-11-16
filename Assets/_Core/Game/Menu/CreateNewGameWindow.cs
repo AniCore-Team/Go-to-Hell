@@ -11,21 +11,21 @@ namespace UI.Menu
         [SerializeField] private Button play, cancel;
         [SerializeField] private GameObject errorText;
 
-    private Client client;
-    private CardsList cardsList;
-    private DefaultPlayerCards playerCards;
+        private Client client;
+        private CardsList cardsList;
+        private DefaultPlayerCards playerCards;
 
-    [Inject]
-    private void Construct(
-        Client client,
-        CardsList cardsList,
-        DefaultPlayerCards playerCards
-        )
-    {
-        this.client = client;
-        this.cardsList = cardsList;
-        this.playerCards = playerCards;
-    }
+        [Inject]
+        private void Construct(
+            Client client,
+            CardsList cardsList,
+            DefaultPlayerCards playerCards
+            )
+        {
+            this.client = client;
+            this.cardsList = cardsList;
+            this.playerCards = playerCards;
+        }
 
         public void SetProperty()
         {
@@ -35,25 +35,25 @@ namespace UI.Menu
             field.text = $"Player{Random.Range(1, 10000)}";
         }
 
-    public void Play()
-    {
-        if(field.text == "")
+        public void Play()
         {
-            errorText.SetActive(true);
-        }
-        else
-        {
-            if (!client.LoadClient("ClientSlot1", cardsList))
+            if (field.text == "")
             {
-                client.SetClient(field.text, playerCards);
-                client.SaveClient("ClientSlot1");
+                errorText.SetActive(true);
             }
+            else
+            {
+                if (!client.LoadClient("ClientSlot1", cardsList))
+                {
+                    client.SetClient(field.text, playerCards);
+                    client.SaveClient("ClientSlot1");
+                }
 
-            errorText.SetActive(false);
-            LoadingManager.OnLoadScene.Invoke("Location");
-            DisactivateWindow();
+                errorText.SetActive(false);
+                LoadingManager.OnLoadScene.Invoke("Location");
+                DisactivateWindow();
+            }
         }
-    }
 
         public void Cancel()
         {

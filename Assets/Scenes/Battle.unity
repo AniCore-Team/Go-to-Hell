@@ -833,7 +833,7 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: 773109743
     m_VirtualCamera: {fileID: 1596982718}
-    m_ActivateAfter: 0
+    m_ActivateAfter: 1.5
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
@@ -2031,7 +2031,7 @@ PrefabInstance:
     - target: {fileID: 6165485891874437341, guid: d0bb04b11f60ccf4aa417b51f8ff3bed,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -241.47337
+      value: -241.47339
       objectReference: {fileID: 0}
     - target: {fileID: 6165485892717740430, guid: d0bb04b11f60ccf4aa417b51f8ff3bed,
         type: 3}
