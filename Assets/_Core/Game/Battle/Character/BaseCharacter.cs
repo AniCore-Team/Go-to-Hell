@@ -29,6 +29,7 @@ public class BaseCharacter : MonoBehaviour
 
     public CardEffectsController CardEffectsController => cardEffectsController;
     public StateRound NextRound => nextRound;
+    public bool IsDie => health <= 0;
 
     public virtual void Init(CinemachineSwitcher cinemachineSwitcher)
     {

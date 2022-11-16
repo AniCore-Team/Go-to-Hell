@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Preparing a enemy's turn
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: 424}
+  position: {x: -296, y: 504}
   ports:
     keys:
     - Enter
     - instanceInput_0
     - instanceInput_1
+    - instanceInput_2
+    - instanceInput_3
     values:
     - _fieldName: Enter
       _node: {fileID: -5160285599772405703}
@@ -53,6 +55,27 @@ MonoBehaviour:
       _direction: 1
       _connectionType: 1
       _dynamic: 1
+    - _fieldName: instanceInput_2
+      _node: {fileID: -5160285599772405703}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[BattleManager,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -2125523400963684531}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_3
+      _node: {fileID: -5160285599772405703}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[BattleManager,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
   Actions:
   - {fileID: 11400000, guid: 6e931063f412c2e4097fcb2dca7d48a5, type: 2}
   Transitions:
@@ -62,6 +85,12 @@ MonoBehaviour:
     TruePortName: instanceInput_0
     FalseState: {fileID: 0}
     FalsePortName: instanceInput_1
+  - Decisions:
+    - {fileID: 11400000, guid: ebc47f3bf24b08d4b83d12eba3d49e2b, type: 2}
+    TrueState: {fileID: -2125523400963684531}
+    TruePortName: instanceInput_2
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_3
 --- !u!114 &-2214754045743647664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +110,8 @@ MonoBehaviour:
     - Enter
     - instanceInput_0
     - instanceInput_1
+    - instanceInput_2
+    - instanceInput_3
     values:
     - _fieldName: Enter
       _node: {fileID: -2214754045743647664}
@@ -115,6 +146,27 @@ MonoBehaviour:
       _direction: 1
       _connectionType: 1
       _dynamic: 1
+    - _fieldName: instanceInput_2
+      _node: {fileID: -2214754045743647664}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[BattleManager,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -2125523400963684531}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_3
+      _node: {fileID: -2214754045743647664}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[BattleManager,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
   Actions:
   - {fileID: 11400000, guid: a344627834e1c8749b918c9694af20bc, type: 2}
   Transitions:
@@ -124,6 +176,12 @@ MonoBehaviour:
     TruePortName: instanceInput_0
     FalseState: {fileID: 0}
     FalsePortName: instanceInput_1
+  - Decisions:
+    - {fileID: 11400000, guid: ebc47f3bf24b08d4b83d12eba3d49e2b, type: 2}
+    TrueState: {fileID: -2125523400963684531}
+    TruePortName: instanceInput_2
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_3
 --- !u!114 &-2149407546275116745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +195,7 @@ MonoBehaviour:
   m_Name: Enemy's turn
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 392, y: 424}
+  position: {x: 392, y: 504}
   ports:
     keys:
     - Enter
@@ -186,6 +244,42 @@ MonoBehaviour:
     TruePortName: instanceInput_0
     FalseState: {fileID: 0}
     FalsePortName: instanceInput_1
+--- !u!114 &-2125523400963684531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d9fd687a0d7af45886469d0cc6c102, type: 3}
+  m_Name: Battle Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 392, y: 888}
+  ports:
+    keys:
+    - Enter
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -2125523400963684531}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[BattleManager,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_2
+        node: {fileID: -2214754045743647664}
+        reroutePoints: []
+      - fieldName: instanceInput_2
+        node: {fileID: -5160285599772405703}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+  Actions:
+  - {fileID: 11400000, guid: 12e3742f0b2904941a9adad83514e780, type: 2}
+  Transitions: []
 --- !u!114 &-642102185392001099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,4 +359,5 @@ MonoBehaviour:
   - {fileID: -2214754045743647664}
   - {fileID: -5160285599772405703}
   - {fileID: -2149407546275116745}
+  - {fileID: -2125523400963684531}
   BeginState: {fileID: -642102185392001099}
