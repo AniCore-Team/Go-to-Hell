@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public int CurrentEnemyID => currentEnemyID;
     public ClientDeck ClientDeck => client.Deck;
+    public CardsList CardsList => cardsList;
 
     [Inject] private Client client;
     [Inject] private CardsList cardsList;
@@ -37,5 +38,10 @@ public class GameManager : MonoBehaviour
             return indexEvent;
         }
         return -1;
+    }
+
+    public void SaveClient(string name)
+    {
+        client.SaveClient(name);
     }
 }

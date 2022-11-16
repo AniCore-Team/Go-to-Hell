@@ -4,43 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MenuManager : MonoBehaviour
+namespace UI.Menu
 {
-    [SerializeField] private Button newGameButton;
-
-    private Client client;
-
-    private CreateNewGameWindow createNewGame;
-
-    [Inject]
-    public void Construct(Client client, CreateNewGameWindow createNewGame)
+    public class MenuManager : MonoBehaviour
     {
-        this.client = client;
-        this.createNewGame = createNewGame;
-    }
+        [SerializeField] private Button PlayGameButton;
+        [Inject] private WindowsManager windowsManager;
 
-    private void Awake()
-    {
-        EventsTranslator.AddListener(WindowsTag.Create, createNewGame.SetProperty);
-    }
+        private void Awake()
+        {
+            windowsManager.Initialize();
+            EventsTranslator.Call(WindowsTag.Hide);
+            EventsTranslator.Call(WindowsTag.MenuButtons);
+        }
 
-    void Start()
-    {
-        Utils.AddListenerToButton(newGameButton, CreateNewGame);
-    }
+        void Start()
+        {
+            Utils.AddListenerToButton(PlayGameButton,() => EventsTranslator.Call(WindowsTag.GameSlots));
+        }
 
-    public void CreateNewGame()
-    {
-        EventsTranslator.SendListener(WindowsTag.Create);
-    }
-
-    private void OnDestroy()
-    {
-        EventsTranslator.RemoveAllListeners();
+        private void OnDestroy()
+        {
+            EventsTranslator.RemoveAllListeners();
+        }
     }
 }
 
-public static class WindowsTag
-{
-    public const string Create = "Create";
-}
