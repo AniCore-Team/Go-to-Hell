@@ -14,7 +14,7 @@ namespace UI.Menu
         [SerializeField] private int slotsCount;
 
         [Inject] private SaveManager saveManager;
-        [Inject] private Factory<CardView> factory;
+        [Inject] private Factory<GameSlot> factory;
 
         private List<GameSlot> list = new List<GameSlot>();
 
@@ -57,7 +57,7 @@ namespace UI.Menu
 
         private void CreateNewSlot(GameSlotType type, SaveSlotData data = default)
         {
-            var slot = factory.Create(slotPrefab.gameObject).GetComponent<GameSlot>();
+            var slot = factory.Create(slotPrefab.gameObject);
             slot.SetProperty(type, data);
             Utils.SetParentToTransform(slot.transform, container);
 
