@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     [Inject] private Client client;
     [Inject] private CardsList cardsList;
-
+    [Inject] private SaveManager saveManager;
 
     public void SetCurrentEnemy(int val)
     {
@@ -42,6 +43,6 @@ public class GameManager : MonoBehaviour
 
     public void SaveClient(string name)
     {
-        client.SaveClient(name);
+        saveManager.Save();
     }
 }

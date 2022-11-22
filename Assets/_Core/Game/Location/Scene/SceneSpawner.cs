@@ -6,6 +6,7 @@ using Zenject;
 public class SceneSpawner
 {
     [Inject] private LevelsConfig config;
+    [Inject] private SaveManager saveManager;
     [Inject] private Factory<LevelController> levelFactory;
 
     public void SpawnLevel(int ID, int sub = -1)
@@ -17,5 +18,6 @@ public class SceneSpawner
         var level = levelFactory.Create(obj.gameObject);
         level.transform.position = Vector3.zero;
         level.transform.localScale = Vector3.one;
+        saveManager.CurrentLevel = level;
     }
 }

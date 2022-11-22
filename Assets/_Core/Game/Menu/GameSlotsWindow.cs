@@ -13,6 +13,9 @@ namespace UI.Menu
         [SerializeField] private Button closeWindowButton;
         [SerializeField] private int slotsCount;
 
+        [Inject] private SaveManager saveManager;
+        [Inject] private Factory<CardView> factory;
+
         private List<GameSlot> list = new List<GameSlot>();
 
         public void SetProperty()
@@ -23,9 +26,14 @@ namespace UI.Menu
 
             Utils.AddListenerToButton(closeWindowButton, Close);
 
+            saveManager.Load();
+
             for (int i = 0; i < slotsCount; i++)
             {
-                CreateNewSlot(GameSlotType.New);
+                if (saveManager.HasSlot(i))
+                    CreateNewSlot(GameSlotType.Full, saveManager.GetSlotData(i));
+                else
+                    CreateNewSlot(GameSlotType.New, new SaveSlotData { id = i });
             }
 
             ActivateWindow();
@@ -47,10 +55,10 @@ namespace UI.Menu
             list.Clear();
         }
 
-        private void CreateNewSlot(GameSlotType type)
+        private void CreateNewSlot(GameSlotType type, SaveSlotData data = default)
         {
-            var slot = Instantiate(slotPrefab);
-            slot.SetProperty(type);
+            var slot = factory.Create(slotPrefab.gameObject).GetComponent<GameSlot>();
+            slot.SetProperty(type, data);
             Utils.SetParentToTransform(slot.transform, container);
 
             list.Add(slot);

@@ -16,5 +16,6 @@ public class MainInstaller : MonoInstaller
         Container.Bind<Client>().FromNew().AsSingle().NonLazy();
         Container.Bind<LoadingManager>().FromComponentInNewPrefab(loadingConfig.LoadingManager).AsSingle().NonLazy();
         Container.Bind<EventsTranslator>().FromNew().AsSingle();
+        Container.Bind<SaveManager>().FromNew().AsSingle();
     }
 }

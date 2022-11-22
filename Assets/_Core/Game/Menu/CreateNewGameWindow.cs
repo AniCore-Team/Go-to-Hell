@@ -11,17 +11,20 @@ namespace UI.Menu
         [SerializeField] private Button play, cancel;
         [SerializeField] private GameObject errorText;
 
+        private SaveManager saveManager;
         private Client client;
         private CardsList cardsList;
         private DefaultPlayerCards playerCards;
 
         [Inject]
         private void Construct(
+            SaveManager saveManager,
             Client client,
             CardsList cardsList,
             DefaultPlayerCards playerCards
             )
         {
+            this.saveManager = saveManager;
             this.client = client;
             this.cardsList = cardsList;
             this.playerCards = playerCards;
@@ -43,11 +46,8 @@ namespace UI.Menu
             }
             else
             {
-                if (!client.LoadClient("ClientSlot1", cardsList))
-                {
-                    client.SetClient(field.text, playerCards);
-                    client.SaveClient("ClientSlot1");
-                }
+                client.SetClient(field.text, playerCards);
+                saveManager.Save();
 
                 errorText.SetActive(false);
                 LoadingManager.OnLoadScene.Invoke("Location");

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace UI.Menu
 {
@@ -12,8 +13,15 @@ namespace UI.Menu
         [SerializeField] private LoadSlotScreen loadGamePanel;
         [SerializeField] private Button clickableButton;
 
-        public void SetProperty(GameSlotType type)
+        [Inject] private SaveManager saveManager;
+        [Inject] private CardsList cardsList;
+        [Inject] private Client client;
+
+        private SaveSlotData saveSlotData;
+
+        public void SetProperty(GameSlotType type, SaveSlotData data = default)
         {
+            saveSlotData = data;
             loadGamePanel.DisactivateWindow();
             newGamePanel.SetActive(false);
 
@@ -31,14 +39,22 @@ namespace UI.Menu
         private void SetNew()
         {
             newGamePanel.SetActive(true);
-            Utils.AddListenerToButton(clickableButton, () => EventsTranslator.Call(WindowsTag.Create));
+            Utils.AddListenerToButton(clickableButton, () =>
+            {
+                saveManager.CurrentSlot = saveSlotData.id;
+                EventsTranslator.Call(WindowsTag.Create);
+            });
         }
 
         private void SetFull()
         {
             loadGamePanel.ActivateWindow();
             loadGamePanel.SetProperty("client", "date", "level");
-            Utils.AddListenerToButton(clickableButton, () => LoadingManager.OnLoadScene.Invoke("Location"));
+            Utils.AddListenerToButton(clickableButton, () =>
+            {
+                client.SetClientModel(saveManager.GetSlotData().clientModel, cardsList);
+                LoadingManager.OnLoadScene.Invoke("Location");
+            });
         }
     }
 

@@ -1,4 +1,5 @@
 using ModestTree;
+using Newtonsoft.Json;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,8 @@ public class LevelController : MonoBehaviour
 {
     [Inject] private SceneReferenceConfig config;
     [Inject] private GameManager gameManager;
+    [Inject] private SaveManager saveManager;
+
     [SerializeField] private Transform startPlayerPosition;
     [SerializeField] private NavMeshSurface navMesh;
     [SerializeField] private LocationEventObject[] locationEventObjects;
@@ -20,14 +23,15 @@ public class LevelController : MonoBehaviour
         navMesh.BuildNavMesh();
         levelModel = new();
         InitLocationEventObjects();
-        if (!levelModel.Load(gameObject.name))
-        {
+
+        if (!saveManager.HasSlot())
             ResetTransformToDefault();
-        }
         else
         {
+            levelModel = saveManager.GetSlotData().levelModel;
             DisableUsedLocationEvent();
         }
+
         SpawnPlayer();
         SpawnCamera();
     }
@@ -36,6 +40,11 @@ public class LevelController : MonoBehaviour
     {
         levelModel.lastPlayerPosition = player.transform.position;
         levelModel.lastPlayerRotation = player.transform.eulerAngles;
+    }
+
+    public string GetLevelModel()
+    {
+        return JsonConvert.SerializeObject(levelModel, Formatting.Indented);
     }
 
     public void UsingLocationEvent(LocationEventObject eventObject)
