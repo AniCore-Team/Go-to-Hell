@@ -49,9 +49,14 @@ namespace UI.Menu
         private void SetFull()
         {
             loadGamePanel.ActivateWindow();
-            loadGamePanel.SetProperty("client", "date", "level");
+            loadGamePanel.SetProperty(
+                saveManager.GetSlotData(saveSlotData.id).clientModel.nameClient,
+                saveManager.GetSlotData(saveSlotData.id).clientModel.date.ToString(),
+                saveManager.GetSlotData(saveSlotData.id).levelModel.circle.ToString(),
+                saveManager.GetSlotData(saveSlotData.id).sprite);
             Utils.AddListenerToButton(clickableButton, () =>
             {
+                saveManager.CurrentSlot = saveSlotData.id;
                 client.SetClientModel(saveManager.GetSlotData().clientModel, cardsList);
                 LoadingManager.OnLoadScene.Invoke("Location");
             });

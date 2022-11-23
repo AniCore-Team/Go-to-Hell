@@ -15,7 +15,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private NavMeshSurface navMesh;
     [SerializeField] private LocationEventObject[] locationEventObjects;
 
-    private LevelModel levelModel;
+    private static LevelModel levelModel;
     private LocationPlayerController player;
 
     void Start()
@@ -25,7 +25,9 @@ public class LevelController : MonoBehaviour
         InitLocationEventObjects();
 
         if (!saveManager.HasSlot())
+        {
             ResetTransformToDefault();
+        }
         else
         {
             levelModel = saveManager.GetSlotData().levelModel;
@@ -34,6 +36,7 @@ public class LevelController : MonoBehaviour
 
         SpawnPlayer();
         SpawnCamera();
+        saveManager.Save();
     }
 
     private void Update()
@@ -42,8 +45,22 @@ public class LevelController : MonoBehaviour
         levelModel.lastPlayerRotation = player.transform.eulerAngles;
     }
 
-    public string GetLevelModel()
+    public static LevelModel GetLevelModel()
     {
+        if (levelModel == null)
+            levelModel = new();
+        return levelModel;
+    }
+
+    public static Texture2D GetScreenshot()
+    {
+        return PhotoCapture.instance.MakeScrenshot();
+    }
+
+    public static string GetJsonLevelModel()
+    {
+        if (levelModel == null)
+            levelModel = new();
         return JsonConvert.SerializeObject(levelModel, Formatting.Indented);
     }
 
@@ -91,10 +108,11 @@ public class LevelController : MonoBehaviour
     {
         var camera = Instantiate(config.Camera);
         camera.Init(player.transform);
+        PhotoCapture.instance.captureCamera = camera.ScreenShotCamera;
     }
 
     private void OnDestroy()
     {
-        levelModel.Save(gameObject.name);
+        saveManager.Save();
     }
 }

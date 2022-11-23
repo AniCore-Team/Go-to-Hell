@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public static class FileManager
@@ -8,9 +9,13 @@ public static class FileManager
 
     public static bool WriteToFile(string fileName, string fileContents)
     {
-        if (!Directory.Exists(FolderPath))
+        var folders = fileName.Split('/');
+        string addFolders = "";
+        for (int i = 0; i < folders.Length - 1; i++)
+            addFolders += (folders[i] + "/");
+        if (!Directory.Exists(FolderPath + addFolders))
         {
-            Directory.CreateDirectory(FolderPath);
+            Directory.CreateDirectory(FolderPath + addFolders);
         }
 
         var fullPath = Path.Combine(FolderPath, fileName);

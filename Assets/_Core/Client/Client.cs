@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 
 public class Client
@@ -50,9 +51,15 @@ public class Client
     //    return true;
     //}
 
-    public string GetClientModel()
+    public string GetJsonClientModel()
+    {
+        return GetClientModel().Get();
+    }
+
+    public ClientModel GetClientModel()
     {
         model.nameClient = client_name;
+        model.date = DateTime.UtcNow;
         model.cardIDs.Clear();
         model.cardLevels.Clear();
         foreach (var card in Deck.Slots)
@@ -60,7 +67,7 @@ public class Client
             model.cardIDs.Add(card.card.id);
             model.cardLevels.Add(card.level);
         }
-        return model.Get();
+        return model;
     }
 
     public void SetClientModel(ClientModel data, CardsList cardsList)

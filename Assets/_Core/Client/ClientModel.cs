@@ -7,6 +7,7 @@ using System.Linq;
 public class ClientModel
 {
     public string nameClient = "";
+    public DateTime date;
     public List<CardID> cardIDs = new();
     public List<int> cardLevels = new();
 

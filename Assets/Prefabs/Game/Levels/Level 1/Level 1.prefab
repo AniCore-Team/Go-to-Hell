@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8842634843677875935}
   - component: {fileID: 8541532464650751267}
   - component: {fileID: 215870098042761766}
+  - component: {fileID: 185612860949283290}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -114,6 +115,19 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 916526ed1a8ab404c91f5c4cc710d8d6, type: 2}
+--- !u!114 &185612860949283290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842634843677875920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea60eb98990fb848b6dbdfa5118b3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  captureCamera: {fileID: 0}
 --- !u!1 &8842634844001952820
 GameObject:
   m_ObjectHideFlags: 0

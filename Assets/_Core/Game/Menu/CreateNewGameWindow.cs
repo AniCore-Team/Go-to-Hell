@@ -47,7 +47,6 @@ namespace UI.Menu
             else
             {
                 client.SetClient(field.text, playerCards);
-                saveManager.Save();
 
                 errorText.SetActive(false);
                 LoadingManager.OnLoadScene.Invoke("Location");

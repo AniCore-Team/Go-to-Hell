@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LocationCameraController : MonoBehaviour
 {
+    [SerializeField] private Camera screenShotCamera;
     [SerializeField] private float speed;
     private Transform target;
+
+    public Camera ScreenShotCamera => screenShotCamera;
 
     public void Init(Transform target)
     {
