@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,4 +12,9 @@ public class LevelDialogueWindow : MonoBehaviour
     [SerializeField] private Text answerText2;
     [SerializeField] private Text answerText3;
     [SerializeField] private Text dialogueText;
+
+    public void StartDialouge(DialogueTextStepConfig dialogueTextStepConfig, DialogueAudioStepConfig dialogueAudioStepConfig)
+    {
+
+    }
 }

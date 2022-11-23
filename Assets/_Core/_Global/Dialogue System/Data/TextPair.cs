@@ -9,4 +9,11 @@ namespace Config
         public SystemLanguage langName;
         [TextArea(3, 10)]public string text;
     }
+
+    [Serializable]
+    public struct AudioPair
+    {
+        public SystemLanguage langName;
+        public AudioClip audio;
+    }
 }
