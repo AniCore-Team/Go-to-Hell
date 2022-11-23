@@ -1,0 +1,12 @@
+﻿using System;
+using UnityEngine;
+
+namespace Config
+{
+    [Serializable]
+    public struct TextPair
+    {
+        public SystemLanguage langName;
+        [TextArea(3, 10)]public string text;
+    }
+}
