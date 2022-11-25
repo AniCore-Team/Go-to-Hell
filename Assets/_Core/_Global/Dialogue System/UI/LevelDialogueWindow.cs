@@ -33,15 +33,23 @@ public class LevelDialogueWindow : MonoBehaviour
     [SerializeField] private Text dialogueText;
     [SerializeField] private Text nameText;
 
-    [Inject] private SceneSpawner sceneSpawner;
-
     private Answers answer;
     private DialogueBehaviourController controller;
     private DialogueTextStepConfig dialogueTextStepConfig;
     private DialogueAudioStepConfig dialogueAudioStepConfig;
+    private LocationPlayerController playerController;
 
     public bool IsActiveAction { get; set; }
-    public SceneSpawner SceneSpawner => sceneSpawner;
+
+    private LocationPlayerController PlayerController
+    {
+        get
+        {
+            if (playerController == null)
+                playerController = FindObjectOfType<LocationPlayerController>();
+            return playerController;
+        }
+    }
 
     private void Awake()
     {
@@ -65,6 +73,7 @@ public class LevelDialogueWindow : MonoBehaviour
 
     public void StartDialouge(DialogueData dialogueData)
     {
+        PlayerController.enabled = false;
         dialogueTextStepConfig = dialogueData.textSteps;
         dialogueAudioStepConfig = dialogueData.audioSteps;
         portrait.sprite = dialogueData.portrait;
@@ -87,6 +96,7 @@ public class LevelDialogueWindow : MonoBehaviour
 
     public void CloseDialogue()
     {
+        PlayerController.enabled = true;
         controller.TryUninstall();
         canvasGroup.alpha = 0;
     }

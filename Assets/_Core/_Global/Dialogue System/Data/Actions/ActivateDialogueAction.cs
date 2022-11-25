@@ -16,6 +16,8 @@ public class ActivateDialogueAction : DialogueAction
         }, () =>
         {
             entity.IsActiveAction = false;
+            if (!isActivate)
+                entity.CloseDialogue();
         });
     }
 }

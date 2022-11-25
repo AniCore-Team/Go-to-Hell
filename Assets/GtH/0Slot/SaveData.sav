@@ -3,7 +3,7 @@
     "id": 0,
     "clientModel": {
       "nameClient": "Player4827",
-      "date": "2022-11-25T12:28:47.8465994Z",
+      "date": "2022-11-25T16:56:12.7135411Z",
       "cardIDs": [
         3,
         0
@@ -16,13 +16,13 @@
     "levelModel": {
       "circle": 0,
       "lastPlayerPosition": {
-        "x": 9.889742,
+        "x": 11.2686558,
         "y": 0.116666675,
-        "z": -3.117404
+        "z": -0.4756532
       },
       "lastPlayerRotation": {
         "x": 0.0,
-        "y": 170.09642,
+        "y": 44.97641,
         "z": 0.0
       },
       "locationEventObjects": [
