@@ -1,3 +1,4 @@
+using Sources;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
     [SerializeField] private EnemyList enemyList;
     [SerializeField] private CardsList cardsList;
     [SerializeField] private DefaultPlayerCards playerCards;
+    [SerializeField] private AudioConfig audioConfig;
 
     public override void InstallBindings()
     {
@@ -19,7 +21,8 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
             levelsConfig,
             enemyList,
             cardsList,
-            playerCards
+            playerCards,
+            audioConfig
             );
     }
 }

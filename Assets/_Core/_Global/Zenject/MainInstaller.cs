@@ -1,3 +1,4 @@
+using Sources;
 using Zenject;
 
 public class MainInstaller : MonoInstaller
@@ -13,6 +14,7 @@ public class MainInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<GameManager>().FromNewComponentOnNewGameObject().WithGameObjectName("GameManager").UnderTransform(transform).AsSingle().NonLazy();
+        Container.Bind<AudioManager>().FromNewComponentOnNewGameObject().WithGameObjectName("AudioManager").UnderTransform(transform).AsSingle().NonLazy();
         Container.Bind<Client>().FromNew().AsSingle().NonLazy();
         Container.Bind<LoadingManager>().FromComponentInNewPrefab(loadingConfig.LoadingManager).AsSingle().NonLazy();
         Container.Bind<EventsTranslator>().FromNew().AsSingle();
