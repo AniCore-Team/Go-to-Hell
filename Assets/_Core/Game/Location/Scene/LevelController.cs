@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
     [Inject] private SceneReferenceConfig config;
     [Inject] private GameManager gameManager;
     [Inject] private SaveManager saveManager;
+    [Inject] private LevelDialogueWindow levelDialogueWindow;
 
     [SerializeField] private Transform startPlayerPosition;
     [SerializeField] private NavMeshSurface navMesh;
@@ -68,6 +69,11 @@ public class LevelController : MonoBehaviour
     {
         var eventIndex = locationEventObjects.IndexOf(eventObject);
         gameManager.SetUsingEvent(eventIndex);
+    }
+
+    public void StartDialogue(DialogueData dialogueData)
+    {
+        levelDialogueWindow.StartDialouge(dialogueData);
     }
 
     private void ResetTransformToDefault()

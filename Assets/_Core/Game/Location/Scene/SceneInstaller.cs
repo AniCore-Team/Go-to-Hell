@@ -8,6 +8,7 @@ public class SceneInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<SceneController>().FromComponentInHierarchy().AsSingle().NonLazy();
+        Container.Bind<LevelDialogueWindow>().FromComponentInHierarchy().AsSingle().NonLazy();
         Container.Bind<SceneSpawner>().FromNew().AsSingle();
     }
 }

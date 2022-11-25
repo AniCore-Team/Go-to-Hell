@@ -242,6 +242,35 @@ PrefabInstance:
       propertyPath: currentType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.name
+      value: "\u3061\u3083\u3093"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.graph
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a12eba5ac026544199f062116b23c32,
+        type: 2}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f37276e43c44ef4a8851d493d770ea4,
+        type: 3}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.textSteps
+      value: 
+      objectReference: {fileID: 11400000, guid: 350cb5629a8584940a037e93292c0c87,
+        type: 2}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.audioSteps
+      value: 
+      objectReference: {fileID: 11400000, guid: 25b2c48b01aaa48479c407db2edec443,
+        type: 2}
     - target: {fileID: 2647578410260874691, guid: 15db9f1d38c16d14f83d34e525106b9c,
         type: 3}
       propertyPath: m_Name
@@ -339,6 +368,35 @@ PrefabInstance:
       propertyPath: currentType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.name
+      value: Necro
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.graph
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a12eba5ac026544199f062116b23c32,
+        type: 2}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a5550af30823cd4799b4d9fef62054d,
+        type: 3}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.textSteps
+      value: 
+      objectReference: {fileID: 11400000, guid: 350cb5629a8584940a037e93292c0c87,
+        type: 2}
+    - target: {fileID: 1206841867327440811, guid: 15db9f1d38c16d14f83d34e525106b9c,
+        type: 3}
+      propertyPath: dialogueData.audioSteps
+      value: 
+      objectReference: {fileID: 11400000, guid: 25b2c48b01aaa48479c407db2edec443,
+        type: 2}
     - target: {fileID: 2647578410260874691, guid: 15db9f1d38c16d14f83d34e525106b9c,
         type: 3}
       propertyPath: m_Name

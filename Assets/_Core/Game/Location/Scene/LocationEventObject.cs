@@ -5,6 +5,7 @@ using Zenject;
 
 public class LocationEventObject : MonoBehaviour
 {
+    [SerializeField] private DialogueData dialogueData;
     [SerializeField] private LocationEventType currentType;
     [SerializeField] private int enemyID;
     private LevelController levelController;
@@ -50,6 +51,7 @@ public class LocationEventObject : MonoBehaviour
         }
 
         levelController.UsingLocationEvent(this);
-        LocationEvents.SendEvent(currentType);
+        levelController.StartDialogue(dialogueData);
+        //LocationEvents.SendEvent(currentType);
     }
 }

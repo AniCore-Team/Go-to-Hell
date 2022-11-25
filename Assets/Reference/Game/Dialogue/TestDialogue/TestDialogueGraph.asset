@@ -34,7 +34,10 @@ MonoBehaviour:
       _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Enter
+        node: {fileID: 7043891720945883093}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _dynamic: 1
@@ -47,9 +50,229 @@ MonoBehaviour:
       _direction: 1
       _connectionType: 1
       _dynamic: 1
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 29f2139daba039b42bfb16d42fa4cdae, type: 2}
   Transitions:
-  - Decisions: []
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
+    TrueState: {fileID: 7043891720945883093}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
+--- !u!114 &-2693450143162079590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1048, y: -120}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    - instanceInput_2
+    - instanceInput_3
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -2693450143162079590}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_0
+        node: {fileID: 7043891720945883093}
+        reroutePoints: []
+      - fieldName: instanceInput_2
+        node: {fileID: 7043891720945883093}
+        reroutePoints: []
+      - fieldName: instanceInput_4
+        node: {fileID: 7043891720945883093}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: -2693450143162079590}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -1705562842045158180}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: -2693450143162079590}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_2
+      _node: {fileID: -2693450143162079590}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: 8672701397095976333}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_3
+      _node: {fileID: -2693450143162079590}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: d9f7f264ff0bc174e84648ea2276dd72, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 88d8ee6af5f61704d8702287d209fb3c, type: 2}
+    TrueState: {fileID: -1705562842045158180}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
+  - Decisions:
+    - {fileID: 11400000, guid: ee1c38ab5c76391448bc5d6121ecb2b4, type: 2}
+    TrueState: {fileID: 8672701397095976333}
+    TruePortName: instanceInput_2
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_3
+--- !u!114 &-1705562842045158180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1768, y: -104}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -1705562842045158180}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_0
+        node: {fileID: -2693450143162079590}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: -1705562842045158180}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -1004479872916117118}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: -1705562842045158180}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: b229cff14b9ee5f44b619c37a46bb271, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
+    TrueState: {fileID: -1004479872916117118}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
+--- !u!114 &-1004479872916117118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2440, y: -104}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: -1004479872916117118}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_0
+        node: {fileID: -1705562842045158180}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: -1004479872916117118}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: -1004479872916117118}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: 7f3115f2bc0d50f4bbea9a171cd9fc48, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
     TrueState: {fileID: 0}
     TruePortName: instanceInput_0
     FalseState: {fileID: 0}
@@ -68,4 +291,251 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -7764320002177139024}
+  - {fileID: 7043891720945883093}
+  - {fileID: -2693450143162079590}
+  - {fileID: -1705562842045158180}
+  - {fileID: -1004479872916117118}
+  - {fileID: 8672701397095976333}
+  - {fileID: 4265584533643824586}
   BeginState: {fileID: -7764320002177139024}
+--- !u!114 &4265584533643824586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2440, y: 280}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 4265584533643824586}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_0
+        node: {fileID: 8672701397095976333}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: 4265584533643824586}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: 4265584533643824586}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: 12977735574c68d4c974890a2fb03e58, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
+    TrueState: {fileID: 0}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
+--- !u!114 &7043891720945883093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: -120}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    - instanceInput_2
+    - instanceInput_3
+    - instanceInput_4
+    - instanceInput_5
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_0
+        node: {fileID: -7764320002177139024}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -2693450143162079590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_2
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -2693450143162079590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_3
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_4
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: -2693450143162079590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_5
+      _node: {fileID: 7043891720945883093}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: 9b8b22365d0a3f7459aa9d47bb29d915, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 88d8ee6af5f61704d8702287d209fb3c, type: 2}
+    TrueState: {fileID: -2693450143162079590}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
+  - Decisions:
+    - {fileID: 11400000, guid: ee1c38ab5c76391448bc5d6121ecb2b4, type: 2}
+    TrueState: {fileID: -2693450143162079590}
+    TruePortName: instanceInput_2
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_3
+  - Decisions:
+    - {fileID: 11400000, guid: ccb126263e416e9468b642676ca56075, type: 2}
+    TrueState: {fileID: -2693450143162079590}
+    TruePortName: instanceInput_4
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_5
+--- !u!114 &8672701397095976333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1768, y: 280}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 8672701397095976333}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: instanceInput_2
+        node: {fileID: -2693450143162079590}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: 8672701397095976333}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Enter
+        node: {fileID: 4265584533643824586}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: 8672701397095976333}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: b229cff14b9ee5f44b619c37a46bb271, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
+    TrueState: {fileID: 4265584533643824586}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
