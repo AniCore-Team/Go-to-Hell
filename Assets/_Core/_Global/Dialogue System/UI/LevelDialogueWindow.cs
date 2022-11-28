@@ -1,6 +1,7 @@
 using Common;
 using Config;
 using PureAnimator;
+using Sources;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,9 @@ public class LevelDialogueWindow : MonoBehaviour
     [SerializeField] private Text[] answerTexts;
     [SerializeField] private Text dialogueText;
     [SerializeField] private Text nameText;
+
+    [Inject] 
+    private AudioManager audioManager;
 
     private Answers answer;
     private DialogueBehaviourController controller;
@@ -121,6 +125,7 @@ public class LevelDialogueWindow : MonoBehaviour
         }
 
         dialogueText.text = dialogueTextStepConfig.GetText(messageKey);
+        audioManager.PlayVoice(dialogueAudioStepConfig.GetAudio(messageKey));
         for (int i = 0; i < answerKeys.Length; i++)
         {
             if (string.IsNullOrEmpty(answerKeys[i]))

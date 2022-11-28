@@ -17,4 +17,6 @@ MonoBehaviour:
   voiceMixerGroup: {fileID: 0}
   sounds: []
   music: []
-  voice: []
+  voice:
+  - _clip: {fileID: 0}
+    _volume: 0
