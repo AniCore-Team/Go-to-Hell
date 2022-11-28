@@ -1,3 +1,4 @@
+using Sources;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,14 @@ public class LocationEventObject : MonoBehaviour
     private bool isEntered;
 
     [Inject] private GameManager gameManager;
+    [Inject] private AudioManager audioManager;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<LocationPlayerController>(out var player))
         {
             isEntered = true;
+            audioManager.PlaySound3D("TriggerEnter", transform.position);
         }
     }
 

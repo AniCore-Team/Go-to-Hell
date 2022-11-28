@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e54b6d343f0247cf9e7635b95bd850b, type: 3}
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
-  soundMixerGroup: {fileID: 0}
-  musicMixerGroup: {fileID: 0}
-  voiceMixerGroup: {fileID: 0}
-  sounds: []
+  soundMixerGroup: {fileID: 501814147755153604, guid: eac0c0b4f691b1c40ae8e3d47b804cc5,
+    type: 2}
+  musicMixerGroup: {fileID: 7717248400035502190, guid: eac0c0b4f691b1c40ae8e3d47b804cc5,
+    type: 2}
+  voiceMixerGroup: {fileID: -4659989140015580507, guid: eac0c0b4f691b1c40ae8e3d47b804cc5,
+    type: 2}
+  sounds:
+  - _key: TriggerEnter
+    _clip: {fileID: 8300000, guid: 11f36109e26f8644392c1a4cf78d1d47, type: 3}
+    _volume: 1
   music: []
-  voice:
-  - _clip: {fileID: 0}
-    _volume: 0
+  voice: []

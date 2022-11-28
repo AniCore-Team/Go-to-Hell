@@ -41,10 +41,10 @@ namespace Sources
             voicecGroup = audioConfig.VoiceMixerGroup;
 
             foreach (AudioData sound in audioConfig.Sounds)
-                sounds[sound.Clip.name] = sound;
+                sounds[sound.Key] = sound;
 
             foreach (AudioData music in audioConfig.Music)
-                this.music[music.Clip.name] = music;
+                this.music[music.Key] = music;
 
             soundSources.Add(gameObject.AddComponent<AudioSource>());
             soundSources[0].outputAudioMixerGroup = soundGroup;

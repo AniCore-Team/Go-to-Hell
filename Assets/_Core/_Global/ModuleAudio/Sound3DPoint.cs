@@ -15,6 +15,7 @@ namespace Sources
             point.transform.SetParent(parent);
 
             source = point.AddComponent<AudioSource>();
+            source.spatialBlend = 1f;
         }
 
         public void PlaySound3D(AudioData clip, Vector3 worldPosition, bool isOnlyScene, bool isLoop)
