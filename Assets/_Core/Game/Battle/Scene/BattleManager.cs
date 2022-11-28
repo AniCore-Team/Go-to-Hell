@@ -260,7 +260,6 @@ public class BattleManager : MonoBehaviour
                 battleWindow.ShowWin(newCard.icon, () =>
                 {
                     gameManager.ClientDeck.AddCardToDeck(newCard);
-                    gameManager.SaveClient("ClientSlot1");
                     gameManager.SetUsedEvent();
                     loadingManager.LoadScene("Location");
                 });

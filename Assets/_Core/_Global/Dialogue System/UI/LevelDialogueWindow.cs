@@ -91,6 +91,7 @@ public class LevelDialogueWindow : MonoBehaviour
             var ans = (Answers)i;
             button.interactable = false;
             button.gameObject.SetActive(false);
+            button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() =>
             {
                 answer = ans;
@@ -101,7 +102,7 @@ public class LevelDialogueWindow : MonoBehaviour
     public void CloseDialogue()
     {
         PlayerController.enabled = true;
-        controller.TryUninstall();
+        //controller.TryUninstall();
         canvasGroup.alpha = 0;
     }
 

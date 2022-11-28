@@ -1,12 +1,16 @@
 {
-  "nameClient": "Player4827",
-  "date": "2022-11-28T14:12:13.0036604Z",
+  "nameClient": "Player6605",
+  "date": "2022-11-28T20:18:36.057434Z",
   "cardIDs": [
     3,
-    0
+    0,
+    7,
+    5
   ],
   "cardLevels": [
     1,
+    1,
+    2,
     1
   ]
 }

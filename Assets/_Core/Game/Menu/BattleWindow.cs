@@ -167,6 +167,7 @@ public class BattleWindow : UIWindow
                 slot.SetLocked(false, false);
             else if (slot.card != null)
             {
+                slot.SetActiveLocker(false);
                 slot.card.Destroy();
                 slot.card = null;
             }
