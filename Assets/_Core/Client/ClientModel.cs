@@ -7,6 +7,7 @@ using System.Linq;
 public class ClientModel
 {
     public string nameClient = "";
+    public int hitPoint = -1;
     public DateTime date;
     public List<CardID> cardIDs = new();
     public List<int> cardLevels = new();

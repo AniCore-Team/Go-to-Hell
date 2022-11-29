@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public class Client
 {
@@ -12,44 +13,26 @@ public class Client
 
     public ClientDeck Deck => deck;
 
-    public void SetClient(string name, DefaultPlayerCards cardsList)
+    public void SetClient(string name, DefaultPlayerCards cardsList, int difficultIndex = 2)
     {
         client_name = name;
+        model.hitPoint = difficultIndex switch
+        {
+            0 => -1,
+            1 => 3,
+            2 => 1
+        };
         deck = new ClientDeck();
         foreach (var card in cardsList.list)
             Deck.AddCardToDeck(card);
     }
 
-    //public void SaveClient(string name)
-    //{
-    //    model.nameClient = client_name;
-    //    model.cardIDs.Clear();
-    //    model.cardLevels.Clear();
-    //    foreach (var card in Deck.Slots)
-    //    {
-    //        model.cardIDs.Add(card.card.id);
-    //        model.cardLevels.Add(card.level);
-    //    }
-    //    model.Save(name);
-    //}
-
-    //public bool LoadClient(string name, CardsList cardsList)
-    //{
-    //    bool hasLoad = model.Load(name);
-    //    if (!hasLoad)
-    //        return false;
-
-    //    client_name = model.nameClient;
-    //    deck = new ClientDeck();
-    //    foreach (var card in cardsList.list)
-    //        if (model.Contains(card.id))
-    //        {
-    //            int level = model.GetCardLevel(card.id);
-    //            for (var i = 0; i < level; i++)
-    //                Deck.AddCardToDeck(card);
-    //        }
-    //    return true;
-    //}
+    public int FailBattle()
+    {
+        if (model.hitPoint > 0)
+            model.hitPoint -= 1;
+        return model.hitPoint;
+    }
 
     public string GetJsonClientModel()
     {

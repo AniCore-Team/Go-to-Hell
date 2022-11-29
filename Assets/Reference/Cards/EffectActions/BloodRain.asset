@@ -16,7 +16,7 @@ MonoBehaviour:
   duration: 3
   typeEffect: 0
   target: 2
-  damage: 5
+  damage: 500
   speed: 0
   bloodRainPrefab: {fileID: 217008637397932107, guid: f6b2ee7483cdc08458243c3f7ef0ad87,
     type: 3}

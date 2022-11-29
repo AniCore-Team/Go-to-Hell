@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Inject] private Client client;
     [Inject] private CardsList cardsList;
     [Inject] private SaveManager saveManager;
+    [Inject] private LoadingManager loadingManager;
 
     public void SetCurrentEnemy(int val)
     {
@@ -41,8 +42,16 @@ public class GameManager : MonoBehaviour
         return -1;
     }
 
-    public void SaveClient(string name)
+    public bool IsFailGame()
     {
-        saveManager.Save();
+        int hitPoint = client.FailBattle();
+
+        if (hitPoint == 0)
+        {
+            saveManager.ClearSlot();
+            loadingManager.LoadScene("Menu");
+            return true;
+        }
+        return false;
     }
 }

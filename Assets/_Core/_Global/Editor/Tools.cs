@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,9 +12,20 @@ public class Tools
         PlayerPrefs.Save();
 
         DirectoryInfo di = new DirectoryInfo(FileManager.FolderPath);
-        foreach (FileInfo file in di.GetFiles())
+        foreach (var dir in di.GetDirectories())
         {
-            file.Delete();
+            if (dir.Name == $"{1}Slot")
+            {
+                var fileNames = dir.GetFiles();
+                foreach (var file in fileNames)
+                {
+                    File.Delete(file.FullName);
+                }
+                string fullPath = FileManager.FolderPath + $"{1}Slot";
+                Directory.Delete(fullPath);
+                if (di.GetFiles().Any(f => f.Name == $"{1}Slot.meta"))
+                    File.Delete(fullPath + ".meta");
+            }
         }
     }
 }

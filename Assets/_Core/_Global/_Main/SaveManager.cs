@@ -35,18 +35,39 @@ public class SaveManager
 
     public void Load()
     {
+        saveSlotDatas.Clear();
         DirectoryInfo di = new DirectoryInfo(FileManager.FolderPath);
         foreach (var dir in di.GetDirectories())
         {
-            var sprite = iMG2Sprite.LoadNewSprite(FileManager.FolderPath + $"{currentSlot}Slot/Screenshot.png");
             SaveSlotData saveSlotData = new();
-            saveSlotData.sprite = sprite;
             saveSlotData.id = Int32.Parse(dir.Name.Substring(0, 1));
+            var sprite = iMG2Sprite.LoadNewSprite(FileManager.FolderPath + $"{saveSlotData.id}Slot/Screenshot.png");
+            saveSlotData.sprite = sprite;
             if (FileManager.LoadFromFile($"{dir.Name}/ClientSlot.sav", out var jsonC))
                 saveSlotData.clientModel = JsonConvert.DeserializeObject<ClientModel>(jsonC);
             if (FileManager.LoadFromFile($"{dir.Name}/LevelSlot.sav", out var jsonL))
                 saveSlotData.levelModel = JsonConvert.DeserializeObject<LevelModel>(jsonL);
             saveSlotDatas.Add(saveSlotData.id, saveSlotData);
+        }
+    }
+
+    internal void ClearSlot()
+    {
+        DirectoryInfo di = new DirectoryInfo(FileManager.FolderPath);
+        foreach (var dir in di.GetDirectories())
+        {
+            if (dir.Name == $"{currentSlot}Slot")
+            {
+                var fileNames = dir.GetFiles();
+                foreach (var file in fileNames)
+                {
+                    File.Delete(file.FullName);
+                }
+                string fullPath = FileManager.FolderPath + $"{currentSlot}Slot";
+                Directory.Delete(fullPath);
+                if (di.GetFiles().Any(f => f.Name == $"{currentSlot}Slot.meta"))
+                    File.Delete(fullPath + ".meta");
+            }
         }
     }
 

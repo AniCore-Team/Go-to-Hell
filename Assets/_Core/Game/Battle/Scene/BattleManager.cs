@@ -269,7 +269,8 @@ public class BattleManager : MonoBehaviour
                 Translator.Remove<InnerProtocol>(onFinishBattle);
                 battleWindow.ShowLose(() =>
                 {
-                    loadingManager.LoadScene("Location");
+                    if (!gameManager.IsFailGame())
+                        loadingManager.LoadScene("Location");
                 });
                 //loadingManager.LoadScene("Location");
                 break;
