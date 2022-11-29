@@ -11,8 +11,10 @@ public class BattleWindow : UIWindow
     [SerializeField] private CanvasGroup BottomPanel;
     [SerializeField] private CanvasGroup TopPanel;
     [SerializeField] private CanvasGroup WinPanel;
+    [SerializeField] private CanvasGroup LosePanel;
 
     [SerializeField] private Button doneButton;
+    [SerializeField] private Button doneLoseButton;
     [SerializeField] private Image newCard;
 
 
@@ -53,16 +55,44 @@ public class BattleWindow : UIWindow
 
     public void ShowWin(Sprite newCard, Action winFunc)
     {
-        BottomPanel.gameObject.SetActive(false);
         this.newCard.sprite = newCard;
 
-        var animator = Services<PureAnimatorController>.Get().GetPureAnimator();
-        animator.Play(1.5f, progress =>
+        ShowEndBattlePanel(WinPanel, doneButton, winFunc);
+
+        //BottomPanel.gameObject.SetActive(false);
+        //var animatorWait = Services<PureAnimatorController>.Get().GetPureAnimator();
+        //var animator = Services<PureAnimatorController>.Get().GetPureAnimator();
+        //animatorWait.Play(1f, progress => default, () =>
+        //{
+        //    animator.Play(1.5f, progress =>
+        //    {
+        //        TopPanel.alpha = 1 - progress;
+        //        WinPanel.alpha = progress;
+        //        return default;
+        //    }, () => doneButton.onClick.AddListener(() => winFunc()));
+        //});
+    }
+
+    public void ShowLose(Action loseFunc)
+    {
+        ShowEndBattlePanel(LosePanel, doneLoseButton, loseFunc);
+    }
+
+    private void ShowEndBattlePanel(CanvasGroup panel, Button doneButton, Action func)
+    {
+        BottomPanel.gameObject.SetActive(false);
+
+        var animatorWait = Services<PureAnimatorController>.Get().GetPureAnimator();
+        animatorWait.Play(1f, progress => default, () =>
         {
-            TopPanel.alpha = 1 - progress;
-            WinPanel.alpha = progress;
-            return default;
-        }, () => doneButton.onClick.AddListener(() => winFunc()));
+            var animator = Services<PureAnimatorController>.Get().GetPureAnimator();
+            animator.Play(1.5f, progress =>
+            {
+                TopPanel.alpha = 1 - progress;
+                panel.alpha = progress;
+                return default;
+            }, () => doneButton.onClick.AddListener(() => func()));
+        });
     }
 
     private void CheckLockers()

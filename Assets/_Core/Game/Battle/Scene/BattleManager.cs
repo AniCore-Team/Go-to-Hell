@@ -265,8 +265,13 @@ public class BattleManager : MonoBehaviour
                 });
                 break;
             case InnerProtocol.LoseBattle:
+                cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Enemy);
                 Translator.Remove<InnerProtocol>(onFinishBattle);
-                loadingManager.LoadScene("Location");
+                battleWindow.ShowLose(() =>
+                {
+                    loadingManager.LoadScene("Location");
+                });
+                //loadingManager.LoadScene("Location");
                 break;
         }
     }
