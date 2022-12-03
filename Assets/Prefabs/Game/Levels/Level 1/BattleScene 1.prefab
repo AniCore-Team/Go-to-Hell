@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe59c0688b6276f458d1a53b3307848b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1233345625187274946, guid: 0f48bdb9346191341933a8944ff96e20,
+  playerPrefab: {fileID: 1321213374087020788, guid: 533394ee15b7cac4380a36c34ca5225c,
     type: 3}
   playerPosition: {fileID: 2415787394793369035}
   enemyPosition: {fileID: 5333278467890300988}
