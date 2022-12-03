@@ -1,0 +1,72 @@
+{
+  "0": {
+    "id": 0,
+    "clientModel": {
+      "nameClient": "Player6605",
+      "hitPoint": -1,
+      "date": "2022-11-29T11:02:00.9826983Z",
+      "cardIDs": [
+        3,
+        5,
+        0,
+        7
+      ],
+      "cardLevels": [
+        1,
+        1,
+        1,
+        2
+      ]
+    },
+    "levelModel": {
+      "circle": 0,
+      "lastPlayerPosition": {
+        "x": -0.8954336,
+        "y": 0.116666675,
+        "z": -16.33446
+      },
+      "lastPlayerRotation": {
+        "x": 0.0,
+        "y": 152.698608,
+        "z": 0.0
+      },
+      "locationEventObjects": [
+        false,
+        true
+      ]
+    }
+  },
+  "1": {
+    "id": 1,
+    "clientModel": {
+      "nameClient": "Player5449",
+      "hitPoint": 1,
+      "date": "2022-12-03T10:03:15.7046024Z",
+      "cardIDs": [
+        0,
+        3
+      ],
+      "cardLevels": [
+        1,
+        1
+      ]
+    },
+    "levelModel": {
+      "circle": 0,
+      "lastPlayerPosition": {
+        "x": 11.18698,
+        "y": 0.116666675,
+        "z": -0.629610837
+      },
+      "lastPlayerRotation": {
+        "x": 0.0,
+        "y": 39.47837,
+        "z": 0.0
+      },
+      "locationEventObjects": [
+        true,
+        true
+      ]
+    }
+  }
+}
