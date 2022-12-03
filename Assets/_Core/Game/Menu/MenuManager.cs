@@ -9,6 +9,7 @@ namespace UI.Menu
     public class MenuManager : MonoBehaviour
     {
         [SerializeField] private Button PlayGameButton;
+        [SerializeField] private Button SettingsButton;
         [Inject] private WindowsManager windowsManager;
 
         private void Awake()
@@ -21,6 +22,7 @@ namespace UI.Menu
         void Start()
         {
             Utils.AddListenerToButton(PlayGameButton,() => EventsTranslator.Call(WindowsTag.GameSlots));
+            Utils.AddListenerToButton(SettingsButton,() => EventsTranslator.Call(WindowsTag.Settings));
         }
 
         private void OnDestroy()

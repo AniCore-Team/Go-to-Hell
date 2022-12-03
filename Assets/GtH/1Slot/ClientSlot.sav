@@ -1,12 +1,14 @@
 {
   "nameClient": "Player5449",
   "hitPoint": 1,
-  "date": "2022-12-03T10:03:15.7046024Z",
+  "date": "2022-12-03T10:07:00.2234435Z",
   "cardIDs": [
+    3,
     0,
-    3
+    8
   ],
   "cardLevels": [
+    1,
     1,
     1
   ]

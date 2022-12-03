@@ -41,12 +41,14 @@
     "clientModel": {
       "nameClient": "Player5449",
       "hitPoint": 1,
-      "date": "2022-12-03T10:03:15.7046024Z",
+      "date": "2022-12-03T10:07:00.2234435Z",
       "cardIDs": [
+        3,
         0,
-        3
+        8
       ],
       "cardLevels": [
+        1,
         1,
         1
       ]
@@ -54,18 +56,18 @@
     "levelModel": {
       "circle": 0,
       "lastPlayerPosition": {
-        "x": 11.18698,
+        "x": -4.294176,
         "y": 0.116666675,
-        "z": -0.629610837
+        "z": -11.6837912
       },
       "lastPlayerRotation": {
         "x": 0.0,
-        "y": 39.47837,
+        "y": 241.111755,
         "z": 0.0
       },
       "locationEventObjects": [
         true,
-        true
+        false
       ]
     }
   }

@@ -12,6 +12,7 @@ namespace UI.Menu
         [SerializeField] private GameObject newGamePanel;
         [SerializeField] private LoadSlotScreen loadGamePanel;
         [SerializeField] private Button clickableButton;
+        [SerializeField] private Button clearSlot;
 
         [Inject] private SaveManager saveManager;
         [Inject] private CardsList cardsList;
@@ -60,6 +61,11 @@ namespace UI.Menu
                 client.SetClientModel(saveManager.GetSlotData().clientModel, cardsList);
                 LoadingManager.OnLoadScene.Invoke("Location");
             });
+        }
+
+        public void ClearSlot()
+        {
+
         }
     }
 

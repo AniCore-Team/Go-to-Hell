@@ -10,5 +10,6 @@ public class MenuInstaller : MonoInstaller
         Container.Bind<CreateNewGameWindow>().FromComponentInHierarchy().AsSingle().NonLazy();
         Container.Bind<GameSlotsWindow>().FromComponentInHierarchy().AsSingle().NonLazy();
         Container.Bind<MenuButtonsWindow>().FromComponentInHierarchy().AsSingle().NonLazy();
+        Container.Bind<SettingsWindow>().FromComponentInHierarchy().AsSingle().NonLazy();
     }
 }
