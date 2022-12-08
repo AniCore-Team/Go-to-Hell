@@ -130,6 +130,11 @@ public class BattleWindow : UIWindow
         passButton.interactable = value;
     }
 
+    public void SetActiveTopPanel(bool value)
+    {
+        TopPanel.alpha = value ? 1 : 0;
+    }
+
     public int GetCountFreeSlots()
     {
         int count = 0;

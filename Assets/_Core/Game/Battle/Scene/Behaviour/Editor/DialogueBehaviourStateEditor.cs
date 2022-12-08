@@ -1,4 +1,4 @@
 ﻿using BehaviourSystem.Editor;
 
 [CustomNodeEditor(typeof(DialogueBehaviourState))]
-public class DialogueBehaviourStateEditor : BehaviourStateEditor<LevelDialogueWindow> { }
+public class DialogueBehaviourStateEditor : BehaviourStateEditor<DialogueWindow> { }

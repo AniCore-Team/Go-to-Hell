@@ -104,6 +104,7 @@ public class BattleManager : MonoBehaviour
     }
 
     [SerializeField] private BattleWindow battleWindow;
+    [SerializeField] private BattleDialogueWindow battleDialogWindow;
 
     private CinemachineSwitcher cinemachineSwitcher;
     private BattleSceneManager battleSceneManager;
@@ -176,9 +177,10 @@ public class BattleManager : MonoBehaviour
         this.gameManager = gameManager;
         this.loadingManager = loadingManager;
         this.factory = factory;
+
         cardDetector = new CardDetector();
         battleWindow.Init(CheckLock);
-        loadingManager.onFinishLoad += StartBattle;
+        loadingManager.onFinishLoad += StartBattleScene;
         battleWindow.onPassRound += NextRound;
         StateRound = StateRound.PrePlayer;
 
@@ -203,16 +205,29 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    private void StartBattle()
+    private void StartBattleScene()
     {
         battleWindow.SetActiveBottomPanel(false);
+
+        if (gameManager.IsBossBattle)
+        {
+            battleWindow.SetActiveTopPanel(false);
+            var dialogData = battleSceneManager.BattleScene.BossProperty.dialogueData;
+            battleDialogWindow.StartDialouge(dialogData);
+            battleDialogWindow.endDialog += StartBattle;
+        }
+        else
+            StartBattle();
+    }
+
+    private void StartBattle()
+    {
+        battleWindow.SetActiveTopPanel(true);
+        cinemachineSwitcher.SwitchState(CinemachineSwitcher.CinemachineState.Battle);
         Services<PureAnimatorController>
             .Get()
             .GetPureAnimator()
-            .Play(0.2f, progress =>
-            {
-                return default;
-            }, () =>
+            .Play(0.2f, progress => default, () =>
             {
                 battleController = new BattleBehaviourController();
                 battleController.TryInstall(this, graph);
@@ -234,7 +249,7 @@ public class BattleManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        loadingManager.onFinishLoad -= StartBattle;
+        loadingManager.onFinishLoad -= StartBattleScene;
     }
 
     public void NextRound()

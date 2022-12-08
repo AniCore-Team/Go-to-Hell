@@ -4,7 +4,7 @@
 public class CheckAnswerDecision : DialogueDecisions
 {
     [SerializeField] private Answers answer;
-    public override bool GetDecision(LevelDialogueWindow entity)
+    public override bool GetDecision(DialogueWindow entity)
     {
         return entity.CheckAnswers(answer);
     }

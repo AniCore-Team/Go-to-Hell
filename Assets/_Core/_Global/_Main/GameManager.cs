@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [Inject] private SaveManager saveManager;
     [Inject] private LoadingManager loadingManager;
 
+    public bool IsBossBattle { get; set; }
+
     public void SetCurrentEnemy(int val)
     {
         currentEnemyID = val;

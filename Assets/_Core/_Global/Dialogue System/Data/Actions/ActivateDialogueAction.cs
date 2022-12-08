@@ -5,7 +5,7 @@ public class ActivateDialogueAction : DialogueAction
 {
     [SerializeField] private bool isActivate;
 
-    public override void BeginAction(LevelDialogueWindow entity)
+    public override void BeginAction(DialogueWindow entity)
     {
         base.BeginAction(entity);
         entity.IsActiveAction = true;

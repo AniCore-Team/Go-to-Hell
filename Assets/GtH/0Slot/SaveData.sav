@@ -2,37 +2,105 @@
   "0": {
     "id": 0,
     "clientModel": {
-      "nameClient": "Player6605",
-      "hitPoint": -1,
-      "date": "2022-11-29T11:02:00.9826983Z",
+      "nameClient": "Player5883",
+      "hitPoint": 1,
+      "date": "2022-12-08T12:39:13.8063732Z",
       "cardIDs": [
         3,
-        5,
-        0,
-        7
+        0
       ],
       "cardLevels": [
         1,
-        1,
-        1,
-        2
+        1
       ]
     },
     "levelModel": {
       "circle": 0,
       "lastPlayerPosition": {
-        "x": -0.8954336,
+        "x": 11.8519821,
         "y": 0.116666675,
-        "z": -16.33446
+        "z": 0.09941785
       },
       "lastPlayerRotation": {
         "x": 0.0,
-        "y": 152.698608,
+        "y": 53.42801,
+        "z": 0.0
+      },
+      "locationEventObjects": [
+        true,
+        true
+      ]
+    }
+  },
+  "1": {
+    "id": 1,
+    "clientModel": {
+      "nameClient": "Player5449",
+      "hitPoint": 1,
+      "date": "2022-12-03T10:07:00.2234435Z",
+      "cardIDs": [
+        3,
+        0,
+        8
+      ],
+      "cardLevels": [
+        1,
+        1,
+        1
+      ]
+    },
+    "levelModel": {
+      "circle": 0,
+      "lastPlayerPosition": {
+        "x": -4.294176,
+        "y": 0.116666675,
+        "z": -11.6837912
+      },
+      "lastPlayerRotation": {
+        "x": 0.0,
+        "y": 241.111755,
+        "z": 0.0
+      },
+      "locationEventObjects": [
+        true,
+        false
+      ]
+    }
+  },
+  "2": {
+    "id": 2,
+    "clientModel": {
+      "nameClient": "Player1213",
+      "hitPoint": 1,
+      "date": "2022-12-03T11:47:07.5122529Z",
+      "cardIDs": [
+        3,
+        5,
+        0,
+        6
+      ],
+      "cardLevels": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "levelModel": {
+      "circle": 0,
+      "lastPlayerPosition": {
+        "x": -3.88805056,
+        "y": 0.116666675,
+        "z": -11.67287
+      },
+      "lastPlayerRotation": {
+        "x": 0.0,
+        "y": 258.921143,
         "z": 0.0
       },
       "locationEventObjects": [
         false,
-        true
+        false
       ]
     }
   }

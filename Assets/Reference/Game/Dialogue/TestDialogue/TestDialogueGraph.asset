@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -296, y: -120}
@@ -22,7 +22,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: -7764320002177139024}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: SecondMessage
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 1048, y: -120}
@@ -83,7 +83,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: -2693450143162079590}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: EndFirst
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 1768, y: -104}
@@ -178,7 +178,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: -1705562842045158180}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: Battle
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 2440, y: -104}
@@ -240,7 +240,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: -1004479872916117118}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: Level
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 2440, y: 280}
@@ -320,7 +320,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: 4265584533643824586}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: FirstMessage
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 376, y: -120}
@@ -383,7 +383,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: 7043891720945883093}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
-  m_Name: Dialogue Behaviour State
+  m_Name: EndSecond
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 1768, y: 280}
@@ -499,7 +499,7 @@ MonoBehaviour:
     values:
     - _fieldName: Enter
       _node: {fileID: 8672701397095976333}
-      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[LevelDialogueWindow,
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
         BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:

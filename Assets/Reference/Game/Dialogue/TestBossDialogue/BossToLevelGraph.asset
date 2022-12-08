@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4d3274643d69042b497a81263ebd0f, type: 3}
+  m_Name: BossToLevelGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 2574008713849127525}
+  BeginState: {fileID: 2574008713849127525}
+--- !u!114 &2574008713849127525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2a7ed5fce87ce4d8455dab3e847d56, type: 3}
+  m_Name: Dialogue Behaviour State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -296, y: -168}
+  ports:
+    keys:
+    - Enter
+    - instanceInput_0
+    - instanceInput_1
+    values:
+    - _fieldName: Enter
+      _node: {fileID: 2574008713849127525}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: instanceInput_0
+      _node: {fileID: 2574008713849127525}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: instanceInput_1
+      _node: {fileID: 2574008713849127525}
+      _typeQualifiedName: BehaviourSystem.BehaviourState`1+Connection[[DialogueWindow,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        BehaviourSystem, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _dynamic: 1
+  Actions:
+  - {fileID: 11400000, guid: 7f3115f2bc0d50f4bbea9a171cd9fc48, type: 2}
+  Transitions:
+  - Decisions:
+    - {fileID: 11400000, guid: 80894641fb3c91147a00c2e31b8f9169, type: 2}
+    TrueState: {fileID: 0}
+    TruePortName: instanceInput_0
+    FalseState: {fileID: 0}
+    FalsePortName: instanceInput_1
