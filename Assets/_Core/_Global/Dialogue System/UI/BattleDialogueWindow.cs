@@ -40,12 +40,14 @@ public class BattleDialogueWindow : DialogueWindow
         endDialog = null;
     }
 
-    public void PrintBattleMessage(string messageKey, bool isPlayerSpeak)
+    public void PrintBattleMessage(Sprite portrait, string name, string messageKey, bool isPlayerSpeak)
     {
         cinemachineSwitcher.SwitchState(isPlayerSpeak ?
             CinemachineSwitcher.CinemachineState.PlayerDialog :
             CinemachineSwitcher.CinemachineState.EnemyDialog);
 
+        this.portrait.sprite = portrait;
+        nameText.text = name;
         PrintMessages(messageKey);
     }
 }

@@ -1,13 +1,13 @@
 {
   "circle": 0,
   "lastPlayerPosition": {
-    "x": 11.8519821,
+    "x": 11.0769653,
     "y": 0.116666675,
-    "z": 0.09941785
+    "z": -0.5666578
   },
   "lastPlayerRotation": {
     "x": 0.0,
-    "y": 53.42801,
+    "y": 60.2648849,
     "z": 0.0
   },
   "locationEventObjects": [

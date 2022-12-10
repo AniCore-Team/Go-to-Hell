@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f38a76e830dd94ea2c12db16f9fffa, type: 3}
   m_Name: Second
   m_EditorClassIdentifier: 
+  portrait: {fileID: 21300000, guid: 6ae453cca5c0b964cab3be872b6f6f88, type: 3}
+  name: Player
   message: Second
   isPlayerSpeak: 1
