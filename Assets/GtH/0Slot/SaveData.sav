@@ -4,7 +4,7 @@
     "clientModel": {
       "nameClient": "Player5883",
       "hitPoint": 1,
-      "date": "2022-12-10T04:53:24.5629116Z",
+      "date": "2022-12-10T08:59:10.1324934Z",
       "cardIDs": [
         3,
         0
@@ -17,13 +17,13 @@
     "levelModel": {
       "circle": 0,
       "lastPlayerPosition": {
-        "x": 11.0769653,
+        "x": 11.7648058,
         "y": 0.116666675,
-        "z": -0.5666578
+        "z": -0.600082934
       },
       "lastPlayerRotation": {
         "x": 0.0,
-        "y": 60.2648849,
+        "y": 98.73776,
         "z": 0.0
       },
       "locationEventObjects": [

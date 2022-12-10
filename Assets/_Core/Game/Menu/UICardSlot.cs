@@ -8,13 +8,14 @@ public class UICardSlot
     public CardView card;
     public Transform cardPoint;
     public Transform cardSpawn;
-    [SerializeField] private Button locker;
-    [SerializeField] private GameObject checkMark;
+    //[SerializeField] private Button locker;
+    //[SerializeField] private GameObject checkMark;
 
     [SerializeField] private bool isLocked = false;
 
     private event Func<bool, bool> onUseLock;
     private Action onCheclLockers;
+    public Action onSetLockers;
 
     public bool IsLocked
     {
@@ -25,10 +26,11 @@ public class UICardSlot
     {
         onUseLock = func;
         this.onCheclLockers = onCheclLockers;
-        locker.onClick.AddListener(() =>
+        onSetLockers = 
+        () =>
         {
             SetLocked(!isLocked, true);
-        });
+        };
     }
 
     public void SetLocked(bool value, bool isUseScore)
@@ -39,16 +41,17 @@ public class UICardSlot
 
         isLocked = value;
         onCheclLockers?.Invoke();
-        checkMark.SetActive(isLocked);
+        card?.CheckMark.SetActive(isLocked);
     }
 
     public void SetActiveLocker(bool isActive)
     {
-        locker.gameObject.SetActive(isActive);
+        card?.LockerButton.gameObject.SetActive(isActive);
     }
 
     public void SetInteractableLocker(bool isActive)
     {
-        locker.interactable = isActive;
+        if (card)
+        card.LockerButton.interactable = isActive;
     }
 }
