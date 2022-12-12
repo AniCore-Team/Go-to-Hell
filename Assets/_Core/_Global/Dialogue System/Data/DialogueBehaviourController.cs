@@ -1,6 +1,6 @@
 ﻿using BehaviourSystem;
 
-public class DialogueBehaviourController : BehaviourController<LevelDialogueWindow>
+public class DialogueBehaviourController : BehaviourController<DialogueWindow>
 {
     
 }

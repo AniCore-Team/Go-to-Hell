@@ -16,6 +16,7 @@ public struct Level
     public string levelName;
     public LevelController level;
     public SubLevel[] subs;
+    public SubLevel bossScene;
 }
 
 [System.Serializable]

@@ -24,3 +24,8 @@ MonoBehaviour:
       level: {fileID: 5927565060866989632, guid: 9ff5ad3776fd93e4a8e366f27036dd71,
         type: 3}
       isBoss: 0
+    bossScene:
+      name: Boss
+      level: {fileID: 5927565060866989632, guid: 9ff5ad3776fd93e4a8e366f27036dd71,
+        type: 3}
+      isBoss: 1

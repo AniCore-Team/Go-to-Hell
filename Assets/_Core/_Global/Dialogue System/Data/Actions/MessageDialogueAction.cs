@@ -8,7 +8,7 @@ public class MessageDialogueAction : DialogueAction
     [SerializeField] private string answer2;
     [SerializeField] private string answer3;
 
-    public override void BeginAction(LevelDialogueWindow entity)
+    public override void BeginAction(DialogueWindow entity)
     {
         base.BeginAction(entity);
         entity.PrintMessages(message, answer1, answer2, answer3);

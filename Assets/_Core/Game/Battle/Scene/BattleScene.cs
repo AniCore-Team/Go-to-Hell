@@ -15,21 +15,19 @@ public class BattleScene : MonoBehaviour
     [Inject] private GameManager gameManager;
     [Inject] private CinemachineSwitcher cinemachineSwitcher;
 
-    //public EnemyController EnemyController => currentEnemy.GetComponent<EnemyController>();
-    //public PlayerController PlayerController => player.GetComponent<PlayerController>();
     public EnemyController EnemyController => enemy as EnemyController;
     public PlayerController PlayerController => player as PlayerController;
+    public BossProperty BossProperty => enemyList.list[gameManager.CurrentEnemyID] as BossProperty;
 
     void Start()
     {
-        /*player = */Instantiate(playerPrefab, player.transform);
+        Instantiate(playerPrefab, player.transform);
         player.Init(cinemachineSwitcher);
-        //player.transform.position = playerPosition.position;
-        //player.transform.rotation = playerPosition.rotation;
 
-        /*currentEnemy = */Instantiate(enemyList.list[gameManager.CurrentEnemyID].prefab, enemy.transform);
+        var enemyProperty = enemyList.list[gameManager.CurrentEnemyID];
+        Instantiate(enemyProperty.prefab, enemy.transform);
         enemy.Init(cinemachineSwitcher);
-        //currentEnemy.transform.position = enemyPosition.position;
-        //currentEnemy.transform.rotation = enemyPosition.rotation;
+
+        gameManager.IsBossBattle = enemyProperty is BossProperty;
     }
 }

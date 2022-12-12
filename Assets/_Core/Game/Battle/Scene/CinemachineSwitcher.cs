@@ -8,7 +8,9 @@ public class CinemachineSwitcher : MonoBehaviour
         Battle,
         Enemy,
         Player,
-        Win
+        Win,
+        EnemyDialog,
+        PlayerDialog
     }
 
     private CinemachineState currentState = CinemachineState.Battle;

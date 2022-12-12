@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60451a4d5375c8347a5edc6866dd27ab, type: 3}
+  m_Name: Test Boss Property
+  m_EditorClassIdentifier: Assembly-CSharp::BossProperty
+  prefab: {fileID: 4023783814361746400, guid: b8c6dc015f1d7bf48b1a2febc16f2bfc, type: 3}
+  simpleCards:
+  - {fileID: 11400000, guid: 266a949273e326545836e8395be1c85d, type: 2}
+  - {fileID: 11400000, guid: d731324a6fe33ae46a6a057a5ae44d38, type: 2}
+  - {fileID: 11400000, guid: 95a92e086acdebf4184551af4caa6911, type: 2}
+  hardAttacks:
+  - interval: 2
+    chance: 0.33
+    hardCards:
+    - {fileID: 11400000, guid: 7b7ae30a9cd96074bb92f032d7a64bd8, type: 2}
+  dialogueData:
+    name: "\u3061\u3083\u3093"
+    portrait: {fileID: 21300000, guid: 6f37276e43c44ef4a8851d493d770ea4, type: 3}
+    textSteps: {fileID: 11400000, guid: 87432db43470d514aaeea6f492eeb56d, type: 2}
+    audioSteps: {fileID: 11400000, guid: 59fc110447f3a50428ba66184a5bb435, type: 2}
+    graph: {fileID: 11400000, guid: 9a36d127551a9824cb847db481577b40, type: 2}
