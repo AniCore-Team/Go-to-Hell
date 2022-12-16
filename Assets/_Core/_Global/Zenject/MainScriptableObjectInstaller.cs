@@ -12,6 +12,7 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
     [SerializeField] private CardsList cardsList;
     [SerializeField] private DefaultPlayerCards playerCards;
     [SerializeField] private AudioConfig audioConfig;
+    [SerializeField] private SettingsConfig settingsConfig;
 
     public override void InstallBindings()
     {
@@ -22,7 +23,8 @@ public class MainScriptableObjectInstaller : ScriptableObjectInstaller<MainScrip
             enemyList,
             cardsList,
             playerCards,
-            audioConfig
+            audioConfig,
+            settingsConfig
             );
     }
 }

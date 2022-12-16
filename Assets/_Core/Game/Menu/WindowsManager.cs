@@ -29,6 +29,8 @@ namespace UI.Menu
             EventsTranslator.AddListener(WindowsTag.MenuButtons, menuButtonsWindow.ActivateWindow);
             EventsTranslator.AddListener(WindowsTag.Hide, HideAllWindows);
             EventsTranslator.AddListener(WindowsTag.Settings, settingsWindow.SetProperty);
+
+            settingsWindow.Init();
         }
 
         private void HideAllWindows()

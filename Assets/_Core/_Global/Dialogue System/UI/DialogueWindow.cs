@@ -31,8 +31,8 @@ public class DialogueWindow : MonoBehaviour
     [SerializeField] protected Text dialogueText;
     [SerializeField] protected Text nameText;
 
-    [Inject]
-    protected AudioManager audioManager;
+    [Inject] protected AudioManager audioManager;
+    [Inject] private SettingsConfig settingsConfig;
 
     protected Answers answer;
     protected DialogueBehaviourController controller;
@@ -64,6 +64,7 @@ public class DialogueWindow : MonoBehaviour
     public virtual void StartDialouge(DialogueData dialogueData)
     {
         dialogueTextStepConfig = dialogueData.textSteps;
+        dialogueTextStepConfig.SetLanguage(settingsConfig.CurrentLanguage);
         dialogueAudioStepConfig = dialogueData.audioSteps;
         nameText.text = dialogueData.name;
         controller = new DialogueBehaviourController();

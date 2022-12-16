@@ -19,3 +19,4 @@ MonoBehaviour:
   cardsList: {fileID: 11400000, guid: b1bd602b7ab31c74ab2f93c9b48eb481, type: 2}
   playerCards: {fileID: 11400000, guid: 7b9f40d39d71c0641bcd0f1f289beac3, type: 2}
   audioConfig: {fileID: 11400000, guid: 2fa28b378b95ba747a23ef673ef4c45d, type: 2}
+  settingsConfig: {fileID: 11400000, guid: c3f7796212700104db8b947f7acb4baa, type: 2}

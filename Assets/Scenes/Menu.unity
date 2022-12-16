@@ -2541,7 +2541,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1274479940}
         m_TargetAssemblyTypeName: UI.Menu.SettingsWindow, Assembly-CSharp
-        m_MethodName: Reset
+        m_MethodName: ResetValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4444,6 +4444,7 @@ MonoBehaviour:
   soundVolume: {fileID: 1212597333}
   apply: {fileID: 662705379}
   reset: {fileID: 646680045}
+  languages: 0a0000001e000000
 --- !u!1 &1283158074
 GameObject:
   m_ObjectHideFlags: 0
