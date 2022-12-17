@@ -27,29 +27,17 @@ namespace UI.Menu
 
         public void Init()
         {
-            string[] names = QualitySettings.names;
-            List<TMP_Dropdown.OptionData> options = new();
-            foreach (string key in names)
-                options.Add(new TMP_Dropdown.OptionData(key));
-            quality.options = options;
             quality.onValueChanged.RemoveAllListeners();
             quality.onValueChanged.AddListener(i =>
             {
                 bufferQuality = i;
-                //settingsConfig.CurrentQuality = i;
-                //QualitySettings.SetQualityLevel(i, true);
             });
             QualitySettings.SetQualityLevel(settingsConfig.CurrentQuality, true);
 
-            options = new();
-            foreach (var key in languages)
-                options.Add(new TMP_Dropdown.OptionData(key.ToString()));
-            language.options = options;
             language.onValueChanged.RemoveAllListeners();
             language.onValueChanged.AddListener(i =>
             {
                 bufferLanguage = languages[i];
-                //settingsConfig.CurrentLanguage = languages[i];
             });
 
             musicVolume.value = settingsConfig.CurrentMusic;
@@ -58,20 +46,23 @@ namespace UI.Menu
             musicVolume.onValueChanged.AddListener(i =>
             {
                 bufferMusic = i;
-                //settingsConfig.CurrentMusic = i;
-                //audioManager.SetMusicVolume((settingsConfig.CurrentMusic * 80f) - 80f);
             });
             soundVolume.onValueChanged.RemoveAllListeners();
             soundVolume.onValueChanged.AddListener(i =>
             {
                 bufferSound = i;
-                //settingsConfig.CurrentSound = i;
-                //audioManager.SetSoundVolume((settingsConfig.CurrentSound * 80f) - 80f);
-                //audioManager.SetVoiceVolume((settingsConfig.CurrentSound * 80f) - 80f);
             });
             audioManager.SetMusicVolume((settingsConfig.CurrentMusic * 80f) - 80f);
             audioManager.SetSoundVolume((settingsConfig.CurrentSound * 80f) - 80f);
             audioManager.SetVoiceVolume((settingsConfig.CurrentSound * 80f) - 80f);
+        }
+
+        private void OnEnable()
+        {
+            bufferQuality = settingsConfig.CurrentQuality;
+            bufferLanguage = settingsConfig.CurrentLanguage;
+            bufferMusic = settingsConfig.CurrentMusic;
+            bufferSound = settingsConfig.CurrentSound;
         }
 
         public void SetProperty()

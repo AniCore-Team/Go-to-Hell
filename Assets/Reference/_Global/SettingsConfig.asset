@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f679d59b16f0934dae22a30f5fa5117, type: 3}
   m_Name: SettingsConfig
   m_EditorClassIdentifier: 
+  textUIConfig: {fileID: 11400000, guid: 9e857d4445eac604b8b626ad2cfc61b8, type: 2}
   currentLanguage: 10
   currentQuality: 1
   currentMusic: 0.7
