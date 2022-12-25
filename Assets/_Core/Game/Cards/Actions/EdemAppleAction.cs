@@ -41,7 +41,7 @@ public class EdemAppleAction : BaseActions
         #endregion GetMoveData
 
         castData.self.Heal(castData.self.CardEffectsController.IsDebuff ? health / 2 : health);
-        PureAnimation.Play(effect.main.duration + effect.main.startLifetime.constant,
+        PureAnimation.Play(effect.main.duration,
             progress => default,
             () => EndMoveEffectAnimation(castData, finishedCast) );
     }

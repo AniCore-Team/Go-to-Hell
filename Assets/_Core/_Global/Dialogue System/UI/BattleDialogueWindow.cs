@@ -1,7 +1,3 @@
-using Common;
-using Config;
-using PureAnimator;
-using Sources;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

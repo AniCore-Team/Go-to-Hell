@@ -75,7 +75,7 @@ public class HellScreamAction : BaseActions
         castData.effect = effect.gameObject;
         #endregion GetMoveData
 
-        PureAnimation.Play(effect.main.duration + effect.main.startLifetime.constant,
+        PureAnimation.Play(effect.main.duration,
             Utils.EmptyPureAnimation,
             () => EndMoveEffectAnimation(castData, finishedCast) );
     }
