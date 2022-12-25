@@ -30,6 +30,7 @@ public class DialogueWindow : MonoBehaviour
     [SerializeField] protected CanvasGroup canvasGroup;
     [SerializeField] protected Text dialogueText;
     [SerializeField] protected Text nameText;
+    [SerializeField] private DialogueTextStepConfig names;
 
     [Inject] protected AudioManager audioManager;
     [Inject] private SettingsConfig settingsConfig;
@@ -66,7 +67,7 @@ public class DialogueWindow : MonoBehaviour
         dialogueTextStepConfig = dialogueData.textSteps;
         dialogueTextStepConfig.SetLanguage(settingsConfig.CurrentLanguage);
         dialogueAudioStepConfig = dialogueData.audioSteps;
-        nameText.text = dialogueData.name;
+        nameText.text = names.GetText(dialogueData.name);
         controller = new DialogueBehaviourController();
         controller.TryInstall(this, dialogueData.graph);
     }

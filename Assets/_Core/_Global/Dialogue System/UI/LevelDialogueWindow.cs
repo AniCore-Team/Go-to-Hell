@@ -1,8 +1,5 @@
-using Config;
-using Sources;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class LevelDialogueWindow : DialogueWindow
 {

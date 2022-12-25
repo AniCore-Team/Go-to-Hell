@@ -8,7 +8,7 @@ namespace Config
     [CreateAssetMenu(fileName = "DialogueTextStepConfig", menuName = "ScriptableObjects/DialogueTextStepConfig", order = 1)]
     public class DialogueTextStepConfig : ScriptableObject
     {
-        [SerializeField] private SystemLanguage currentLanguage;
+        [SerializeField] private SystemLanguage currentLanguage = SystemLanguage.English;
         [SerializeField] private List<TextDialogueStep> steps;
 
         public SystemLanguage CurrentLanguage => currentLanguage;

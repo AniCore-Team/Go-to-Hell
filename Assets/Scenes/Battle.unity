@@ -2942,6 +2942,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 2053195989}
   dialogueText: {fileID: 1332588772}
   nameText: {fileID: 2109850339}
+  names: {fileID: 11400000, guid: 2fcad699da924144f828529fbba1bb38, type: 2}
   portrait: {fileID: 1778555502}
   answerButtons: {fileID: 1530239213}
 --- !u!1 &2109850337

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SettingsConfig
   m_EditorClassIdentifier: 
   textUIConfig: {fileID: 11400000, guid: 9e857d4445eac604b8b626ad2cfc61b8, type: 2}
-  currentLanguage: 10
+  currentLanguage: 30
   currentQuality: 1
-  currentMusic: 0.7
-  currentSound: 0.7
+  currentMusic: 0.8
+  currentSound: 0.8

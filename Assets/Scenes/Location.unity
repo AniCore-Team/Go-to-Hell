@@ -1955,6 +1955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 662940968}
+  dialogueText: {fileID: 1496745291}
+  nameText: {fileID: 503606211}
   portrait: {fileID: 507561286}
   answerButtons:
   - {fileID: 1301030506}
@@ -1964,8 +1966,7 @@ MonoBehaviour:
   - {fileID: 1033415863}
   - {fileID: 1183466638}
   - {fileID: 2020431271}
-  dialogueText: {fileID: 1496745291}
-  nameText: {fileID: 503606211}
+  names: {fileID: 11400000, guid: 2fcad699da924144f828529fbba1bb38, type: 2}
 --- !u!1 &1932622552
 GameObject:
   m_ObjectHideFlags: 0
